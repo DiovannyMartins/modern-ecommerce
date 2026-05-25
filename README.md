@@ -16,7 +16,7 @@ Projeto de e-commerce desenvolvido com HTML e CSS, focado em design moderno e ex
 Adicione uma imagem ou GIF do projeto aqui.
 
 ## 🔗 Deploy
-https://diovannymartins.github.io/E-commerce/
+https://diovannymartins.github.io/modern-ecommerce/
 
 ## 📚 Aprendizados
 Com este projeto pratiquei:
