@@ -1,206 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <title>E-commerce</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="#">
-                    NEON
-                    <span class="highlight">
-                        X
-                    </span>
-                </a>
-            </div>
-
-            <input type="checkbox" id="menu-toggle" class="menu-toggle">
-            <label for="menu-toggle" class="hamburger">
-                <span class="material-symbols-outlined">menu</span>
-            </label>
-
-            <nav class="menu">
-                <a href="#">Produtos</a>
-                <a href="#">Lançamentos</a>
-                <a href="#">Suporte</a>
-            </nav>
-
-            <div class="header-actions">
-                <div class="search-bar">
-                    <span class="material-symbols-outlined search-icon">search</span>
-                    <input type="text" placeholder="Buscar comando...">
-                </div>
-                
-                <button class="icon-btn">
-                    <span class="material-symbols-outlined">shopping_cart</span>
-                    <span class="cart-badge">2</span>
-                </button>
-            </div>
+      <div class="container header-content">
+        <div class="logo">
+          <a href="#">
+            NEON
+            <span class="highlight"> X </span>
+          </a>
         </div>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+        <label for="menu-toggle" class="hamburger">
+          <span class="material-symbols-outlined">menu</span>
+        </label>
+
+        <nav class="menu">
+          <a href="#">Produtos</a>
+          <a href="#">Lançamentos</a>
+          <a href="#">Suporte</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="search-bar">
+            <span class="material-symbols-outlined search-icon">search</span>
+            <input type="text" placeholder="Buscar comando..." />
+          </div>
+
+          <button class="icon-btn">
+            <span class="material-symbols-outlined">shopping_cart</span>
+            <span class="cart-badge">2</span>
+          </button>
+        </div>
+      </div>
     </header>
 
     <main class="container">
-        <section class="product-hero">
-            <div class="product-visuals">
-                <div class="main-image">
-                    <img src="img/Headset-preto.avif" alt="Headset NeonX Pro Preto">
-                </div>
-                <div class="image-gallery">
-                    <img src="img/Miniatura-1.avif" alt="Miniatura 1" class="active">
-                    <img src="img/Miniatura-2.avif" alt="Miniatura 2">
-                    <img src="img/Miniatura-3.avif" alt="Miniatura 3">
-                    <img src="img/Miniatura-4.avif" alt="Miniatura 4">
-                </div>
+      <section class="product-hero">
+        <div class="product-visuals">
+          <div class="main-image">
+            <img src="img/Headset-preto.avif" alt="Headset NeonX Pro Preto" />
+          </div>
+          <div class="image-gallery">
+            <img src="img/Miniatura-1.avif" alt="Miniatura 1" class="active" />
+            <img src="img/Miniatura-2.avif" alt="Miniatura 2" />
+            <img src="img/Miniatura-3.avif" alt="Miniatura 3" />
+            <img src="img/Miniatura-4.avif" alt="Miniatura 4" />
+          </div>
+        </div>
+
+        <div class="product-info">
+          <span class="category">Áudio Profissional</span>
+          <h1 class="product-title">Headset Wireless NeonX Pro</h1>
+
+          <div class="rating">
+            <span class="stars">★★★★★</span>
+            <span class="reviews-count">(128 avaliações)</span>
+          </div>
+
+          <div class="price-container">
+            <span class="old-price">R$ 1.299,00</span>
+            <span class="current-price">R$ 899,00</span>
+            <span class="installments">ou 10x de R$ 89,90 sem juros</span>
+          </div>
+
+          <p class="description">
+            Áudio imersivo 7.1 surround, cancelamento de ruído ativo de última
+            geração e bateria para 50 horas de gameplay contínuo. O conforto que
+            você precisa para maratonas, com a precisão de áudio exigida pelos
+            profissionais.
+          </p>
+
+          <div class="actions">
+            <div class="quantity-fake">
+              <span>-</span>
+              <span>1</span>
+              <span>+</span>
             </div>
+            <button class="btn-buy">Adicionar ao Carrinho</button>
+          </div>
 
-            <div class="product-info">
-                <span class="category">Áudio Profissional</span>
-                <h1 class="product-title">Headset Wireless NeonX Pro</h1>
+          <div class="shipping-info">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span>Frete grátis para todo o Brasil</span>
+          </div>
+        </div>
+      </section>
 
-                <div class="rating">
-                    <span class="stars">★★★★★</span>
-                    <span class="reviews-count">(128 avaliações)</span>
-                </div>
+      <section class="features">
+        <h2>Especificações Técnicas</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="material-symbols-outlined icon"
+              >battery_charging_full</span
+            >
+            <h3>50h de Bateria</h3>
+            <p>Jogue por dias sem precisar recarregar.</p>
+          </div>
+          <div class="feature-card">
+            <span class="material-symbols-outlined icon">weight</span>
+            <h3>Ultra Leve</h3>
+            <p>Apenas 245g. Esqueça que está usando.</p>
+          </div>
+          <div class="feature-card">
+            <span class="material-symbols-outlined icon">surround_sound</span>
+            <h3>Áudio 7.1</h3>
+            <p>Precisão espacial para passos e tiros.</p>
+          </div>
+          <div class="feature-card">
+            <span class="material-symbols-outlined icon">bluetooth</span>
+            <h3>Wireless 2.4GHz</h3>
+            <p>Latência zero com alcance de 15 metros.</p>
+          </div>
+        </div>
+      </section>
 
-                <div class="price-container">
-                    <span class="old-price">R$ 1.299,00</span>
-                    <span class="current-price">R$ 899,00</span>
-                    <span class="installments">ou 10x de R$ 89,90 sem juros</span>
-                </div>
-
-                <p class="description">
-                    Áudio imersivo 7.1 surround, cancelamento de ruído ativo de última geração e bateria para 50 horas
-                    de gameplay contínuo. O conforto que você precisa para maratonas, com a precisão de áudio exigida
-                    pelos profissionais.
-                </p>
-
-                <div class="actions">
-                    <div class="quantity-fake">
-                        <span>-</span>
-                        <span>1</span>
-                        <span>+</span>
-                    </div>
-                    <button class="btn-buy">Adicionar ao Carrinho</button>
-                </div>
-
-                <div class="shipping-info">
-                    <span class="material-symbols-outlined">local_shipping</span>
-                    <span>Frete grátis para todo o Brasil</span>
-                </div>
+      <section class="reviews-section">
+        <h2>Avaliações de Clientes</h2>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <h4>Carlos Silva</h4>
+                <span class="date">Há 2 dias</span>
+              </div>
+              <span class="stars">★★★★★</span>
             </div>
-        </section>
+            <p class="review-text">
+              "Simplesmente incrível! O cancelamento de ruído é surreal e o fone
+              é muito leve. Recomendo demais para quem joga FPS."
+            </p>
+          </div>
 
-        <section class="features">
-            <h2>Especificações Técnicas</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <span class="material-symbols-outlined icon">battery_charging_full</span>
-                    <h3>50h de Bateria</h3>
-                    <p>Jogue por dias sem precisar recarregar.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="material-symbols-outlined icon">weight</span>
-                    <h3>Ultra Leve</h3>
-                    <p>Apenas 245g. Esqueça que está usando.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="material-symbols-outlined icon">surround_sound</span>
-                    <h3>Áudio 7.1</h3>
-                    <p>Precisão espacial para passos e tiros.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="material-symbols-outlined icon">bluetooth</span>
-                    <h3>Wireless 2.4GHz</h3>
-                    <p>Latência zero com alcance de 15 metros.</p>
-                </div>
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <h4>Mariana Costa</h4>
+                <span class="date">Há 1 semana</span>
+              </div>
+              <span class="stars">★★★★☆</span>
             </div>
-        </section>
+            <p class="review-text">
+              "Qualidade de som impecável. O único ponto é que poderia vir com
+              uma case de transporte, mas o produto em si é nota 10."
+            </p>
+          </div>
 
-        <section class="reviews-section">
-            <h2>Avaliações de Clientes</h2>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <h4>Carlos Silva</h4>
-                            <span class="date">Há 2 dias</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"Simplesmente incrível! O cancelamento de ruído é surreal e o fone é muito
-                        leve. Recomendo demais para quem joga FPS."</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <h4>Mariana Costa</h4>
-                            <span class="date">Há 1 semana</span>
-                        </div>
-                        <span class="stars">★★★★☆</span>
-                    </div>
-                    <p class="review-text">"Qualidade de som impecável. O único ponto é que poderia vir com uma case de
-                        transporte, mas o produto em si é nota 10."</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <h4>Felipe Oliveira</h4>
-                            <span class="date">Há 2 semanas</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"A bateria realmente dura 50 horas. Estou usando para trabalhar e jogar e
-                        carrego uma vez por semana. Excelente investimento."</p>
-                </div>
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <h4>Felipe Oliveira</h4>
+                <span class="date">Há 2 semanas</span>
+              </div>
+              <span class="stars">★★★★★</span>
             </div>
-        </section>
-
+            <p class="review-text">
+              "A bateria realmente dura 50 horas. Estou usando para trabalhar e
+              jogar e carrego uma vez por semana. Excelente investimento."
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <div class="logo">
-                    <a href="#">
-                        NEON
-                        <span class="highlight">
-                            X
-                        </span>
-                    </a>
-                </div>
-                <p>Equipamentos de alta performance para quem leva o jogo a sério.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Produtos</h4>
-                <a href="#">Headsets</a>
-                <a href="#">Teclados</a>
-                <a href="#">Mouses</a>
-            </div>
-            <div class="footer-col">
-                <h4>Suporte</h4>
-                <a href="#">Rastrear Pedido</a>
-                <a href="#">Garantia</a>
-                <a href="#">Contato</a>
-            </div>
-            <div class="footer-col">
-                <h4>Pagamento Seguro</h4>
-                <p>Cartão, Pix e Boleto</p>
-            </div>
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="logo">
+            <a href="#">
+              NEON
+              <span class="highlight"> X </span>
+            </a>
+          </div>
+          <p>Equipamentos de alta performance para quem leva o jogo a sério.</p>
         </div>
-        <div class="footer-bottom container">
-            <p>&copy; 2026 NeonX Pro. Todos os direitos reservados. (Projeto de Estudo)</p>
+        <div class="footer-col">
+          <h4>Produtos</h4>
+          <a href="#">Headsets</a>
+          <a href="#">Teclados</a>
+          <a href="#">Mouses</a>
         </div>
+        <div class="footer-col">
+          <h4>Suporte</h4>
+          <a href="#">Rastrear Pedido</a>
+          <a href="#">Garantia</a>
+          <a href="#">Contato</a>
+        </div>
+        <div class="footer-col">
+          <h4>Pagamento Seguro</h4>
+          <p>Cartão, Pix e Boleto</p>
+        </div>
+      </div>
+      <div class="footer-bottom container">
+        <p>&copy; 2026 Diovanny. Todos os direitos reservados.</p>
+      </div>
     </footer>
-</body>
-
+  </body>
 </html>
