@@ -31,12 +31,12 @@
       </nav>
 
       <div class="header-actions">
-        <div class="search-bar">
+        <form class="search-bar" id="formBusca">
           <span class="material-symbols-outlined search-icon">search</span>
-          <input type="text" placeholder="Buscar comando..." />
-        </div>
+          <input type="text" placeholder="Buscar comando..." id="inputBusca">
+        </form>
 
-        <button class="icon-btn">
+        <button class="icon-btn" id="btnAbrirCarrinho" aria-label="Abrir carrinho">
           <span class="material-symbols-outlined">shopping_cart</span>
           <span class="cart-badge" id="cartBadge">0</span>
         </button>
@@ -98,7 +98,7 @@
       </div>
     </section>
 
-    <section class="features">
+    <section class="features reveal">
       <h2>Especificações Técnicas</h2>
       <div class="features-grid">
         <div class="feature-card">
@@ -124,7 +124,7 @@
       </div>
     </section>
 
-    <section class="reviews-section">
+    <section class="reviews-section reveal">
       <h2>Avaliações de Clientes</h2>
       <div class="reviews-grid">
         <div class="review-card">
@@ -201,9 +201,29 @@
       </div>
     </div>
     <div class="footer-bottom container">
-      <p>&copy; 2026 Diovanny. Todos os direitos reservados.</p>
+      <p>&copy; <span id="anoAtual"></span> Diovanny. Todos os direitos reservados.</p>
     </div>
   </footer>
+
+  <!-- Overlay escurecido atrás do carrinho -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <!-- Painel lateral do carrinho -->
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>Meu Carrinho</h3>
+      <button id="btnFecharCarrinho" aria-label="Fechar carrinho">✕</button>
+    </div>
+
+    <div class="cart-drawer-body" id="cartItens">
+      <!-- Itens inseridos via JS -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <p class="cart-total">Total: <span id="cartTotalValor">R$ 0,00</span></p>
+      <button class="btn-buy" id="btnFinalizar">Finalizar Compra</button>
+    </div>
+  </aside>
 
   <script src="script.js"></script>
 </body>
