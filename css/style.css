@@ -215,10 +215,6 @@ body {
   transition: transform 0.5s ease;
 }
 
-.main-image:hover img {
-  transform: scale(1.05);
-}
-
 .image-gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -341,10 +337,18 @@ body {
   user-select: none;
 }
 
-.quantity-fake span:not(:nth-child(2)) {
+.quantity-fake button {
   cursor: pointer;
   color: var(--text-muted);
   font-size: 20px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+}
+
+.quantity-fake button:hover {
+  color: var(--primary);
 }
 
 .btn-buy {

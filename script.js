@@ -70,6 +70,7 @@ btnDiminuir.addEventListener("click", () => {
 
 const btnAbrirCarrinho = document.getElementById("btnAbrirCarrinho");
 const btnFecharCarrinho = document.getElementById("btnFecharCarrinho");
+const btnComprar = document.getElementById("btnComprar");
 const cartDrawer = document.getElementById("cartDrawer");
 const cartOverlay = document.getElementById("cartOverlay");
 const cartItensContainer = document.getElementById("cartItens");
