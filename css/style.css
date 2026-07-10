@@ -144,10 +144,20 @@ body {
   font-size: 14px;
   font-family: inherit;
   width: 100%;
+  caret-color: var(--text-main);
 }
 
 .search-bar input::placeholder {
   color: var(--text-muted);
+}
+
+.search-bar input:-webkit-autofill,
+.search-bar input:-webkit-autofill:hover,
+.search-bar input:-webkit-autofill:focus,
+.search-bar input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #1e293b inset !important;
+  -webkit-text-fill-color: #f8fafc !important;
+  transition: background-color 9999s ease-in-out 0s;
 }
 
 /* Botão do carrinho (ícone + badge) */
