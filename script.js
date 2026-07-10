@@ -23,10 +23,14 @@ const miniaturas = document.querySelectorAll(".image-gallery img");
 
 miniaturas.forEach((miniatura) => {
   miniatura.addEventListener("click", () => {
-    // Troca a imagem principal pela miniatura clicada
+    mainImage.classList.add("carregando");
+
+    mainImage.onload = () => {
+      mainImage.classList.remove("carregando");
+    };
+
     mainImage.src = miniatura.src;
 
-    // Marca a miniatura clicada como ativa, removendo dos demais
     miniaturas.forEach((img) => img.classList.remove("active"));
     miniatura.classList.add("active");
   });
@@ -259,4 +263,167 @@ formBusca.addEventListener("submit", (event) => {
   }
 
   inputBusca.value = "";
+});
+
+/* ===== TOAST DE NOTIFICAÇÃO ===== */
+
+const toast = document.getElementById("toast");
+let toastTimeout;
+
+function mostrarToast(mensagem) {
+  clearTimeout(toastTimeout);
+  toast.textContent = mensagem;
+  toast.classList.add("show");
+
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+/* ===== AVALIAÇÕES (interativas, com ordenação e novo formulário) ===== */
+
+const reviewsGrid = document.getElementById("reviewsGrid");
+const ordenarAvaliacoes = document.getElementById("ordenarAvaliacoes");
+const formAvaliacao = document.getElementById("formAvaliacao");
+const starOptions = document.querySelectorAll(".star-option");
+
+let avaliacoes = [
+  {
+    nome: "Carlos Silva",
+    data: "Há 2 dias",
+    nota: 5,
+    texto:
+      "Simplesmente incrível! O cancelamento de ruído é surreal e o fone é muito leve. Recomendo demais para quem joga FPS.",
+  },
+  {
+    nome: "Mariana Costa",
+    data: "Há 1 semana",
+    nota: 4,
+    texto:
+      "Qualidade de som impecável. O único ponto é que poderia vir com uma case de transporte, mas o produto em si é nota 10.",
+  },
+  {
+    nome: "Felipe Oliveira",
+    data: "Há 2 semanas",
+    nota: 5,
+    texto:
+      "A bateria realmente dura 50 horas. Estou usando para trabalhar e jogar e carrego uma vez por semana. Excelente investimento.",
+  },
+];
+
+let notaSelecionada = 0;
+
+function renderizarEstrelas(nota) {
+  return "★".repeat(nota) + "☆".repeat(5 - nota);
+}
+
+function renderizarAvaliacoes() {
+  reviewsGrid.innerHTML = "";
+
+  avaliacoes.forEach((avaliacao) => {
+    const card = document.createElement("div");
+    card.classList.add("review-card");
+    card.innerHTML = `
+      <div class="review-header">
+        <div class="reviewer-info">
+          <h4>${avaliacao.nome}</h4>
+          <span class="date">${avaliacao.data}</span>
+        </div>
+        <span class="stars">${renderizarEstrelas(avaliacao.nota)}</span>
+      </div>
+      <p class="review-text">"${avaliacao.texto}"</p>
+    `;
+    reviewsGrid.appendChild(card);
+  });
+}
+
+// Ordena as avaliações conforme o critério escolhido
+ordenarAvaliacoes.addEventListener("change", () => {
+  const criterio = ordenarAvaliacoes.value;
+
+  if (criterio === "maior-nota") {
+    avaliacoes.sort((a, b) => b.nota - a.nota);
+  } else if (criterio === "menor-nota") {
+    avaliacoes.sort((a, b) => a.nota - b.nota);
+  }
+  // "recentes" mantém a ordem atual (mais nova primeiro, por causa do unshift)
+
+  renderizarAvaliacoes();
+});
+
+// Seleção de estrelas no formulário de nova avaliação
+starOptions.forEach((estrela) => {
+  estrela.addEventListener("click", () => {
+    notaSelecionada = parseInt(estrela.dataset.valor);
+
+    starOptions.forEach((s) => {
+      s.classList.toggle(
+        "selecionada",
+        parseInt(s.dataset.valor) <= notaSelecionada,
+      );
+    });
+  });
+});
+
+// Envio de nova avaliação
+formAvaliacao.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const nome = document.getElementById("nomeAvaliador").value.trim();
+  const comentario = document
+    .getElementById("comentarioAvaliador")
+    .value.trim();
+
+  if (nome === "" || comentario === "" || notaSelecionada === 0) {
+    mostrarToast("Preencha seu nome, comentário e selecione uma nota.");
+    return;
+  }
+
+  avaliacoes.unshift({
+    nome: nome,
+    data: "Agora mesmo",
+    nota: notaSelecionada,
+    texto: comentario,
+  });
+
+  renderizarAvaliacoes();
+  formAvaliacao.reset();
+  notaSelecionada = 0;
+  starOptions.forEach((s) => s.classList.remove("selecionada"));
+
+  mostrarToast("Avaliação enviada com sucesso!");
+});
+
+// Renderiza as avaliações iniciais ao carregar a página
+renderizarAvaliacoes();
+
+formBusca.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const termo = inputBusca.value.trim().toLowerCase();
+  const nomeProduto = "headset wireless neonx pro";
+
+  if (termo === "") return;
+
+  if (nomeProduto.includes(termo)) {
+    document
+      .querySelector(".product-hero")
+      .scrollIntoView({ behavior: "smooth" });
+  } else {
+    mostrarToast("Nenhum produto encontrado para: " + inputBusca.value);
+  }
+
+  inputBusca.value = "";
+});
+
+btnFinalizar.addEventListener("click", () => {
+  if (carrinho.length === 0) {
+    mostrarToast("Seu carrinho está vazio!");
+    return;
+  }
+  mostrarToast("Compra finalizada com sucesso!");
+  carrinho = [];
+  salvarCarrinho();
+  renderizarCarrinho();
+  fecharCarrinho();
 });

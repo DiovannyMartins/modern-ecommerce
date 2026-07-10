@@ -4,10 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Compre o Headset Wireless NeonX Pro: áudio 7.1 surround, cancelamento de ruído ativo e 50h de bateria. Frete grátis para todo o Brasil.">
+  <link rel="icon" type="image/png" href="img/Headset-preto.avif">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <title>E-commerce</title>
+  <title>Headset NeonX Pro | Loja NEON X</title>
 </head>
 
 <body>
@@ -45,7 +48,7 @@
         <!-- Botão que abre o carrinho lateral -->
         <button class="icon-btn" id="btnAbrirCarrinho" aria-label="Abrir carrinho">
           <span class="material-symbols-outlined">shopping_cart</span>
-          <span class="cart-badge" id="cartBadge">0</span>
+          <span class="cart-badge" id="cartBadge" aria-live="polite">0</span>
         </button>
       </div>
     </div>
@@ -144,48 +147,47 @@
 
     <section class="reviews-section reveal">
       <h2>Avaliações de Clientes</h2>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="review-header">
-            <div class="reviewer-info">
-              <h4>Carlos Silva</h4>
-              <span class="date">Há 2 dias</span>
-            </div>
-            <span class="stars">★★★★★</span>
-          </div>
-          <p class="review-text">
-            "Simplesmente incrível! O cancelamento de ruído é surreal e o fone
-            é muito leve. Recomendo demais para quem joga FPS."
-          </p>
-        </div>
 
-        <div class="review-card">
-          <div class="review-header">
-            <div class="reviewer-info">
-              <h4>Mariana Costa</h4>
-              <span class="date">Há 1 semana</span>
-            </div>
-            <span class="stars">★★★★☆</span>
-          </div>
-          <p class="review-text">
-            "Qualidade de som impecável. O único ponto é que poderia vir com
-            uma case de transporte, mas o produto em si é nota 10."
-          </p>
-        </div>
+      <div class="reviews-controls">
+        <label for="ordenarAvaliacoes">Ordenar por:</label>
+        <select id="ordenarAvaliacoes">
+          <option value="recentes">Mais recentes</option>
+          <option value="maior-nota">Maior nota</option>
+          <option value="menor-nota">Menor nota</option>
+        </select>
+      </div>
 
-        <div class="review-card">
-          <div class="review-header">
-            <div class="reviewer-info">
-              <h4>Felipe Oliveira</h4>
-              <span class="date">Há 2 semanas</span>
-            </div>
-            <span class="stars">★★★★★</span>
+      <div class="reviews-grid" id="reviewsGrid">
+        <!-- Avaliações inseridas dinamicamente via JS -->
+      </div>
+
+      <div class="review-form-container">
+        <h3>Deixe sua avaliação</h3>
+        <form id="formAvaliacao" class="review-form">
+          <div class="campo-avaliacao">
+            <label for="nomeAvaliador">Nome</label>
+            <input type="text" id="nomeAvaliador" placeholder="Seu nome" required>
           </div>
-          <p class="review-text">
-            "A bateria realmente dura 50 horas. Estou usando para trabalhar e
-            jogar e carrego uma vez por semana. Excelente investimento."
-          </p>
-        </div>
+
+          <div class="campo-avaliacao">
+            <span>Sua nota</span>
+            <div class="star-picker" id="starPicker">
+              <span class="star-option" data-valor="1">★</span>
+              <span class="star-option" data-valor="2">★</span>
+              <span class="star-option" data-valor="3">★</span>
+              <span class="star-option" data-valor="4">★</span>
+              <span class="star-option" data-valor="5">★</span>
+            </div>
+          </div>
+
+          <div class="campo-avaliacao">
+            <label for="comentarioAvaliador" class="sr-only">Comentário</label>
+            <textarea id="comentarioAvaliador" rows="3" placeholder="Conte o que achou do produto..."
+              required></textarea>
+          </div>
+
+          <button type="submit" class="btn-buy">Enviar Avaliação</button>
+        </form>
       </div>
     </section>
   </main>
@@ -247,6 +249,7 @@
     </div>
   </aside>
 
+  <div class="toast" id="toast"></div>
   <script src="script.js"></script>
 </body>
 
