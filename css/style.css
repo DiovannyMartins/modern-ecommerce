@@ -316,6 +316,17 @@ body {
   margin-bottom: 20px;
 }
 
+.subtotal {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.subtotal span {
+  color: var(--text-main);
+  font-weight: bold;
+}
+
 .quantity-fake {
   display: flex;
   align-items: center;
@@ -350,6 +361,12 @@ body {
   background-color: var(--primary-hover);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+}
+
+.btn-buy:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  animation: none;
 }
 
 @keyframes pulse {

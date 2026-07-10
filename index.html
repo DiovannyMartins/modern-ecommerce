@@ -38,7 +38,7 @@
 
         <button class="icon-btn">
           <span class="material-symbols-outlined">shopping_cart</span>
-          <span class="cart-badge">2</span>
+          <span class="cart-badge" id="cartBadge">0</span>
         </button>
       </div>
     </div>
@@ -69,7 +69,7 @@
 
         <div class="price-container">
           <span class="old-price">R$ 1.299,00</span>
-          <span class="current-price">R$ 899,00</span>
+          <span class="current-price" id="precoUnitario" data-price="899.00">R$ 899,00</span>
           <span class="installments">ou 10x de R$ 89,90 sem juros</span>
         </div>
 
@@ -86,8 +86,10 @@
             <span id="quantidadeValor">1</span>
             <span id="btnAumentar">+</span>
           </div>
-          <button class="btn-buy">Adicionar ao Carrinho</button>
+          <button class="btn-buy" id="btnComprar">Adicionar ao Carrinho</button>
         </div>
+
+        <p class="subtotal">Subtotal: <span id="subtotalValor">R$ 899,00</span></p>
 
         <div class="shipping-info">
           <span class="material-symbols-outlined">local_shipping</span>
