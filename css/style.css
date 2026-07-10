@@ -169,10 +169,6 @@ body {
   justify-content: center;
 }
 
-.menu-toggle {
-  display: none;
-}
-
 .hamburger {
   display: none;
   cursor: pointer;
@@ -577,7 +573,7 @@ body {
     border-bottom: none;
   }
 
-  .menu-toggle:checked ~ .menu {
+  .menu.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     opacity: 1;
   }
