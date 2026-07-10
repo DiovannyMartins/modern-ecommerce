@@ -338,6 +338,7 @@ body {
   width: 120px;
   padding: 0 15px;
   font-weight: bold;
+  user-select: none;
 }
 
 .quantity-fake span:not(:nth-child(2)) {
@@ -356,6 +357,7 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: var(--transition);
+  padding: 10px;
 }
 
 .btn-buy:hover {
