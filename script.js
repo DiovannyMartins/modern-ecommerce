@@ -1,4 +1,5 @@
-// Menu mobile
+/* ===== MENU MOBILE ===== */
+
 const menuToggle = document.getElementById("menuToggle");
 const menu = document.querySelector(".menu");
 
@@ -15,7 +16,8 @@ menuLinks.forEach((link) => {
   });
 });
 
-// Troca de imagem principal ao clicar nas miniaturas
+/* ===== GALERIA DE IMAGENS ===== */
+
 const mainImage = document.getElementById("mainImage");
 const miniaturas = document.querySelectorAll(".image-gallery img");
 
@@ -30,7 +32,8 @@ miniaturas.forEach((miniatura) => {
   });
 });
 
-// Contador de quantidade
+/* ===== CONTADOR DE QUANTIDADE E SUBTOTAL ===== */
+
 const btnDiminuir = document.getElementById("btnDiminuir");
 const btnAumentar = document.getElementById("btnAumentar");
 const quantidadeValor = document.getElementById("quantidadeValor");
@@ -40,6 +43,7 @@ const precoUnitario = document.getElementById("precoUnitario");
 let quantidade = 1;
 const preco = parseFloat(precoUnitario.dataset.price);
 
+// Formata um número como moeda brasileira (R$ 0.000,00)
 function formatarPreco(valor) {
   return valor.toLocaleString("pt-BR", {
     style: "currency",
@@ -66,7 +70,7 @@ btnDiminuir.addEventListener("click", () => {
   }
 });
 
-// ===== CARRINHO (com persistência em localStorage) =====
+/* ===== CARRINHO (com persistência em localStorage) ===== */
 
 const btnAbrirCarrinho = document.getElementById("btnAbrirCarrinho");
 const btnFecharCarrinho = document.getElementById("btnFecharCarrinho");
@@ -80,13 +84,14 @@ const cartBadge = document.getElementById("cartBadge");
 const nomeProdutoAtual = "Headset Wireless NeonX Pro";
 const imagemProdutoAtual = "img/Headset-preto.avif";
 
-// Carrega o carrinho salvo, ou começa vazio
+// Carrega o carrinho salvo no localStorage, ou começa vazio
 let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
 function salvarCarrinho() {
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
+// Reconstrói o HTML dos itens do carrinho a partir do array "carrinho"
 function renderizarCarrinho() {
   cartItensContainer.innerHTML = "";
 
@@ -109,7 +114,7 @@ function renderizarCarrinho() {
       <div class="cart-item-info">
         <h4>${item.nome}</h4>
         <p>${item.quantidade}x ${formatarPreco(item.preco)}</p>
-        <button class="cart-item-remover" data-index="${index}">Remover</button>
+        <button type="button" class="cart-item-remover" data-index="${index}">Remover</button>
       </div>
     `;
     cartItensContainer.appendChild(itemHTML);
@@ -175,7 +180,7 @@ btnAbrirCarrinho.addEventListener("click", abrirCarrinho);
 btnFecharCarrinho.addEventListener("click", fecharCarrinho);
 cartOverlay.addEventListener("click", fecharCarrinho);
 
-// Botão "Finalizar Compra" (simulado, sem backend)
+// Botão "Finalizar Compra" (simulado, sem backend real)
 const btnFinalizar = document.getElementById("btnFinalizar");
 btnFinalizar.addEventListener("click", () => {
   if (carrinho.length === 0) {
@@ -192,11 +197,13 @@ btnFinalizar.addEventListener("click", () => {
 // Renderiza o carrinho já ao carregar a página (caso tenha itens salvos)
 renderizarCarrinho();
 
-// Ano automático no rodapé
+/* ===== RODAPÉ ===== */
+
 const anoAtual = document.getElementById("anoAtual");
 anoAtual.textContent = new Date().getFullYear();
 
-// Scroll reveal
+/* ===== SCROLL REVEAL ===== */
+
 const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
@@ -212,7 +219,8 @@ const revealObserver = new IntersectionObserver(
 
 revealElements.forEach((el) => revealObserver.observe(el));
 
-// Zoom na imagem principal ao passar o mouse
+/* ===== ZOOM NA IMAGEM DO PRODUTO ===== */
+
 const mainImageContainer = document.querySelector(".main-image");
 
 mainImageContainer.addEventListener("mousemove", (event) => {
@@ -229,7 +237,8 @@ mainImageContainer.addEventListener("mouseleave", () => {
   mainImage.style.transform = "scale(1)";
 });
 
-// Busca simulada
+/* ===== BUSCA (SIMULADA) ===== */
+
 const formBusca = document.getElementById("formBusca");
 const inputBusca = document.getElementById("inputBusca");
 

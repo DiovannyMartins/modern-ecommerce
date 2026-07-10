@@ -11,6 +11,9 @@
 </head>
 
 <body>
+
+  <!-- HEADER / NAVEGAÇÃO -->
+
   <header class="header">
     <div class="container header-content">
       <div class="logo">
@@ -20,10 +23,12 @@
         </a>
       </div>
 
+      <!-- Botão hamburguer (menu mobile) -->
       <button id="menuToggle" class="hamburger" aria-label="Abrir menu">
         <span class="material-symbols-outlined">menu</span>
       </button>
 
+      <!-- Menu de navegação principal -->
       <nav class="menu">
         <a href="#">Produtos</a>
         <a href="#">Lançamentos</a>
@@ -31,11 +36,13 @@
       </nav>
 
       <div class="header-actions">
+        <!-- Barra de busca (simulada) -->
         <form class="search-bar" id="formBusca">
           <span class="material-symbols-outlined search-icon">search</span>
           <input type="text" placeholder="Buscar comando..." id="inputBusca">
         </form>
 
+        <!-- Botão que abre o carrinho lateral -->
         <button class="icon-btn" id="btnAbrirCarrinho" aria-label="Abrir carrinho">
           <span class="material-symbols-outlined">shopping_cart</span>
           <span class="cart-badge" id="cartBadge">0</span>
@@ -45,7 +52,12 @@
   </header>
 
   <main class="container">
+
+    <!-- PRODUTO PRINCIPAL (imagem + informações) -->
+
     <section class="product-hero">
+
+      <!-- Galeria de imagens do produto -->
       <div class="product-visuals">
         <div class="main-image">
           <img src="img/Headset-preto.avif" alt="Headset NeonX Pro Preto" id="mainImage" />
@@ -58,6 +70,7 @@
         </div>
       </div>
 
+      <!-- Informações, preço e ações de compra -->
       <div class="product-info">
         <span class="category">Áudio Profissional</span>
         <h1 class="product-title">Headset Wireless NeonX Pro</h1>
@@ -80,13 +93,14 @@
           profissionais.
         </p>
 
+        <!-- Seletor de quantidade e botão de compra -->
         <div class="actions">
           <div class="quantity-fake">
-            <button id="btnDiminuir" aria-label="Diminuir quantidade">-</button>
+            <button type="button" id="btnDiminuir" aria-label="Diminuir quantidade">-</button>
             <span id="quantidadeValor">1</span>
-            <button id="btnAumentar" aria-label="Aumentar quantidade">+</button>
+            <button type="button" id="btnAumentar" aria-label="Aumentar quantidade">+</button>
           </div>
-          <button class="btn-buy" id="btnComprar">Adicionar ao Carrinho</button>
+          <button type="button" class="btn-buy" id="btnComprar">Adicionar ao Carrinho</button>
         </div>
 
         <p class="subtotal">Subtotal: <span id="subtotalValor">R$ 899,00</span></p>
@@ -97,6 +111,8 @@
         </div>
       </div>
     </section>
+
+    <!-- ESPECIFICAÇÕES TÉCNICAS -->
 
     <section class="features reveal">
       <h2>Especificações Técnicas</h2>
@@ -123,6 +139,8 @@
         </div>
       </div>
     </section>
+
+    <!-- AVALIAÇÕES DE CLIENTES -->
 
     <section class="reviews-section reveal">
       <h2>Avaliações de Clientes</h2>
@@ -172,6 +190,8 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
+
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-col">
@@ -205,6 +225,8 @@
     </div>
   </footer>
 
+  <!-- CARRINHO LATERAL (DRAWER) -->
+
   <!-- Overlay escurecido atrás do carrinho -->
   <div class="cart-overlay" id="cartOverlay"></div>
 
@@ -212,16 +234,16 @@
   <aside class="cart-drawer" id="cartDrawer">
     <div class="cart-drawer-header">
       <h3>Meu Carrinho</h3>
-      <button id="btnFecharCarrinho" aria-label="Fechar carrinho">✕</button>
+      <button type="button" id="btnFecharCarrinho" aria-label="Fechar carrinho">✕</button>
     </div>
 
     <div class="cart-drawer-body" id="cartItens">
-      <!-- Itens inseridos via JS -->
+      <!-- Itens inseridos dinamicamente via JS -->
     </div>
 
     <div class="cart-drawer-footer">
       <p class="cart-total">Total: <span id="cartTotalValor">R$ 0,00</span></p>
-      <button class="btn-buy" id="btnFinalizar">Finalizar Compra</button>
+      <button type="button" class="btn-buy" id="btnFinalizar">Finalizar Compra</button>
     </div>
   </aside>
 
