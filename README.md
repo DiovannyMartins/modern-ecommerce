@@ -36,10 +36,6 @@ Projeto de e-commerce desenvolvido com HTML5, CSS3 e JavaScript, simulando uma l
 - **[v1.0.0](https://github.com/DiovannyMartins/modern-ecommerce/releases/tag/v1.0.0)** — Versão inicial, 100% HTML5 e CSS3
 - **[v2.0.0](https://github.com/DiovannyMartins/modern-ecommerce/releases/tag/v2.0.0)** — Adição de JavaScript: carrinho, checkout, avaliações e otimizações
 
-## 🖼️ Preview
-
-![Preview do projeto](img/Headset-preto.avif)
-
 ## 📚 Aprendizados
 
 Com este projeto pratiquei:
