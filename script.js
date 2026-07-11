@@ -395,18 +395,6 @@ formBusca.addEventListener("submit", (event) => {
   inputBusca.value = "";
 });
 
-btnFinalizar.addEventListener("click", () => {
-  if (carrinho.length === 0) {
-    mostrarToast("Seu carrinho está vazio!");
-    return;
-  }
-  mostrarToast("Compra finalizada com sucesso!");
-  carrinho = [];
-  salvarCarrinho();
-  renderizarCarrinho();
-  fecharCarrinho();
-});
-
 // Permite navegar entre as estrelas usando as setas do teclado
 starPicker.addEventListener("keydown", (event) => {
   const estrelasArray = Array.from(starOptions);
@@ -421,4 +409,102 @@ starPicker.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft" && indexAtual > 0) {
     estrelasArray[indexAtual - 1].focus();
   }
+});
+
+/* ===== CHECKOUT (SIMULADO) ===== */
+
+const checkoutOverlay = document.getElementById("checkoutOverlay");
+const checkoutModal = document.getElementById("checkoutModal");
+const btnFecharCheckout = document.getElementById("btnFecharCheckout");
+const checkoutTotal = document.getElementById("checkoutTotal");
+const metodosPagamento = document.querySelectorAll(".metodo-pagamento");
+const formCartao = document.getElementById("formCartao");
+const btnConfirmarPedido = document.getElementById("btnConfirmarPedido");
+const etapaPagamento = document.getElementById("etapaPagamento");
+const etapaSucesso = document.getElementById("etapaSucesso");
+const numeroPedido = document.getElementById("numeroPedido");
+const btnFecharSucesso = document.getElementById("btnFecharSucesso");
+
+let metodoSelecionado = "pix";
+
+// Abre o checkout ao clicar em "Finalizar Compra" (só se o carrinho não estiver vazio)
+btnFinalizar.addEventListener("click", () => {
+  if (carrinho.length === 0) {
+    mostrarToast("Seu carrinho está vazio!");
+    return;
+  }
+
+  checkoutTotal.textContent = cartTotalValor.textContent;
+  abrirCheckout();
+});
+
+function abrirCheckout() {
+  checkoutOverlay.classList.add("active");
+  checkoutModal.classList.add("active");
+}
+
+function fecharCheckout() {
+  checkoutOverlay.classList.remove("active");
+  checkoutModal.classList.remove("active");
+}
+
+btnFecharCheckout.addEventListener("click", fecharCheckout);
+checkoutOverlay.addEventListener("click", fecharCheckout);
+
+// Alterna entre os métodos de pagamento (Pix / Cartão / Boleto)
+metodosPagamento.forEach((botao) => {
+  botao.addEventListener("click", () => {
+    metodosPagamento.forEach((b) => b.classList.remove("active"));
+    botao.classList.add("active");
+    metodoSelecionado = botao.dataset.metodo;
+
+    // Mostra o formulário do cartão só quando esse método for escolhido
+    formCartao.classList.toggle("visivel", metodoSelecionado === "cartao");
+  });
+});
+
+// Gera um número de pedido aleatório (só visual, sem backend)
+function gerarNumeroPedido() {
+  const numero = Math.floor(100000 + Math.random() * 900000);
+  return `#${numero}`;
+}
+
+// Confirma o pedido (valida cartão se for o método escolhido)
+btnConfirmarPedido.addEventListener("click", () => {
+  if (metodoSelecionado === "cartao") {
+    const numero = document.getElementById("numeroCartao").value.trim();
+    const nome = document.getElementById("nomeCartao").value.trim();
+    const validade = document.getElementById("validadeCartao").value.trim();
+    const cvv = document.getElementById("cvvCartao").value.trim();
+
+    if (numero === "" || nome === "" || validade === "" || cvv === "") {
+      mostrarToast("Preencha todos os dados do cartão.");
+      return;
+    }
+  }
+
+  // Mostra a etapa de sucesso
+  numeroPedido.textContent = gerarNumeroPedido();
+  etapaPagamento.hidden = true;
+  etapaSucesso.hidden = false;
+});
+
+// Fecha tudo e limpa o carrinho depois do pedido confirmado
+btnFecharSucesso.addEventListener("click", () => {
+  carrinho = [];
+  salvarCarrinho();
+  renderizarCarrinho();
+  fecharCheckout();
+  fecharCarrinho();
+
+  // Reseta o modal para a próxima compra
+  etapaPagamento.hidden = false;
+  etapaSucesso.hidden = true;
+  formCartao.reset();
+  metodosPagamento.forEach((b) => b.classList.remove("active"));
+  document.querySelector('[data-metodo="pix"]').classList.add("active");
+  formCartao.classList.remove("visivel");
+  metodoSelecionado = "pix";
+
+  mostrarToast("Pedido confirmado com sucesso!");
 });

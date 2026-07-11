@@ -251,7 +251,82 @@
   </aside>
 
   <div class="toast" id="toast"></div>
+
+  <!-- MODAL DE CHECKOUT (simulado) -->
+  <div class="checkout-overlay" id="checkoutOverlay"></div>
+
+  <div class="checkout-modal" id="checkoutModal">
+
+    <!-- Etapa 1: escolha de pagamento -->
+    <div class="checkout-etapa" id="etapaPagamento">
+      <div class="checkout-header">
+        <h3>Finalizar Pedido</h3>
+        <button type="button" id="btnFecharCheckout" aria-label="Fechar checkout">✕</button>
+      </div>
+
+      <div class="checkout-resumo">
+        <p>Total do pedido</p>
+        <span id="checkoutTotal">R$ 0,00</span>
+      </div>
+
+      <div class="checkout-metodos">
+        <button type="button" class="metodo-pagamento active" data-metodo="pix">
+          <span class="material-symbols-outlined">qr_code_2</span>
+          Pix
+        </button>
+        <button type="button" class="metodo-pagamento" data-metodo="cartao">
+          <span class="material-symbols-outlined">credit_card</span>
+          Cartão
+        </button>
+        <button type="button" class="metodo-pagamento" data-metodo="boleto">
+          <span class="material-symbols-outlined">receipt_long</span>
+          Boleto
+        </button>
+      </div>
+
+      <!-- Campos do cartão (aparecem só se "Cartão" for escolhido) -->
+      <form id="formCartao" class="form-cartao">
+        <div class="campo-avaliacao">
+          <label for="numeroCartao" class="sr-only">Número do cartão</label>
+          <input type="text" id="numeroCartao" placeholder="Número do cartão" maxlength="19">
+        </div>
+        <div class="campo-avaliacao">
+          <label for="nomeCartao" class="sr-only">Nome impresso no cartão</label>
+          <input type="text" id="nomeCartao" placeholder="Nome impresso no cartão">
+        </div>
+        <div class="linha-dupla">
+          <div class="campo-avaliacao">
+            <label for="validadeCartao" class="sr-only">Validade</label>
+            <input type="text" id="validadeCartao" placeholder="MM/AA" maxlength="5">
+          </div>
+          <div class="campo-avaliacao">
+            <label for="cvvCartao" class="sr-only">CVV</label>
+            <input type="text" id="cvvCartao" placeholder="CVV" maxlength="4">
+          </div>
+        </div>
+      </form>
+
+      <p class="checkout-nota">🔒 Simulação: nenhum dado é enviado ou armazenado de verdade.</p>
+
+      <button type="button" class="btn-buy" id="btnConfirmarPedido">Confirmar Pedido</button>
+    </div>
+
+    <!-- Etapa 2: pedido confirmado -->
+    <div class="checkout-etapa checkout-sucesso" id="etapaSucesso" hidden>
+      <span class="material-symbols-outlined icone-sucesso">check_circle</span>
+      <h3>Pedido confirmado!</h3>
+      <p>Número do pedido:</p>
+      <span class="numero-pedido" id="numeroPedido">#000000</span>
+      <p class="checkout-nota">Você receberá atualizações por e-mail (simulado).</p>
+      <button type="button" class="btn-buy" id="btnFecharSucesso">Concluir</button>
+    </div>
+
+  </div>
+
   <script src="script.js"></script>
+</body>
+
+<script src="script.js"></script>
 </body>
 
 </html>
