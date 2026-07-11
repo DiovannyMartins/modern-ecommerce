@@ -258,6 +258,8 @@ const formAvaliacao = document.getElementById("formAvaliacao");
 const starOptions = document.querySelectorAll(".star-option");
 const starPicker = document.getElementById("starPicker");
 
+let notaSelecionada = 0;
+
 let avaliacoes = [
   {
     id: 3,
