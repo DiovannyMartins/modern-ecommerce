@@ -424,6 +424,9 @@ const etapaPagamento = document.getElementById("etapaPagamento");
 const etapaSucesso = document.getElementById("etapaSucesso");
 const numeroPedido = document.getElementById("numeroPedido");
 const btnFecharSucesso = document.getElementById("btnFecharSucesso");
+const numeroCartao = document.getElementById("numeroCartao");
+const validadeCartao = document.getElementById("validadeCartao");
+const cvvCartao = document.getElementById("cvvCartao");
 
 let metodoSelecionado = "pix";
 
@@ -463,6 +466,32 @@ metodosPagamento.forEach((botao) => {
   });
 });
 
+// Máscara do número do cartão: só números, agrupados de 4 em 4 (0000 0000 0000 0000)
+numeroCartao.addEventListener("input", () => {
+  let valor = numeroCartao.value.replace(/\D/g, ""); // remove tudo que não é número
+  valor = valor.slice(0, 16); // limita a 16 dígitos
+  valor = valor.replace(/(\d{4})(?=\d)/g, "$1 "); // adiciona espaço a cada 4 dígitos
+  numeroCartao.value = valor;
+});
+
+// Máscara da validade: só números, formato MM/AA
+validadeCartao.addEventListener("input", () => {
+  let valor = validadeCartao.value.replace(/\D/g, "");
+  valor = valor.slice(0, 4); // limita a 4 dígitos (MMAA)
+
+  if (valor.length >= 3) {
+    valor = valor.slice(0, 2) + "/" + valor.slice(2);
+  }
+
+  validadeCartao.value = valor;
+});
+
+// Máscara do CVV: só números, máximo 4 dígitos
+cvvCartao.addEventListener("input", () => {
+  let valor = cvvCartao.value.replace(/\D/g, "");
+  cvvCartao.value = valor.slice(0, 4);
+});
+
 // Gera um número de pedido aleatório (só visual, sem backend)
 function gerarNumeroPedido() {
   const numero = Math.floor(100000 + Math.random() * 900000);
@@ -472,13 +501,28 @@ function gerarNumeroPedido() {
 // Confirma o pedido (valida cartão se for o método escolhido)
 btnConfirmarPedido.addEventListener("click", () => {
   if (metodoSelecionado === "cartao") {
-    const numero = document.getElementById("numeroCartao").value.trim();
+    const numero = numeroCartao.value.replace(/\s/g, "");
     const nome = document.getElementById("nomeCartao").value.trim();
-    const validade = document.getElementById("validadeCartao").value.trim();
-    const cvv = document.getElementById("cvvCartao").value.trim();
+    const validade = validadeCartao.value;
+    const cvv = cvvCartao.value;
 
-    if (numero === "" || nome === "" || validade === "" || cvv === "") {
-      mostrarToast("Preencha todos os dados do cartão.");
+    if (numero.length !== 16) {
+      mostrarToast("Número do cartão inválido.");
+      return;
+    }
+
+    if (nome === "") {
+      mostrarToast("Preencha o nome impresso no cartão.");
+      return;
+    }
+
+    if (validade.length !== 5) {
+      mostrarToast("Validade inválida. Use o formato MM/AA.");
+      return;
+    }
+
+    if (cvv.length < 3) {
+      mostrarToast("CVV inválido.");
       return;
     }
   }
