@@ -186,17 +186,6 @@ cartOverlay.addEventListener("click", fecharCarrinho);
 
 // Botão "Finalizar Compra" (simulado, sem backend real)
 const btnFinalizar = document.getElementById("btnFinalizar");
-btnFinalizar.addEventListener("click", () => {
-  if (carrinho.length === 0) {
-    alert("Seu carrinho está vazio!");
-    return;
-  }
-  alert("Compra finalizada com sucesso! (simulação)");
-  carrinho = [];
-  salvarCarrinho();
-  renderizarCarrinho();
-  fecharCarrinho();
-});
 
 // Renderiza o carrinho já ao carregar a página (caso tenha itens salvos)
 renderizarCarrinho();
@@ -246,25 +235,6 @@ mainImageContainer.addEventListener("mouseleave", () => {
 const formBusca = document.getElementById("formBusca");
 const inputBusca = document.getElementById("inputBusca");
 
-formBusca.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const termo = inputBusca.value.trim().toLowerCase();
-  const nomeProduto = "headset wireless neonx pro";
-
-  if (termo === "") return;
-
-  if (nomeProduto.includes(termo)) {
-    document
-      .querySelector(".product-hero")
-      .scrollIntoView({ behavior: "smooth" });
-  } else {
-    alert("Nenhum produto encontrado para: " + inputBusca.value);
-  }
-
-  inputBusca.value = "";
-});
-
 /* ===== TOAST DE NOTIFICAÇÃO ===== */
 
 const toast = document.getElementById("toast");
@@ -286,6 +256,7 @@ const reviewsGrid = document.getElementById("reviewsGrid");
 const ordenarAvaliacoes = document.getElementById("ordenarAvaliacoes");
 const formAvaliacao = document.getElementById("formAvaliacao");
 const starOptions = document.querySelectorAll(".star-option");
+const starPicker = document.getElementById("starPicker");
 
 let avaliacoes = [
   {
@@ -426,4 +397,20 @@ btnFinalizar.addEventListener("click", () => {
   salvarCarrinho();
   renderizarCarrinho();
   fecharCarrinho();
+});
+
+// Permite navegar entre as estrelas usando as setas do teclado
+starPicker.addEventListener("keydown", (event) => {
+  const estrelasArray = Array.from(starOptions);
+  const indexAtual = estrelasArray.findIndex(
+    (s) => s === document.activeElement,
+  );
+
+  if (event.key === "ArrowRight" && indexAtual < estrelasArray.length - 1) {
+    estrelasArray[indexAtual + 1].focus();
+  }
+
+  if (event.key === "ArrowLeft" && indexAtual > 0) {
+    estrelasArray[indexAtual - 1].focus();
+  }
 });

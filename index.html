@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Compre o Headset Wireless NeonX Pro: áudio 7.1 surround, cancelamento de ruído ativo e 50h de bateria. Frete grátis para todo o Brasil.">
-  <link rel="icon" type="image/png" href="img/Headset-preto.avif">
+  <link rel="icon" type="image/avif" href="img/Headset-preto.avif">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -171,12 +171,13 @@
 
           <div class="campo-avaliacao">
             <span>Sua nota</span>
-            <div class="star-picker" id="starPicker">
-              <span class="star-option" data-valor="1">★</span>
-              <span class="star-option" data-valor="2">★</span>
-              <span class="star-option" data-valor="3">★</span>
-              <span class="star-option" data-valor="4">★</span>
-              <span class="star-option" data-valor="5">★</span>
+            <div class="star-picker" id="starPicker" role="radiogroup"
+              aria-label="Selecione uma nota de 1 a 5 estrelas">
+              <button type="button" class="star-option" data-valor="1" aria-label="1 estrela">★</button>
+              <button type="button" class="star-option" data-valor="2" aria-label="2 estrelas">★</button>
+              <button type="button" class="star-option" data-valor="3" aria-label="3 estrelas">★</button>
+              <button type="button" class="star-option" data-valor="4" aria-label="4 estrelas">★</button>
+              <button type="button" class="star-option" data-valor="5" aria-label="5 estrelas">★</button>
             </div>
           </div>
 

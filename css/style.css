@@ -238,7 +238,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
 }
 
 /* Galeria de miniaturas */
@@ -503,8 +502,20 @@ body {
 }
 
 .star-picker .star-option {
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 0;
   color: var(--border);
+  font-size: 24px;
+  cursor: pointer;
   transition: var(--transition);
+}
+
+.star-picker .star-option:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .star-picker .star-option.selecionada {
