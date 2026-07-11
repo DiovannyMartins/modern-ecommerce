@@ -477,7 +477,18 @@ numeroCartao.addEventListener("input", () => {
 // Máscara da validade: só números, formato MM/AA
 validadeCartao.addEventListener("input", () => {
   let valor = validadeCartao.value.replace(/\D/g, "");
-  valor = valor.slice(0, 4); // limita a 4 dígitos (MMAA)
+  valor = valor.slice(0, 4);
+
+  // Corrige o mês enquanto o usuário digita
+  if (valor.length >= 2) {
+    let mes = parseInt(valor.slice(0, 2));
+
+    if (mes === 0) {
+      valor = "01" + valor.slice(2);
+    } else if (mes > 12) {
+      valor = "12" + valor.slice(2);
+    }
+  }
 
   if (valor.length >= 3) {
     valor = valor.slice(0, 2) + "/" + valor.slice(2);
