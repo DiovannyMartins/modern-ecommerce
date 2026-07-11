@@ -5,12 +5,22 @@
   --bg-card: #1e293b;
   --primary: #8b5cf6;
   --primary-hover: #7c3aed;
+  --primary-text: #a78bfa;
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --border: #334155;
   --star: #fbbf24;
   --radius: 8px;
   --transition: all 0.3s ease;
+}
+
+.category {
+  color: var(--primary-text);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
 /* Reset básico */
@@ -386,7 +396,7 @@ body {
 
 .btn-buy {
   flex: 1;
-  background-color: var(--primary);
+  background-color: var(--primary-hover);
   color: white;
   border: none;
   border-radius: var(--radius);
@@ -395,19 +405,25 @@ body {
   cursor: pointer;
   transition: var(--transition);
   padding: 10px;
-  animation: pulse 2s infinite;
 }
 
 .btn-buy:hover {
-  background-color: var(--primary-hover);
+  background-color: var(--primary);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
-  animation: none;
 }
 
 .btn-buy:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+/* Pulso só no botão principal de "Adicionar ao Carrinho" */
+#btnComprar {
+  animation: pulse 2s infinite;
+}
+
+#btnComprar:hover {
   animation: none;
 }
 
@@ -670,7 +686,7 @@ body {
   margin-bottom: 15px;
 }
 
-.reviewer-info h4 {
+.reviewer-info h3 {
   font-size: 16px;
 }
 

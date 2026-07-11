@@ -300,15 +300,15 @@ function renderizarAvaliacoes() {
     const card = document.createElement("div");
     card.classList.add("review-card");
     card.innerHTML = `
-      <div class="review-header">
-        <div class="reviewer-info">
-          <h4>${avaliacao.nome}</h4>
-          <span class="date">${avaliacao.data}</span>
-        </div>
-        <span class="stars">${renderizarEstrelas(avaliacao.nota)}</span>
-      </div>
-      <p class="review-text">"${avaliacao.texto}"</p>
-    `;
+  <div class="review-header">
+    <div class="reviewer-info">
+      <h3>${avaliacao.nome}</h3>
+      <span class="date">${avaliacao.data}</span>
+    </div>
+    <span class="stars">${renderizarEstrelas(avaliacao.nota)}</span>
+  </div>
+  <p class="review-text">"${avaliacao.texto}"</p>
+`;
     reviewsGrid.appendChild(card);
   });
 }
