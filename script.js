@@ -260,6 +260,7 @@ const starPicker = document.getElementById("starPicker");
 
 let avaliacoes = [
   {
+    id: 3,
     nome: "Carlos Silva",
     data: "Há 2 dias",
     nota: 5,
@@ -267,6 +268,7 @@ let avaliacoes = [
       "Simplesmente incrível! O cancelamento de ruído é surreal e o fone é muito leve. Recomendo demais para quem joga FPS.",
   },
   {
+    id: 2,
     nome: "Mariana Costa",
     data: "Há 1 semana",
     nota: 4,
@@ -274,6 +276,7 @@ let avaliacoes = [
       "Qualidade de som impecável. O único ponto é que poderia vir com uma case de transporte, mas o produto em si é nota 10.",
   },
   {
+    id: 1,
     nome: "Felipe Oliveira",
     data: "Há 2 semanas",
     nota: 5,
@@ -282,7 +285,7 @@ let avaliacoes = [
   },
 ];
 
-let notaSelecionada = 0;
+let proximoId = 4; // próximo ID disponível para novas avaliações
 
 function renderizarEstrelas(nota) {
   return "★".repeat(nota) + "☆".repeat(5 - nota);
@@ -316,8 +319,9 @@ ordenarAvaliacoes.addEventListener("change", () => {
     avaliacoes.sort((a, b) => b.nota - a.nota);
   } else if (criterio === "menor-nota") {
     avaliacoes.sort((a, b) => a.nota - b.nota);
+  } else if (criterio === "recentes") {
+    avaliacoes.sort((a, b) => b.id - a.id);
   }
-  // "recentes" mantém a ordem atual (mais nova primeiro, por causa do unshift)
 
   renderizarAvaliacoes();
 });
@@ -351,11 +355,13 @@ formAvaliacao.addEventListener("submit", (event) => {
   }
 
   avaliacoes.unshift({
+    id: proximoId,
     nome: nome,
     data: "Agora mesmo",
     nota: notaSelecionada,
     texto: comentario,
   });
+  proximoId++;
 
   renderizarAvaliacoes();
   formAvaliacao.reset();
