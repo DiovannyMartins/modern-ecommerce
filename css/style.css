@@ -14,15 +14,6 @@
   --transition: all 0.3s ease;
 }
 
-.category {
-  color: var(--primary-text);
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-}
-
 /* Reset básico */
 
 * {
@@ -284,7 +275,7 @@ body {
 }
 
 .category {
-  color: var(--primary);
+  color: var(--primary-text);
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
