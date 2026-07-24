@@ -6,6 +6,7 @@ import { initReviews } from "./modules/reviews.js";
 import { initSearch } from "./modules/search.js";
 import { initCheckout } from "./modules/checkout.js";
 import { initScrollReveal } from "./modules/scroll-reveal.js";
+import { initWishlist } from "./modules/extras.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initMenu();
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSearch();
   initCheckout();
   initScrollReveal();
+  initWishlist();
 
   const anoAtual = document.getElementById("anoAtual");
   if (anoAtual) {
@@ -23,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js").catch((err) => {
+    navigator.serviceWorker.register("./sw.js").catch((err) => {
       console.log("SW registration failed:", err);
     });
   }

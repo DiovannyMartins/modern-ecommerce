@@ -126,7 +126,7 @@ export function getTotalCarrinho() {
  * Inicializa o carrinho
  */
 export function initCart() {
-  btnComprar.addEventListener("click", () => {
+  const adicionarAoCarrinho = () => {
     const quantidade = getQuantidade();
     const preco = getPreco();
     const itemExistente = carrinho.find((item) => item.nome === nomeProdutoAtual);
@@ -158,13 +158,30 @@ export function initCart() {
     btnComprar.textContent = "Adicionado! ✓";
     btnComprar.disabled = true;
 
+    const btnSticky = document.getElementById("btnComprarSticky");
+    if (btnSticky) {
+      btnSticky.textContent = "Adicionado! ✓";
+      btnSticky.disabled = true;
+    }
+
     setTimeout(() => {
       btnComprar.textContent = textoOriginal;
       btnComprar.disabled = false;
+      if (btnSticky) {
+        btnSticky.textContent = `Adicionar ao Carrinho - ${formatarPreco(preco)}`;
+        btnSticky.disabled = false;
+      }
     }, 1500);
 
     abrirCarrinho();
-  });
+  };
+
+  btnComprar.addEventListener("click", adicionarAoCarrinho);
+
+  const btnSticky = document.getElementById("btnComprarSticky");
+  if (btnSticky) {
+    btnSticky.addEventListener("click", adicionarAoCarrinho);
+  }
 
   btnAbrirCarrinho.addEventListener("click", abrirCarrinho);
   btnFecharCarrinho.addEventListener("click", fecharCarrinho);

@@ -1,17 +1,19 @@
 const CACHE_NAME = "neonx-v1";
 const ASSETS_TO_CACHE = [
-  "/",
-  "/index.html",
-  "/src/css/style.css",
-  "/src/js/main.js",
-  "/src/img/Headset-preto.avif",
-  "/src/img/favicon.png"
+  "./",
+  "./index.html",
+  "./src/css/style.css",
+  "./src/js/main.js",
+  "./src/img/Headset-preto.avif",
+  "./src/img/favicon.png"
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+      return cache.addAll(ASSETS_TO_CACHE).catch((err) => {
+        console.log("Cache failed:", err);
+      });
     })
   );
 });

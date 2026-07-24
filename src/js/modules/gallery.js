@@ -3,6 +3,9 @@ const miniaturas = document.querySelectorAll(".image-gallery img");
 const mainImageContainer = document.querySelector(".main-image");
 
 let indiceAtual = 0;
+let isZoomed = false;
+let touchStartX = 0;
+let touchStartY = 0;
 
 /**
  * Inicializa a galeria de imagens e o zoom
@@ -21,8 +24,8 @@ export function initGallery() {
     });
   });
 
-  initSwipe();
   initZoom();
+  initSwipe();
   aplicarSkeleton();
 }
 
@@ -49,40 +52,9 @@ function trocarImagem(index) {
 }
 
 /**
- * Inicializa o swipe na galeria (mobile)
- */
-function initSwipe() {
-  let startX = 0;
-  let endX = 0;
-  const threshold = 50;
-
-  mainImageContainer.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-
-  mainImageContainer.addEventListener("touchmove", (e) => {
-    endX = e.touches[0].clientX;
-  }, { passive: true });
-
-  mainImageContainer.addEventListener("touchend", () => {
-    const diff = startX - endX;
-
-    if (Math.abs(diff) > threshold) {
-      if (diff > 0 && indiceAtual < miniaturas.length - 1) {
-        trocarImagem(indiceAtual + 1);
-      } else if (diff < 0 && indiceAtual > 0) {
-        trocarImagem(indiceAtual - 1);
-      }
-    }
-  });
-}
-
-/**
  * Inicializa o zoom da imagem principal (desktop e mobile)
  */
 function initZoom() {
-  let isZoomed = false;
-
   mainImageContainer.addEventListener("mousemove", (event) => {
     if (isZoomed) return;
     const { left, top, width, height } = mainImageContainer.getBoundingClientRect();
@@ -94,17 +66,64 @@ function initZoom() {
   });
 
   mainImageContainer.addEventListener("mouseleave", () => {
-    mainImage.style.transform = "scale(1)";
+    if (!isZoomed) {
+      mainImage.style.transform = "scale(1)";
+    }
   });
+}
 
-  mainImageContainer.addEventListener("touchstart", () => {
-    isZoomed = true;
-    mainImage.style.transform = "scale(2)";
+/**
+ * Inicializa o swipe na galeria (mobile) - sem conflito com zoom
+ */
+function initSwipe() {
+  const threshold = 50;
+
+  mainImageContainer.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
   }, { passive: true });
 
-  mainImageContainer.addEventListener("touchend", () => {
-    isZoomed = false;
-    mainImage.style.transform = "scale(1)";
+  mainImageContainer.addEventListener("touchmove", (e) => {
+    const touchX = e.touches[0].clientX;
+    const touchY = e.touches[0].clientY;
+    const diffX = Math.abs(touchX - touchStartX);
+    const diffY = Math.abs(touchY - touchStartY);
+
+    // Só ativa swipe se movimento horizontal for maior que vertical
+    if (diffX > diffY && diffX > threshold) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  mainImageContainer.addEventListener("touchend", (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffX = touchStartX - touchEndX;
+    const diffY = Math.abs(touchStartY - touchEndY);
+
+    // Só processa swipe se movimento horizontal for dominante
+    if (Math.abs(diffX) > threshold && diffY < 50) {
+      if (diffX > 0 && indiceAtual < miniaturas.length - 1) {
+        trocarImagem(indiceAtual + 1);
+      } else if (diffX < 0 && indiceAtual > 0) {
+        trocarImagem(indiceAtual - 1);
+      }
+    }
+  });
+
+  // Zoom com double-tap no mobile
+  let lastTap = 0;
+  mainImageContainer.addEventListener("touchend", (e) => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+
+    if (tapLength < 300 && tapLength > 0) {
+      isZoomed = !isZoomed;
+      mainImage.style.transform = isZoomed ? "scale(2)" : "scale(1)";
+      e.preventDefault();
+    }
+
+    lastTap = currentTime;
   });
 }
 
