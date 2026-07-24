@@ -36,7 +36,7 @@
 .image-gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 10px;
 }
 
 .image-gallery img {
@@ -48,6 +48,7 @@
   border: 2px solid transparent;
   opacity: 0.6;
   transition: var(--transition);
+  background-color: #e5e7eb;
 }
 
 .image-gallery img:hover,
