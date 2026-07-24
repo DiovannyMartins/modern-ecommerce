@@ -6,6 +6,10 @@ const checkoutOverlay = document.getElementById("checkoutOverlay");
 const checkoutModal = document.getElementById("checkoutModal");
 const btnFecharCheckout = document.getElementById("btnFecharCheckout");
 const checkoutTotal = document.getElementById("checkoutTotal");
+const checkoutDesconto = document.getElementById("checkoutDesconto");
+const inputCupom = document.getElementById("inputCupom");
+const btnAplicarCupom = document.getElementById("btnAplicarCupom");
+const cupomMensagem = document.getElementById("cupomMensagem");
 const metodosPagamento = document.querySelectorAll(".metodo-pagamento");
 const formCartao = document.getElementById("formCartao");
 const btnConfirmarPedido = document.getElementById("btnConfirmarPedido");
@@ -19,12 +23,37 @@ const cvvCartao = document.getElementById("cvvCartao");
 const btnFinalizar = document.getElementById("btnFinalizar");
 
 let metodoSelecionado = "pix";
+let descontoAplicado = 0;
+let valorOriginal = 0;
+
+const CUPONS_VALIDOS = {
+  "NEON10": 10,
+  "GAMER20": 20,
+  "PRIMEIRO": 15
+};
 
 function abrirCheckout() {
   checkoutOverlay.classList.add("active");
   checkoutModal.classList.add("active");
   document.body.style.overflow = "hidden";
   trapFocus(checkoutModal);
+
+  valorOriginal = parseFloat(getTotalCarrinho().replace(/[^\d,]/g, '').replace(',', '.'));
+  aplicarDesconto();
+}
+
+function aplicarDesconto() {
+  const valorDesconto = valorOriginal * (descontoAplicado / 100);
+  const valorFinal = valorOriginal - valorDesconto;
+
+  checkoutTotal.textContent = `R$ ${valorFinal.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+
+  if (descontoAplicado > 0) {
+    checkoutDesconto.querySelector("span").textContent = `-R$ ${valorDesconto.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+    checkoutDesconto.hidden = false;
+  } else {
+    checkoutDesconto.hidden = true;
+  }
 }
 
 function fecharCheckout() {
@@ -54,6 +83,36 @@ export function initCheckout() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && checkoutModal.classList.contains("active")) {
       fecharCheckout();
+    }
+  });
+
+  btnAplicarCupom.addEventListener("click", () => {
+    const codigo = inputCupom.value.trim().toUpperCase();
+
+    if (!codigo) {
+      cupomMensagem.textContent = "Digite um código de cupom";
+      cupomMensagem.className = "cupom-mensagem erro";
+      return;
+    }
+
+    if (CUPONS_VALIDOS[codigo]) {
+      descontoAplicado = CUPONS_VALIDOS[codigo];
+      cupomMensagem.textContent = `Cupom aplicado! ${descontoAplicado}% de desconto`;
+      cupomMensagem.className = "cupom-mensagem sucesso";
+      aplicarDesconto();
+      mostrarToast(`Cupom ${codigo} aplicado com sucesso!`);
+    } else {
+      descontoAplicado = 0;
+      cupomMensagem.textContent = "Cupom inválido";
+      cupomMensagem.className = "cupom-mensagem erro";
+      aplicarDesconto();
+    }
+  });
+
+  inputCupom.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      btnAplicarCupom.click();
     }
   });
 
@@ -152,6 +211,9 @@ export function initCheckout() {
     document.querySelector('[data-metodo="pix"]').classList.add("active");
     formCartao.classList.remove("visivel");
     metodoSelecionado = "pix";
+    descontoAplicado = 0;
+    inputCupom.value = "";
+    cupomMensagem.textContent = "";
 
     mostrarToast("Pedido confirmado com sucesso!");
   });

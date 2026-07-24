@@ -10,6 +10,9 @@ const cartOverlay = document.getElementById("cartOverlay");
 const cartItensContainer = document.getElementById("cartItens");
 const cartTotalValor = document.getElementById("cartTotalValor");
 const cartBadge = document.getElementById("cartBadge");
+const inputCEP = document.getElementById("inputCEP");
+const btnCalcularFrete = document.getElementById("btnCalcularFrete");
+const freteResultado = document.getElementById("freteResultado");
 
 const nomeProdutoAtual = "Headset Wireless NeonX Pro";
 const imagemProdutoAtual = "src/img/Headset-preto.avif";
@@ -190,6 +193,49 @@ export function initCart() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && cartDrawer.classList.contains("active")) {
       fecharCarrinho();
+    }
+  });
+
+  btnCalcularFrete.addEventListener("click", () => {
+    const cep = inputCEP.value.trim();
+    const cepLimpo = cep.replace(/\D/g, "");
+
+    if (cepLimpo.length !== 8) {
+      freteResultado.textContent = "CEP inválido. Digite 8 dígitos.";
+      freteResultado.className = "frete-resultado erro";
+      return;
+    }
+
+    const regiao = parseInt(cepLimpo.substring(0, 2));
+    let textoFrete = "";
+
+    if (regiao >= 1 && regiao <= 2) {
+      textoFrete = "Frete grátis - 3 dias úteis";
+      freteResultado.className = "frete-resultado sucesso";
+    } else if (regiao >= 3 && regiao <= 5) {
+      textoFrete = "R$ 29,90 - 5 dias úteis";
+      freteResultado.className = "frete-resultado";
+    } else {
+      textoFrete = "R$ 49,90 - 7 dias úteis";
+      freteResultado.className = "frete-resultado";
+    }
+
+    freteResultado.textContent = textoFrete;
+    mostrarToast("Frete calculado com sucesso!");
+  });
+
+  inputCEP.addEventListener("input", (e) => {
+    let valor = e.target.value.replace(/\D/g, "");
+    if (valor.length > 5) {
+      valor = valor.slice(0, 5) + "-" + valor.slice(5, 8);
+    }
+    e.target.value = valor;
+  });
+
+  inputCEP.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      btnCalcularFrete.click();
     }
   });
 

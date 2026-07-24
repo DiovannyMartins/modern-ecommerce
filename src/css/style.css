@@ -6,9 +6,11 @@
 @import url('components/reviews.css');
 @import url('components/footer.css');
 @import url('components/cart.css');
+@import url('components/wishlist.css');
 @import url('components/checkout.css');
 @import url('components/toast.css');
 @import url('components/scroll-reveal.css');
+@import url('components/catalogo.css');
 
 .container {
   max-width: 1200px;

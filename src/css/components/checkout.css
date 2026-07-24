@@ -92,6 +92,74 @@
   color: var(--primary);
 }
 
+.checkout-desconto {
+  font-size: var(--font-size-xs);
+  color: var(--success);
+  margin-top: 4px;
+}
+
+.checkout-desconto span {
+  font-weight: bold;
+}
+
+.checkout-cupom {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.checkout-cupom input {
+  flex: 1;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  transition: var(--transition);
+}
+
+.checkout-cupom input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-primary);
+}
+
+.checkout-cupom button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.checkout-cupom button:hover,
+.checkout-cupom button:focus-visible {
+  background-color: var(--primary-hover);
+  outline: none;
+}
+
+.cupom-mensagem {
+  font-size: var(--font-size-xs);
+  margin-bottom: 12px;
+  min-height: 16px;
+}
+
+.cupom-mensagem.sucesso {
+  color: var(--success);
+}
+
+.cupom-mensagem.erro {
+  color: #ef4444;
+}
+
 .checkout-metodos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
