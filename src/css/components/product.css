@@ -245,20 +245,99 @@
 }
 
 @media (max-width: 600px) {
+  .product-hero {
+    margin-top: 20px;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .product-visuals {
+    gap: 12px;
+  }
+
+  .main-image {
+    border-radius: 12px;
+  }
+
+  .image-gallery {
+    gap: 8px;
+  }
+
+  .image-gallery img {
+    border-radius: 8px;
+    border-width: 2px;
+  }
+
+  .product-info {
+    padding: 0 4px;
+  }
+
   .product-title {
-    font-size: 32px;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .category {
+    font-size: var(--font-size-xs);
+    margin-bottom: 8px;
+  }
+
+  .rating {
+    margin-bottom: 20px;
+  }
+
+  .price-container {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+
+  .current-price {
+    font-size: 28px;
+  }
+
+  .old-price {
+    font-size: var(--font-size-sm);
+  }
+
+  .installments {
+    font-size: var(--font-size-xs);
+  }
+
+  .description {
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
   }
 
   .actions {
     flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
   }
 
   .quantity-fake {
     width: 100%;
-    height: 50px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .quantity-fake button {
+    font-size: 22px;
+    padding: 12px;
   }
 
   .btn-buy {
-    padding: 15px;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: var(--font-size-base);
+  }
+
+  .subtotal {
+    font-size: var(--font-size-sm);
+    margin-bottom: 16px;
+  }
+
+  .shipping-info {
+    font-size: var(--font-size-xs);
   }
 }

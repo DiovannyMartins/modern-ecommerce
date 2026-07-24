@@ -168,10 +168,15 @@
 }
 
 @media (max-width: 600px) {
-  .search-bar {
-    min-width: 100px;
-    width: auto;
-    padding: 6px 10px;
+  .header-content {
+    height: 60px;
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .logo a {
+    font-size: 20px;
+    white-space: nowrap;
   }
 
   .hamburger {
@@ -179,18 +184,51 @@
     justify-content: center;
     align-items: center;
     order: -1;
+    padding: 6px;
   }
 
-  .header-content {
-    justify-content: space-between;
+  .header-actions {
+    gap: 8px;
+  }
+
+  /* Busca vira ícone expansível no mobile */
+  .btn-busca-mobile {
+    display: flex !important;
+  }
+
+  .search-bar {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    min-width: unset;
+    padding: 10px 12px;
+    border-radius: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg-dark);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .search-bar.expandida {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .search-bar input {
+    font-size: 16px;
   }
 
   .menu {
     position: absolute;
-    top: 80px;
+    top: 60px;
     left: 0;
     width: 100%;
-    background-color: rgba(15, 23, 42, 0.95);
+    background-color: rgba(15, 23, 42, 0.98);
     backdrop-filter: blur(10px);
     flex-direction: column;
     gap: 0;
@@ -201,9 +239,10 @@
   }
 
   .menu a {
-    padding: 20px;
+    padding: 18px 20px;
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 16px;
   }
 
   .menu a:last-child {
@@ -213,5 +252,13 @@
   .menu.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     opacity: 1;
+  }
+
+  .cart-badge {
+    top: -4px;
+    right: -6px;
+    height: 16px;
+    width: 16px;
+    font-size: 10px;
   }
 }

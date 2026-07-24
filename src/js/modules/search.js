@@ -2,6 +2,7 @@ import { mostrarToast } from "./toast.js";
 
 const formBusca = document.getElementById("formBusca");
 const inputBusca = document.getElementById("inputBusca");
+const btnBuscaMobile = document.getElementById("btnBuscaMobile");
 
 /**
  * Inicializa a busca simulada
@@ -22,5 +23,19 @@ export function initSearch() {
     }
 
     inputBusca.value = "";
+    formBusca.classList.remove("expandida");
+  });
+
+  btnBuscaMobile.addEventListener("click", () => {
+    formBusca.classList.toggle("expandida");
+    if (formBusca.classList.contains("expandida")) {
+      inputBusca.focus();
+    }
+  });
+
+  inputBusca.addEventListener("blur", () => {
+    if (inputBusca.value.trim() === "") {
+      formBusca.classList.remove("expandida");
+    }
   });
 }

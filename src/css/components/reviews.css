@@ -162,3 +162,39 @@
   font-style: italic;
   font-size: var(--font-size-sm);
 }
+
+@media (max-width: 600px) {
+  .reviews-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .reviews-section h2 {
+    font-size: 22px;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .review-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .review-form-container {
+    margin-top: var(--spacing-xl);
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .reviews-controls {
+    justify-content: flex-start;
+    font-size: var(--font-size-xs);
+  }
+
+  .star-picker .star-option {
+    font-size: 28px;
+  }
+}

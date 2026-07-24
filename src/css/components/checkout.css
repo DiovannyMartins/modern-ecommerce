@@ -195,3 +195,41 @@
   color: var(--primary);
   margin: 10px 0 20px;
 }
+
+@media (max-width: 600px) {
+  .checkout-modal {
+    width: 95vw;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .checkout-metodos {
+    gap: 8px;
+  }
+
+  .metodo-pagamento {
+    padding: 10px 6px;
+    font-size: var(--font-size-xs);
+    border-radius: 10px;
+  }
+
+  .checkout-resumo {
+    padding: 12px 16px;
+    border-radius: 10px;
+  }
+
+  .checkout-resumo span {
+    font-size: 18px;
+  }
+
+  .form-cartao input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .btn-buy {
+    padding: 14px;
+    border-radius: 10px;
+  }
+}

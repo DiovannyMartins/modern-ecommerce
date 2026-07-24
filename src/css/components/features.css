@@ -45,3 +45,39 @@
   color: var(--text-muted);
   font-size: var(--font-size-sm);
 }
+
+@media (max-width: 600px) {
+  .features {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .features h2 {
+    font-size: 22px;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .feature-card {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+
+  .feature-card .icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .feature-card h3 {
+    font-size: var(--font-size-sm);
+    margin-bottom: 6px;
+  }
+
+  .feature-card p {
+    font-size: var(--font-size-xs);
+    line-height: 1.4;
+  }
+}
