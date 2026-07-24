@@ -262,23 +262,6 @@
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.sticky-buy .btn-buy {
-  width: 100%;
-  padding: 16px;
-  font-size: 16px;
-  border-radius: 12px;
-}
-
-@media (max-width: 600px) {
-  .sticky-buy {
-    display: block;
-  }
-
-  .product-hero {
-    margin-bottom: 100px;
-  }
-}
-
 @media (max-width: 900px) {
   .product-hero {
     grid-template-columns: 1fr;
@@ -288,9 +271,13 @@
 }
 
 @media (max-width: 600px) {
+  .sticky-buy {
+    display: block;
+  }
+
   .product-hero {
     margin-top: 20px;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: 100px;
   }
 
   .product-visuals {
@@ -382,5 +369,12 @@
 
   .shipping-info {
     font-size: var(--font-size-xs);
+  }
+
+  .sticky-buy .btn-buy {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 12px;
   }
 }

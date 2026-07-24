@@ -60,8 +60,23 @@ function renderizarWishlist() {
     btnAddCart.classList.add("btn-add-cart");
     btnAddCart.textContent = "Adicionar ao Carrinho";
     btnAddCart.addEventListener("click", () => {
-      const evento = new CustomEvent("addToCart", { detail: item });
-      document.dispatchEvent(evento);
+      // Adiciona diretamente ao localStorage do carrinho
+      const carrinho = carregarStorage("carrinho", []);
+      const itemExistente = carrinho.find((i) => i.id === item.id);
+
+      if (itemExistente) {
+        itemExistente.quantidade++;
+      } else {
+        carrinho.push({
+          id: item.id,
+          nome: item.nome,
+          preco: item.preco,
+          quantidade: 1,
+          imagem: item.imagem
+        });
+      }
+
+      salvarStorage("carrinho", carrinho);
       mostrarToast("Adicionado ao carrinho!");
     });
 

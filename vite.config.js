@@ -5,7 +5,10 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
-      input: resolve(__dirname, 'index.html')
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        catalogo: resolve(__dirname, 'catalogo.html')
+      }
     }
   },
   server: {

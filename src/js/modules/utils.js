@@ -49,3 +49,30 @@ export function carregarStorage(chave, padrao = null) {
   const dados = localStorage.getItem(chave);
   return dados ? JSON.parse(dados) : padrao;
 }
+
+/**
+ * Valida número de cartão usando algoritmo de Luhn
+ * @param {string} numero - Número do cartão sem espaços
+ * @returns {boolean} True se válido
+ */
+export function validarLuhn(numero) {
+  const digitos = numero.replace(/\D/g, "");
+  if (digitos.length < 13 || digitos.length > 19) return false;
+
+  let soma = 0;
+  let deveDobrar = false;
+
+  for (let i = digitos.length - 1; i >= 0; i--) {
+    let digito = parseInt(digitos.charAt(i), 10);
+
+    if (deveDobrar) {
+      digito *= 2;
+      if (digito > 9) digito -= 9;
+    }
+
+    soma += digito;
+    deveDobrar = !deveDobrar;
+  }
+
+  return soma % 10 === 0;
+}

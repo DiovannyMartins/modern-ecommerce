@@ -1,4 +1,4 @@
-import { gerarNumeroPedido } from "./utils.js";
+import { gerarNumeroPedido, validarLuhn } from "./utils.js";
 import { mostrarToast } from "./toast.js";
 import { getCarrinho, limparCarrinho, getTotalCarrinho, fecharCarrinho } from "./cart.js";
 
@@ -167,6 +167,11 @@ export function initCheckout() {
 
       if (numero.length !== 16) {
         mostrarToast("Número do cartão inválido. Digite 16 dígitos.");
+        return;
+      }
+
+      if (!validarLuhn(numero)) {
+        mostrarToast("Número do cartão inválido. Verifique os dígitos.");
         return;
       }
 

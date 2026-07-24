@@ -24,6 +24,15 @@ export function initGallery() {
     });
   });
 
+  // Navegação por teclado nas setas
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft" && indiceAtual > 0) {
+      trocarImagem(indiceAtual - 1);
+    } else if (e.key === "ArrowRight" && indiceAtual < miniaturas.length - 1) {
+      trocarImagem(indiceAtual + 1);
+    }
+  });
+
   initZoom();
   initSwipe();
   aplicarSkeleton();

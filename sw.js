@@ -2,8 +2,10 @@ const CACHE_NAME = "neonx-v1";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
+  "./catalogo.html",
   "./src/css/style.css",
   "./src/js/main.js",
+  "./src/js/catalogo.js",
   "./src/img/Headset-preto.avif",
   "./src/img/favicon.png"
 ];

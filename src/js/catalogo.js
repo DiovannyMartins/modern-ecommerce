@@ -58,6 +58,8 @@ const cartOverlay = document.getElementById("cartOverlay");
 const cartItensContainer = document.getElementById("cartItens");
 const cartTotalValor = document.getElementById("cartTotalValor");
 const cartBadge = document.getElementById("cartBadge");
+const menuToggle = document.getElementById("menuToggle");
+const menu = document.querySelector(".menu");
 
 let carrinho = carregarStorage("carrinho", []);
 let categoriaAtual = "todos";
@@ -284,6 +286,31 @@ document.addEventListener("DOMContentLoaded", () => {
       fecharCarrinho();
     }
   });
+
+  // Menu hamburger
+  if (menuToggle && menu) {
+    menuToggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
+      const isOpen = menu.classList.contains("active");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+    });
+
+    const menuLinks = document.querySelectorAll(".menu a");
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        menu.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menu.classList.contains("active")) {
+        menu.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.focus();
+      }
+    });
+  }
 
   const anoAtual = document.getElementById("anoAtual");
   if (anoAtual) {

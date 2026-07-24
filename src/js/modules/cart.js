@@ -206,6 +206,14 @@ export function initCart() {
       return;
     }
 
+    // Valida se o CEP começa com dígito válido (0-9)
+    const primeiroDigito = parseInt(cepLimpo.charAt(0));
+    if (primeiroDigito < 0 || primeiroDigito > 9) {
+      freteResultado.textContent = "CEP inválido.";
+      freteResultado.className = "frete-resultado erro";
+      return;
+    }
+
     const regiao = parseInt(cepLimpo.substring(0, 2));
     let textoFrete = "";
 
