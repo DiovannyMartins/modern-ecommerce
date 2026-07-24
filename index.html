@@ -6,8 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Compre o Headset Wireless NeonX Pro: áudio 7.1 surround, cancelamento de ruído ativo e 50h de bateria. Frete grátis para todo o Brasil.">
-  <link rel="icon" type="image/png" href="img/favicon.png">
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="keywords" content="headset, gamer, wireless, neonx, áudio 7.1, cancelamento de ruído">
+  <meta name="author" content="Diovanny Martins">
+  <meta name="theme-color" content="#0f172a">
+
+  <meta property="og:title" content="Headset NeonX Pro | Loja NEON X">
+  <meta property="og:description"
+    content="Áudio 7.1 surround, cancelamento de ruído ativo e 50h de bateria. Frete grátis para todo o Brasil.">
+  <meta property="og:image" content="src/img/Headset-preto.avif">
+  <meta property="og:type" content="product">
+  <meta property="og:locale" content="pt_BR">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Headset NeonX Pro | Loja NEON X">
+  <meta name="twitter:description"
+    content="Áudio 7.1 surround, cancelamento de ruído ativo e 50h de bateria.">
+  <meta name="twitter:image" content="src/img/Headset-preto.avif">
+
+  <link rel="icon" type="image/png" href="src/img/favicon.png">
+  <link rel="preload" as="image" href="src/img/Headset-preto.avif" type="image/avif">
+  <link rel="stylesheet" href="src/css/style.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
   <title>Headset NeonX Pro | Loja NEON X</title>
@@ -15,39 +33,33 @@
 
 <body>
 
-  <!-- HEADER / NAVEGAÇÃO -->
-
   <header class="header">
     <div class="container header-content">
       <div class="logo">
-        <a href="#">
+        <a href="#" aria-label="NEON X - Página inicial">
           NEON
           <span class="highlight"> X </span>
         </a>
       </div>
 
-      <!-- Botão hamburguer (menu mobile) -->
-      <button id="menuToggle" class="hamburger" aria-label="Abrir menu">
+      <button id="menuToggle" class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
         <span class="material-symbols-outlined">menu</span>
       </button>
 
-      <!-- Menu de navegação principal -->
-      <nav class="menu">
-        <a href="#">Produtos</a>
-        <a href="#">Lançamentos</a>
-        <a href="#">Suporte</a>
+      <nav class="menu" id="menu-principal">
+        <a href="#produtos">Produtos</a>
+        <a href="#lancamentos">Lançamentos</a>
+        <a href="#suporte">Suporte</a>
       </nav>
 
       <div class="header-actions">
-        <!-- Barra de busca (simulada) -->
-        <form class="search-bar" id="formBusca">
-          <span class="material-symbols-outlined search-icon">search</span>
-          <input type="text" placeholder="Buscar comando..." id="inputBusca">
+        <form class="search-bar" id="formBusca" role="search">
+          <span class="material-symbols-outlined search-icon" aria-hidden="true">search</span>
+          <input type="text" placeholder="Buscar comando..." id="inputBusca" aria-label="Buscar produtos">
         </form>
 
-        <!-- Botão que abre o carrinho lateral -->
         <button class="icon-btn" id="btnAbrirCarrinho" aria-label="Abrir carrinho">
-          <span class="material-symbols-outlined">shopping_cart</span>
+          <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
           <span class="cart-badge" id="cartBadge" aria-live="polite">0</span>
         </button>
       </div>
@@ -56,30 +68,30 @@
 
   <main class="container">
 
-    <!-- PRODUTO PRINCIPAL (imagem + informações) -->
+    <section class="product-hero" id="produtos">
 
-    <section class="product-hero">
-
-      <!-- Galeria de imagens do produto -->
       <div class="product-visuals">
         <div class="main-image">
-          <img src="img/Headset-preto.avif" alt="Headset NeonX Pro Preto" id="mainImage" />
+          <img src="src/img/Headset-preto.avif" alt="Headset NeonX Pro Preto" id="mainImage" width="600" height="600" />
         </div>
-        <div class="image-gallery">
-          <img src="img/Miniatura-1.avif" alt="Miniatura 1" class="active" />
-          <img src="img/Miniatura-2.avif" alt="Miniatura 2" />
-          <img src="img/Miniatura-3.avif" alt="Miniatura 3" />
-          <img src="img/Miniatura-4.avif" alt="Miniatura 4" />
+        <div class="image-gallery" role="listbox" aria-label="Galeria de imagens do produto">
+          <img src="src/img/Miniatura-1.avif" alt="Headset NeonX Pro - vista frontal" class="active" role="option"
+            aria-selected="true" tabindex="0" width="150" height="150" />
+          <img src="src/img/Miniatura-2.avif" alt="Headset NeonX Pro - vista lateral" role="option" aria-selected="false"
+            tabindex="0" width="150" height="150" />
+          <img src="src/img/Miniatura-3.avif" alt="Headset NeonX Pro - vista traseira" role="option" aria-selected="false"
+            tabindex="0" width="150" height="150" />
+          <img src="src/img/Miniatura-4.avif" alt="Headset NeonX Pro - detalhe do microfone" role="option"
+            aria-selected="false" tabindex="0" width="150" height="150" />
         </div>
       </div>
 
-      <!-- Informações, preço e ações de compra -->
       <div class="product-info">
         <span class="category">Áudio Profissional</span>
         <h1 class="product-title">Headset Wireless NeonX Pro</h1>
 
         <div class="rating">
-          <span class="stars">★★★★★</span>
+          <span class="stars" aria-label="Avaliação 5 de 5 estrelas">★★★★★</span>
           <span class="reviews-count">(128 avaliações)</span>
         </div>
 
@@ -96,11 +108,10 @@
           profissionais.
         </p>
 
-        <!-- Seletor de quantidade e botão de compra -->
         <div class="actions">
           <div class="quantity-fake">
             <button type="button" id="btnDiminuir" aria-label="Diminuir quantidade">-</button>
-            <span id="quantidadeValor">1</span>
+            <span id="quantidadeValor" aria-live="polite">1</span>
             <button type="button" id="btnAumentar" aria-label="Aumentar quantidade">+</button>
           </div>
           <button type="button" class="btn-buy" id="btnComprar">Adicionar ao Carrinho</button>
@@ -109,43 +120,39 @@
         <p class="subtotal">Subtotal: <span id="subtotalValor">R$ 899,00</span></p>
 
         <div class="shipping-info">
-          <span class="material-symbols-outlined">local_shipping</span>
+          <span class="material-symbols-outlined" aria-hidden="true">local_shipping</span>
           <span>Frete grátis para todo o Brasil</span>
         </div>
       </div>
     </section>
 
-    <!-- ESPECIFICAÇÕES TÉCNICAS -->
-
-    <section class="features reveal">
+    <section class="features reveal" id="lancamentos">
       <h2>Especificações Técnicas</h2>
       <div class="features-grid">
         <div class="feature-card">
-          <span class="material-symbols-outlined icon">battery_charging_full</span>
+          <span class="material-symbols-outlined icon" aria-hidden="true">battery_charging_full</span>
           <h3>50h de Bateria</h3>
           <p>Jogue por dias sem precisar recarregar.</p>
         </div>
         <div class="feature-card">
-          <span class="material-symbols-outlined icon">weight</span>
+          <span class="material-symbols-outlined icon" aria-hidden="true">weight</span>
           <h3>Ultra Leve</h3>
           <p>Apenas 245g. Esqueça que está usando.</p>
         </div>
         <div class="feature-card">
-          <span class="material-symbols-outlined icon">surround_sound</span>
+          <span class="material-symbols-outlined icon" aria-hidden="true">surround_sound</span>
           <h3>Áudio 7.1</h3>
           <p>Precisão espacial para passos e tiros.</p>
         </div>
         <div class="feature-card">
-          <span class="material-symbols-outlined icon">bluetooth</span>
+          <span class="material-symbols-outlined icon" aria-hidden="true">bluetooth</span>
           <h3>Wireless 2.4GHz</h3>
           <p>Latência zero com alcance de 15 metros.</p>
         </div>
       </div>
     </section>
 
-    <!-- AVALIAÇÕES DE CLIENTES -->
-
-    <section class="reviews-section reveal">
+    <section class="reviews-section reveal" id="suporte">
       <h2>Avaliações de Clientes</h2>
 
       <div class="reviews-controls">
@@ -157,8 +164,7 @@
         </select>
       </div>
 
-      <div class="reviews-grid" id="reviewsGrid">
-        <!-- Avaliações inseridas dinamicamente via JS -->
+      <div class="reviews-grid" id="reviewsGrid" aria-live="polite">
       </div>
 
       <div class="review-form-container">
@@ -166,23 +172,27 @@
         <form id="formAvaliacao" class="review-form">
           <div class="campo-avaliacao">
             <label for="nomeAvaliador">Nome</label>
-            <input type="text" id="nomeAvaliador" placeholder="Seu nome" required>
+            <input type="text" id="nomeAvaliador" placeholder="Seu nome" required autocomplete="name">
           </div>
 
           <div class="campo-avaliacao">
-            <span>Sua nota</span>
-            <div class="star-picker" id="starPicker" role="radiogroup"
-              aria-label="Selecione uma nota de 1 a 5 estrelas">
-              <button type="button" class="star-option" data-valor="1" aria-label="1 estrela">★</button>
-              <button type="button" class="star-option" data-valor="2" aria-label="2 estrelas">★</button>
-              <button type="button" class="star-option" data-valor="3" aria-label="3 estrelas">★</button>
-              <button type="button" class="star-option" data-valor="4" aria-label="4 estrelas">★</button>
-              <button type="button" class="star-option" data-valor="5" aria-label="5 estrelas">★</button>
+            <span id="star-label">Sua nota</span>
+            <div class="star-picker" id="starPicker" role="radiogroup" aria-labelledby="star-label">
+              <button type="button" class="star-option" data-valor="1" role="radio" aria-checked="false"
+                aria-label="1 estrela">★</button>
+              <button type="button" class="star-option" data-valor="2" role="radio" aria-checked="false"
+                aria-label="2 estrelas">★</button>
+              <button type="button" class="star-option" data-valor="3" role="radio" aria-checked="false"
+                aria-label="3 estrelas">★</button>
+              <button type="button" class="star-option" data-valor="4" role="radio" aria-checked="false"
+                aria-label="4 estrelas">★</button>
+              <button type="button" class="star-option" data-valor="5" role="radio" aria-checked="false"
+                aria-label="5 estrelas">★</button>
             </div>
           </div>
 
           <div class="campo-avaliacao">
-            <label for="comentarioAvaliador" class="sr-only">Comentário</label>
+            <label for="comentarioAvaliador">Comentário</label>
             <textarea id="comentarioAvaliador" rows="3" placeholder="Conte o que achou do produto..."
               required></textarea>
           </div>
@@ -193,13 +203,11 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
-
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-col">
         <div class="logo">
-          <a href="#">
+          <a href="#" aria-label="NEON X - Página inicial">
             NEON
             <span class="highlight"> X </span>
           </a>
@@ -208,15 +216,15 @@
       </div>
       <div class="footer-col">
         <h4>Produtos</h4>
-        <a href="#">Headsets</a>
-        <a href="#">Teclados</a>
-        <a href="#">Mouses</a>
+        <a href="#produtos">Headsets</a>
+        <a href="#produtos">Teclados</a>
+        <a href="#produtos">Mouses</a>
       </div>
       <div class="footer-col">
         <h4>Suporte</h4>
-        <a href="#">Rastrear Pedido</a>
-        <a href="#">Garantia</a>
-        <a href="#">Contato</a>
+        <a href="#suporte">Rastrear Pedido</a>
+        <a href="#suporte">Garantia</a>
+        <a href="#suporte">Contato</a>
       </div>
       <div class="footer-col">
         <h4>Pagamento Seguro</h4>
@@ -228,20 +236,15 @@
     </div>
   </footer>
 
-  <!-- CARRINHO LATERAL (DRAWER) -->
-
-  <!-- Overlay escurecido atrás do carrinho -->
   <div class="cart-overlay" id="cartOverlay"></div>
 
-  <!-- Painel lateral do carrinho -->
-  <aside class="cart-drawer" id="cartDrawer">
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Carrinho de compras">
     <div class="cart-drawer-header">
       <h3>Meu Carrinho</h3>
       <button type="button" id="btnFecharCarrinho" aria-label="Fechar carrinho">✕</button>
     </div>
 
     <div class="cart-drawer-body" id="cartItens">
-      <!-- Itens inseridos dinamicamente via JS -->
     </div>
 
     <div class="cart-drawer-footer">
@@ -250,17 +253,15 @@
     </div>
   </aside>
 
-  <div class="toast" id="toast"></div>
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
-  <!-- MODAL DE CHECKOUT (simulado) -->
   <div class="checkout-overlay" id="checkoutOverlay"></div>
 
-  <div class="checkout-modal" id="checkoutModal">
+  <div class="checkout-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
 
-    <!-- Etapa 1: escolha de pagamento -->
     <div class="checkout-etapa" id="etapaPagamento">
       <div class="checkout-header">
-        <h3>Finalizar Pedido</h3>
+        <h3 id="checkout-title">Finalizar Pedido</h3>
         <button type="button" id="btnFecharCheckout" aria-label="Fechar checkout">✕</button>
       </div>
 
@@ -269,39 +270,41 @@
         <span id="checkoutTotal">R$ 0,00</span>
       </div>
 
-      <div class="checkout-metodos">
+      <div class="checkout-metodos" role="group" aria-label="Métodos de pagamento">
         <button type="button" class="metodo-pagamento active" data-metodo="pix">
-          <span class="material-symbols-outlined">qr_code_2</span>
+          <span class="material-symbols-outlined" aria-hidden="true">qr_code_2</span>
           Pix
         </button>
         <button type="button" class="metodo-pagamento" data-metodo="cartao">
-          <span class="material-symbols-outlined">credit_card</span>
+          <span class="material-symbols-outlined" aria-hidden="true">credit_card</span>
           Cartão
         </button>
         <button type="button" class="metodo-pagamento" data-metodo="boleto">
-          <span class="material-symbols-outlined">receipt_long</span>
+          <span class="material-symbols-outlined" aria-hidden="true">receipt_long</span>
           Boleto
         </button>
       </div>
 
-      <!-- Campos do cartão (aparecem só se "Cartão" for escolhido) -->
-      <form id="formCartao" class="form-cartao">
+      <form id="formCartao" class="form-cartao" autocomplete="off">
         <div class="campo-avaliacao">
-          <label for="numeroCartao" class="sr-only">Número do cartão</label>
-          <input type="text" id="numeroCartao" placeholder="Número do cartão" maxlength="19">
+          <label for="numeroCartao">Número do cartão</label>
+          <input type="text" id="numeroCartao" placeholder="0000 0000 0000 0000" maxlength="19"
+            inputmode="numeric" autocomplete="cc-number">
         </div>
         <div class="campo-avaliacao">
-          <label for="nomeCartao" class="sr-only">Nome impresso no cartão</label>
-          <input type="text" id="nomeCartao" placeholder="Nome impresso no cartão">
+          <label for="nomeCartao">Nome impresso no cartão</label>
+          <input type="text" id="nomeCartao" placeholder="NOME COMO NO CARTÃO" autocomplete="cc-name">
         </div>
         <div class="linha-dupla">
           <div class="campo-avaliacao">
-            <label for="validadeCartao" class="sr-only">Validade</label>
-            <input type="text" id="validadeCartao" placeholder="MM/AA" maxlength="5">
+            <label for="validadeCartao">Validade</label>
+            <input type="text" id="validadeCartao" placeholder="MM/AA" maxlength="5"
+              inputmode="numeric" autocomplete="cc-exp">
           </div>
           <div class="campo-avaliacao">
-            <label for="cvvCartao" class="sr-only">CVV</label>
-            <input type="text" id="cvvCartao" placeholder="CVV" maxlength="4">
+            <label for="cvvCartao">CVV</label>
+            <input type="text" id="cvvCartao" placeholder="CVV" maxlength="4"
+              inputmode="numeric" autocomplete="cc-csc">
           </div>
         </div>
       </form>
@@ -311,9 +314,8 @@
       <button type="button" class="btn-buy" id="btnConfirmarPedido">Confirmar Pedido</button>
     </div>
 
-    <!-- Etapa 2: pedido confirmado -->
     <div class="checkout-etapa checkout-sucesso" id="etapaSucesso" hidden>
-      <span class="material-symbols-outlined icone-sucesso">check_circle</span>
+      <span class="material-symbols-outlined icone-sucesso" aria-hidden="true">check_circle</span>
       <h3>Pedido confirmado!</h3>
       <p>Número do pedido:</p>
       <span class="numero-pedido" id="numeroPedido">#000000</span>
@@ -323,7 +325,7 @@
 
   </div>
 
-  <script src="script.js"></script>
+  <script type="module" src="src/js/main.js"></script>
 </body>
 
 </html>

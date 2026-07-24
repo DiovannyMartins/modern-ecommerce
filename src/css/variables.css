@@ -1,0 +1,53 @@
+:root {
+  /* Cores */
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --primary: #8b5cf6;
+  --primary-hover: #7c3aed;
+  --primary-text: #a78bfa;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --star: #fbbf24;
+  --success: #4ade80;
+
+  /* Espaçamento */
+  --radius: 8px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 60px;
+  --spacing-3xl: 80px;
+
+  /* Transições */
+  --transition-fast: 0.15s ease;
+  --transition: 0.3s ease;
+  --transition-slow: 0.6s ease;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 20px rgba(139, 92, 246, 0.3);
+  --shadow-primary: 0 0 0 2px rgba(139, 92, 246, 0.2);
+
+  /* Tipografia */
+  --font-family: "Segoe UI", system-ui, sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 28px;
+  --font-size-3xl: 36px;
+  --font-size-4xl: 42px;
+
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-overlay: 998;
+  --z-drawer: 999;
+  --z-modal-overlay: 1001;
+  --z-modal: 1002;
+  --z-toast: 1000;
+}

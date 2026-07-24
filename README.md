@@ -1,53 +1,121 @@
 # Modern E-commerce
 
-Projeto de e-commerce desenvolvido com HTML5, CSS3 e JavaScript, simulando uma loja virtual completa com carrinho de compras, checkout e sistema de avaliações.
-
-🔗 **Acesse:** [diovannymartins.github.io/modern-ecommerce](https://diovannymartins.github.io/modern-ecommerce/)
+Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modular, focado em design moderno, acessibilidade e experiência do usuário.
 
 ## 🚀 Tecnologias
 
-- HTML5
-- CSS3
-- JavaScript
+- HTML5 semântico
+- CSS3 (variáveis, grid, flexbox, animações)
+- JavaScript ES6+ (módulos, arrow functions, template literals)
+- LocalStorage para persistência de dados
 
-## ⚙️ Funcionalidades
+## 📁 Estrutura do Projeto
 
-- **Página de produto completa** com galeria de imagens e zoom
-- **Menu mobile responsivo**
-- **Contador de quantidade** com cálculo de subtotal em tempo real
-- **Carrinho de compras lateral (drawer)** com persistência via `localStorage`
-- **Checkout simulado** com escolha de forma de pagamento (Pix, Cartão, Boleto)
-- **Máscaras de input** para número de cartão, validade e CVV
-- **Sistema de avaliações interativo**, com ordenação (mais recentes, maior/menor nota) e envio de novas avaliações
-- **Busca simulada** no produto
-- **Notificações via toast**
-- **Totalmente responsivo** (desktop, tablet e mobile)
+```
+├── index.html
+├── src/
+│   ├── css/
+│   │   ├── variables.css       # Variáveis CSS globais
+│   │   ├── reset.css           # Reset e estilos base
+│   │   ├── style.css           # Arquivo principal (importa todos)
+│   │   └── components/         # Componentes CSS modulares
+│   │       ├── header.css
+│   │       ├── product.css
+│   │       ├── features.css
+│   │       ├── reviews.css
+│   │       ├── footer.css
+│   │       ├── cart.css
+│   │       ├── checkout.css
+│   │       ├── toast.css
+│   │       └── scroll-reveal.css
+│   ├── js/
+│   │   ├── main.js             # Ponto de entrada
+│   │   └── modules/            # Módulos JavaScript
+│   │       ├── utils.js        # Funções utilitárias
+│   │       ├── toast.js        # Sistema de notificações
+│   │       ├── menu.js         # Menu mobile
+│   │       ├── gallery.js      # Galeria de imagens
+│   │       ├── quantity.js     # Controle de quantidade
+│   │       ├── cart.js         # Carrinho de compras
+│   │       ├── reviews.js      # Avaliações
+│   │       ├── search.js       # Busca
+│   │       ├── checkout.js     # Checkout simulado
+│   │       └── scroll-reveal.js
+│   └── img/                    # Imagens do projeto
+└── README.md
+```
 
-## ♿ Acessibilidade
+## ✨ Funcionalidades
 
-- Navegação por teclado em todos os elementos interativos (incluindo seletor de estrelas)
-- Labels associados aos campos de formulário
-- `aria-live` no badge do carrinho e mensagens de erro
-- `aria-pressed` e `role="radiogroup"` em seletores customizados
-- Contraste de cores adequado em todos os textos
+### E-commerce
+- ✅ Página de produto com galeria de imagens
+- ✅ Controle de quantidade e cálculo de subtotal
+- ✅ Carrinho lateral com persistência em localStorage
+- ✅ Checkout simulado com múltiplos métodos de pagamento
+- ✅ Sistema de avaliações com ordenação
 
-## 📦 Versões
+### Acessibilidade (A11y)
+- ✅ Navegação completa por teclado
+- ✅ ARIA labels e roles semânticos
+- ✅ Focus trap em modais e drawers
+- ✅ Tecla ESC para fechar overlays
+- ✅ Suporte a prefers-reduced-motion
+- ✅ Contraste WCAG AA compliant
 
-- **[v1.0.0](https://github.com/DiovannyMartins/modern-ecommerce/releases/tag/v1.0.0)** — Versão inicial, 100% HTML5 e CSS3
-- **[v2.0.0](https://github.com/DiovannyMartins/modern-ecommerce/releases/tag/v2.0.0)** — Adição de JavaScript: carrinho, checkout, avaliações e otimizações
+### UX/UI
+- ✅ Design responsivo (mobile-first)
+- ✅ Animações suaves com will-change
+- ✅ Toast notifications
+- ✅ Confirmação antes de remover itens
+- ✅ Zoom de imagem (desktop e touch)
+- ✅ Scroll reveal animations
+- ✅ Badge com animação bounce
 
-## 📚 Aprendizados
+### SEO & Performance
+- ✅ Meta tags Open Graph e Twitter Cards
+- ✅ Preload de imagem principal
+- ✅ HTML semântico
+- ✅ Lazy loading ready
+- ✅ CSS modular (sem código desnecessário)
+
+## 🛠️ Melhorias de Segurança
+
+- ✅ Proteção contra XSS (sanitização de inputs)
+- ✅ Validação de formulários
+- ✅ autocomplete attributes para campos sensíveis
+- ✅ inputmode para teclados mobile
+
+## 📸 Preview
+
+<img width="500px" height="auto" alt="Preview do projeto" src="https://github.com/user-attachments/assets/54312f35-caef-49f1-9a32-b56440f01706" />
+
+## 🔗 Deploy
+
+https://diovannymartins.github.io/modern-ecommerce/
+
+## 🎯 Aprendizados
 
 Com este projeto pratiquei:
+- Arquitetura modular de CSS e JavaScript
+- Padrões de projeto (modules pattern)
+- Acessibilidade web (WCAG 2.1)
+- SEO técnico
+- Segurança frontend (XSS prevention)
+- UX/UI design
+- Performance web
+- Git flow profissional
 
-- Manipulação de DOM e eventos em JavaScript
-- Gerenciamento de estado de carrinho com `localStorage`
-- Criação de máscaras de input customizadas
-- Validação de formulários
-- `IntersectionObserver` para animações de scroll
-- Acessibilidade (ARIA, navegação por teclado, contraste)
-- Fluxo completo de versionamento Git (branches, tags, releases)
+## 📝 Licença
 
-## 👤 Autor
+Este projeto é de código aberto e está disponível sob a licença MIT.
 
-Diovanny Martins
+## 👨‍💻 Autor
+
+**Diovanny Martins**
+
+- GitHub: [@diovannymartins](https://github.com/diovannymartins)
+- LinkedIn: [Diovanny Martins](https://www.linkedin.com/in/diovannymartins/)
+
+---
+
+⭐ Se este projeto te ajudou, considere dar uma estrela!
