@@ -42,12 +42,14 @@
 .image-gallery img {
   width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: var(--bg-card);
   border-radius: var(--radius);
   cursor: pointer;
   border: 2px solid transparent;
   opacity: 0.6;
   transition: var(--transition);
+  padding: 8px;
 }
 
 .image-gallery img:hover,
