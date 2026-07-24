@@ -24,14 +24,35 @@
   <meta name="twitter:image" content="src/img/Headset-preto.avif">
 
   <link rel="icon" type="image/png" href="src/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="src/img/Headset-preto.avif" type="image/avif">
   <link rel="stylesheet" href="src/css/style.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
+  <link rel="manifest" href="manifest.json">
   <title>Headset NeonX Pro | Loja NEON X</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <style>
+    body{background-color:#0f172a;color:#f8fafc;font-family:"Segoe UI",system-ui,sans-serif;margin:0}
+    .header{background-color:rgba(15,23,42,.9);backdrop-filter:blur(10px);border-bottom:1px solid #334155;position:sticky;top:0;z-index:100}
+    .header-content{display:flex;justify-content:space-between;align-items:center;height:80px;max-width:1200px;margin:0 auto;padding:0 20px}
+    .logo a{color:#fff;font-size:24px;font-weight:800;letter-spacing:2px;text-decoration:none}
+    .highlight{color:#8b5cf6}
+  </style>
 </head>
 
 <body>
+
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
   <header class="header">
     <div class="container header-content">
@@ -69,7 +90,7 @@
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main-content">
 
     <section class="product-hero" id="produtos">
 
@@ -79,13 +100,13 @@
         </div>
         <div class="image-gallery" role="listbox" aria-label="Galeria de imagens do produto">
           <img src="src/img/Miniatura-1.avif" alt="Headset NeonX Pro - vista frontal" class="active" role="option"
-            aria-selected="true" tabindex="0" width="150" height="150" />
+            aria-selected="true" tabindex="0" width="150" height="150" loading="lazy" />
           <img src="src/img/Miniatura-2.avif" alt="Headset NeonX Pro - vista lateral" role="option" aria-selected="false"
-            tabindex="0" width="150" height="150" />
+            tabindex="0" width="150" height="150" loading="lazy" />
           <img src="src/img/Miniatura-3.avif" alt="Headset NeonX Pro - vista traseira" role="option" aria-selected="false"
-            tabindex="0" width="150" height="150" />
+            tabindex="0" width="150" height="150" loading="lazy" />
           <img src="src/img/Miniatura-4.avif" alt="Headset NeonX Pro - detalhe do microfone" role="option"
-            aria-selected="false" tabindex="0" width="150" height="150" />
+            aria-selected="false" tabindex="0" width="150" height="150" loading="lazy" />
         </div>
       </div>
 
@@ -128,6 +149,10 @@
         </div>
       </div>
     </section>
+
+    <div class="sticky-buy">
+      <button type="button" class="btn-buy" id="btnComprarSticky">Adicionar ao Carrinho - R$ 899,00</button>
+    </div>
 
     <section class="features reveal" id="lancamentos">
       <h2>Especificações Técnicas</h2>
@@ -327,6 +352,32 @@
     </div>
 
   </div>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Headset Wireless NeonX Pro",
+    "image": "src/img/Headset-preto.avif",
+    "description": "Áudio imersivo 7.1 surround, cancelamento de ruído ativo e 50h de bateria.",
+    "brand": {
+      "@type": "Brand",
+      "name": "NEON X"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "899.00",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/InStock",
+      "priceValidUntil": "2026-12-31"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "128"
+    }
+  }
+  </script>
 
   <script type="module" src="src/js/main.js"></script>
 </body>

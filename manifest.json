@@ -1,0 +1,22 @@
+{
+  "name": "NEON X - Loja de Headsets",
+  "short_name": "NEON X",
+  "description": "Equipamentos de alta performance para quem leva o jogo a sério.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#8b5cf6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "src/img/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "src/img/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

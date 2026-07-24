@@ -2,37 +2,79 @@ const mainImage = document.getElementById("mainImage");
 const miniaturas = document.querySelectorAll(".image-gallery img");
 const mainImageContainer = document.querySelector(".main-image");
 
+let indiceAtual = 0;
+
 /**
  * Inicializa a galeria de imagens e o zoom
  */
 export function initGallery() {
-  miniaturas.forEach((miniatura) => {
+  miniaturas.forEach((miniatura, index) => {
     miniatura.addEventListener("click", () => {
-      mainImage.classList.add("carregando");
-
-      mainImage.onload = () => {
-        mainImage.classList.remove("carregando");
-      };
-
-      mainImage.src = miniatura.src;
-
-      miniaturas.forEach((img) => {
-        img.classList.remove("active");
-        img.setAttribute("aria-selected", "false");
-      });
-      miniatura.classList.add("active");
-      miniatura.setAttribute("aria-selected", "true");
+      trocarImagem(index);
     });
 
     miniatura.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        miniatura.click();
+        trocarImagem(index);
       }
     });
   });
 
+  initSwipe();
   initZoom();
+  aplicarSkeleton();
+}
+
+/**
+ * Troca a imagem principal
+ * @param {number} index - Índice da miniatura
+ */
+function trocarImagem(index) {
+  if (index === indiceAtual) return;
+
+  mainImage.classList.add("carregando");
+  indiceAtual = index;
+
+  mainImage.onload = () => {
+    mainImage.classList.remove("carregando");
+  };
+
+  mainImage.src = miniaturas[index].src;
+
+  miniaturas.forEach((img, i) => {
+    img.classList.toggle("active", i === index);
+    img.setAttribute("aria-selected", i === index ? "true" : "false");
+  });
+}
+
+/**
+ * Inicializa o swipe na galeria (mobile)
+ */
+function initSwipe() {
+  let startX = 0;
+  let endX = 0;
+  const threshold = 50;
+
+  mainImageContainer.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  mainImageContainer.addEventListener("touchmove", (e) => {
+    endX = e.touches[0].clientX;
+  }, { passive: true });
+
+  mainImageContainer.addEventListener("touchend", () => {
+    const diff = startX - endX;
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0 && indiceAtual < miniaturas.length - 1) {
+        trocarImagem(indiceAtual + 1);
+      } else if (diff < 0 && indiceAtual > 0) {
+        trocarImagem(indiceAtual - 1);
+      }
+    }
+  });
 }
 
 /**
@@ -64,4 +106,19 @@ function initZoom() {
     isZoomed = false;
     mainImage.style.transform = "scale(1)";
   });
+}
+
+/**
+ * Aplica skeleton loading nas imagens
+ */
+function aplicarSkeleton() {
+  mainImage.classList.add("skeleton");
+
+  if (mainImage.complete) {
+    mainImage.classList.remove("skeleton");
+  } else {
+    mainImage.addEventListener("load", () => {
+      mainImage.classList.remove("skeleton");
+    });
+  }
 }

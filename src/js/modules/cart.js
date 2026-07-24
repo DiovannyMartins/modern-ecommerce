@@ -146,6 +146,14 @@ export function initCart() {
     renderizarCarrinho();
     animarBadge();
 
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'add_to_cart', {
+        item_name: nomeProdutoAtual,
+        price: preco,
+        quantity: quantidade
+      });
+    }
+
     const textoOriginal = btnComprar.textContent;
     btnComprar.textContent = "Adicionado! ✓";
     btnComprar.disabled = true;

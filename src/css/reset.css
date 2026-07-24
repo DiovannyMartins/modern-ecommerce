@@ -46,3 +46,36 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background-color: var(--primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: bold;
+  z-index: 10000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+  :root {
+    --text-main: #ffffff;
+    --text-muted: #e2e8f0;
+    --border: #ffffff;
+    --primary: #a78bfa;
+  }
+
+  .btn-buy {
+    border: 2px solid white;
+  }
+}

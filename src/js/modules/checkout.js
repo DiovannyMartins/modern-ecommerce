@@ -130,6 +130,14 @@ export function initCheckout() {
     numeroPedido.textContent = gerarNumeroPedido();
     etapaPagamento.hidden = true;
     etapaSucesso.hidden = false;
+
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'purchase', {
+        transaction_id: numeroPedido.textContent,
+        value: parseFloat(getTotalCarrinho().replace(/[^\d,]/g, '').replace(',', '.')),
+        currency: 'BRL'
+      });
+    }
   });
 
   btnFecharSucesso.addEventListener("click", () => {
