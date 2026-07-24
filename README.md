@@ -8,38 +8,44 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 - CSS3 (variáveis, grid, flexbox, animações)
 - JavaScript ES6+ (módulos, arrow functions, template literals)
 - LocalStorage para persistência de dados
+- Vite (build tool)
+- Vitest (testes unitários)
+- GitHub Actions (CI/CD)
 
 ## 📁 Estrutura do Projeto
 
 ```
 ├── index.html
+├── manifest.json              # PWA manifest
+├── sw.js                      # Service Worker
+├── sitemap.xml                # SEO sitemap
+├── robots.txt                 # SEO robots
+├── package.json               # Dependências e scripts
+├── vite.config.js             # Configuração Vite
+├── vitest.config.js           # Configuração Vitest
+├── .github/workflows/
+│   └── ci.yml                 # CI/CD pipeline
+├── tests/
+│   └── utils.test.js          # Testes unitários
 ├── src/
 │   ├── css/
 │   │   ├── variables.css       # Variáveis CSS globais
 │   │   ├── reset.css           # Reset e estilos base
-│   │   ├── style.css           # Arquivo principal (importa todos)
+│   │   ├── style.css           # Arquivo principal
 │   │   └── components/         # Componentes CSS modulares
-│   │       ├── header.css
-│   │       ├── product.css
-│   │       ├── features.css
-│   │       ├── reviews.css
-│   │       ├── footer.css
-│   │       ├── cart.css
-│   │       ├── checkout.css
-│   │       ├── toast.css
-│   │       └── scroll-reveal.css
 │   ├── js/
 │   │   ├── main.js             # Ponto de entrada
 │   │   └── modules/            # Módulos JavaScript
 │   │       ├── utils.js        # Funções utilitárias
 │   │       ├── toast.js        # Sistema de notificações
 │   │       ├── menu.js         # Menu mobile
-│   │       ├── gallery.js      # Galeria de imagens
+│   │       ├── gallery.js      # Galeria (swipe, zoom, skeleton)
 │   │       ├── quantity.js     # Controle de quantidade
 │   │       ├── cart.js         # Carrinho de compras
 │   │       ├── reviews.js      # Avaliações
 │   │       ├── search.js       # Busca
 │   │       ├── checkout.js     # Checkout simulado
+│   │       ├── extras.js       # Wishlist, cupons, frete
 │   │       └── scroll-reveal.js
 │   └── img/                    # Imagens do projeto
 └── README.md
@@ -53,13 +59,33 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 - ✅ Carrinho lateral com persistência em localStorage
 - ✅ Checkout simulado com múltiplos métodos de pagamento
 - ✅ Sistema de avaliações com ordenação
+- ✅ Wishlist (lista de desejos)
+- ✅ Cupons de desconto (NEON10, GAMER20, PRIMEIRO)
+- ✅ Cálculo de frete por CEP
+
+### Performance
+- ✅ Lazy loading em imagens
+- ✅ Preconnect para Google Fonts
+- ✅ CSS crítico inline no `<head>`
+- ✅ Skeleton loading nas imagens
+- ✅ Preload de imagem principal (LCP)
+- ✅ Service Worker (cache offline)
+
+### SEO Técnico
+- ✅ Schema.org/JSON-LD (dados estruturados)
+- ✅ sitemap.xml
+- ✅ robots.txt
+- ✅ Meta tags Open Graph e Twitter Cards
+- ✅ HTML semântico
 
 ### Acessibilidade (A11y)
 - ✅ Navegação completa por teclado
 - ✅ ARIA labels e roles semânticos
 - ✅ Focus trap em modais e drawers
 - ✅ Tecla ESC para fechar overlays
+- ✅ Skip link (pular para conteúdo)
 - ✅ Suporte a prefers-reduced-motion
+- ✅ Suporte a prefers-contrast (alto contraste)
 - ✅ Contraste WCAG AA compliant
 
 ### UX/UI
@@ -68,22 +94,47 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 - ✅ Toast notifications
 - ✅ Confirmação antes de remover itens
 - ✅ Zoom de imagem (desktop e touch)
+- ✅ Swipe na galeria (mobile)
 - ✅ Scroll reveal animations
 - ✅ Badge com animação bounce
+- ✅ Sticky buy button (mobile)
+- ✅ Busca expansível (mobile)
 
-### SEO & Performance
-- ✅ Meta tags Open Graph e Twitter Cards
-- ✅ Preload de imagem principal
-- ✅ HTML semântico
-- ✅ Lazy loading ready
-- ✅ CSS modular (sem código desnecessário)
+### PWA (Progressive Web App)
+- ✅ Manifest.json
+- ✅ Service Worker (cache offline)
+- ✅ Instalável como app
 
-## 🛠️ Melhorias de Segurança
+### Testes
+- ✅ Vitest configurado
+- ✅ Testes unitários
+- ✅ Cobertura de código
+
+### Build/DevOps
+- ✅ Vite (build, dev server)
+- ✅ CI/CD pipeline (GitHub Actions)
+- ✅ Cache busting com hash
+
+### Analytics
+- ✅ Google Analytics 4
+- ✅ Eventos de conversão (add_to_cart, purchase)
+
+## ️ Melhorias de Segurança
 
 - ✅ Proteção contra XSS (sanitização de inputs)
 - ✅ Validação de formulários
 - ✅ autocomplete attributes para campos sensíveis
 - ✅ inputmode para teclados mobile
+
+## 📦 Scripts Disponíveis
+
+```bash
+npm run dev          # Servidor de desenvolvimento (Vite)
+npm run build        # Build de produção
+npm run preview      # Preview do build
+npm test             # Executar testes
+npm run test:coverage # Testes com cobertura
+```
 
 ## 📸 Preview
 
@@ -103,6 +154,9 @@ Com este projeto pratiquei:
 - Segurança frontend (XSS prevention)
 - UX/UI design
 - Performance web
+- PWA (Progressive Web Apps)
+- Testes unitários
+- CI/CD pipeline
 - Git flow profissional
 
 ## 📝 Licença
