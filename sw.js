@@ -21,12 +21,18 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  const url = new URL(event.request.url);
+
+  if (url.origin !== location.origin) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((response) => {
       if (response) {
         return response;
       }
-      
+
       return fetch(event.request).catch((err) => {
         console.log("Fetch failed:", err);
         return new Response("Offline", {
