@@ -19,8 +19,7 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Headset NeonX Pro | Loja NEON X">
-  <meta name="twitter:description"
-    content="Áudio 7.1 surround, cancelamento de ruído ativo e 50h de bateria.">
+  <meta name="twitter:description" content="Áudio 7.1 surround, cancelamento de ruído ativo e 50h de bateria.">
   <meta name="twitter:image" content="src/img/Headset-preto.avif">
 
   <link rel="icon" type="image/png" href="src/img/favicon.png">
@@ -33,23 +32,55 @@
   <link rel="manifest" href="manifest.json">
   <title>Headset NeonX Pro | Loja NEON X</title>
 
-  <!-- Google Analytics 4 - Substituir G-XXXXXXXXXX pelo ID real -->
-  <!--
+
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
   </script>
-  -->
+
 
   <style>
-    body{background-color:#0f172a;color:#f8fafc;font-family:"Segoe UI",system-ui,sans-serif;margin:0}
-    .header{background-color:rgba(15,23,42,.9);backdrop-filter:blur(10px);border-bottom:1px solid #334155;position:sticky;top:0;z-index:100}
-    .header-content{display:flex;justify-content:space-between;align-items:center;height:80px;max-width:1200px;margin:0 auto;padding:0 20px}
-    .logo a{color:#fff;font-size:24px;font-weight:800;letter-spacing:2px;text-decoration:none}
-    .highlight{color:#8b5cf6}
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      margin: 0
+    }
+
+    .header {
+      background-color: rgba(15, 23, 42, .9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #334155;
+      position: sticky;
+      top: 0;
+      z-index: 100
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px
+    }
+
+    .logo a {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-decoration: none
+    }
+
+    .highlight {
+      color: #8b5cf6
+    }
   </style>
 </head>
 
@@ -66,7 +97,8 @@
         </a>
       </div>
 
-      <button id="menuToggle" class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+      <button id="menuToggle" class="hamburger" aria-label="Abrir menu" aria-expanded="false"
+        aria-controls="menu-principal">
         <span class="material-symbols-outlined">menu</span>
       </button>
 
@@ -109,10 +141,10 @@
         <div class="image-gallery" role="listbox" aria-label="Galeria de imagens do produto">
           <img src="src/img/Miniatura-1.avif" alt="Headset NeonX Pro - vista frontal" class="active" role="option"
             aria-selected="true" tabindex="0" width="150" height="150" loading="lazy" />
-          <img src="src/img/Miniatura-2.avif" alt="Headset NeonX Pro - vista lateral" role="option" aria-selected="false"
-            tabindex="0" width="150" height="150" loading="lazy" />
-          <img src="src/img/Miniatura-3.avif" alt="Headset NeonX Pro - vista traseira" role="option" aria-selected="false"
-            tabindex="0" width="150" height="150" loading="lazy" />
+          <img src="src/img/Miniatura-2.avif" alt="Headset NeonX Pro - vista lateral" role="option"
+            aria-selected="false" tabindex="0" width="150" height="150" loading="lazy" />
+          <img src="src/img/Miniatura-3.avif" alt="Headset NeonX Pro - vista traseira" role="option"
+            aria-selected="false" tabindex="0" width="150" height="150" loading="lazy" />
           <img src="src/img/Miniatura-4.avif" alt="Headset NeonX Pro - detalhe do microfone" role="option"
             aria-selected="false" tabindex="0" width="150" height="150" loading="lazy" />
         </div>
@@ -356,8 +388,8 @@
       <form id="formCartao" class="form-cartao" autocomplete="off">
         <div class="campo-avaliacao">
           <label for="numeroCartao">Número do cartão</label>
-          <input type="text" id="numeroCartao" placeholder="0000 0000 0000 0000" maxlength="19"
-            inputmode="numeric" autocomplete="cc-number">
+          <input type="text" id="numeroCartao" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric"
+            autocomplete="cc-number">
         </div>
         <div class="campo-avaliacao">
           <label for="nomeCartao">Nome impresso no cartão</label>
@@ -366,13 +398,12 @@
         <div class="linha-dupla">
           <div class="campo-avaliacao">
             <label for="validadeCartao">Validade</label>
-            <input type="text" id="validadeCartao" placeholder="MM/AA" maxlength="5"
-              inputmode="numeric" autocomplete="cc-exp">
+            <input type="text" id="validadeCartao" placeholder="MM/AA" maxlength="5" inputmode="numeric"
+              autocomplete="cc-exp">
           </div>
           <div class="campo-avaliacao">
             <label for="cvvCartao">CVV</label>
-            <input type="text" id="cvvCartao" placeholder="CVV" maxlength="4"
-              inputmode="numeric" autocomplete="cc-csc">
+            <input type="text" id="cvvCartao" placeholder="CVV" maxlength="4" inputmode="numeric" autocomplete="cc-csc">
           </div>
         </div>
       </form>
