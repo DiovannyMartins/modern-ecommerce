@@ -6,7 +6,7 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'main.html'),
+        main: resolve(__dirname, 'index.html'),
         catalogo: resolve(__dirname, 'catalogo.html')
       }
     }

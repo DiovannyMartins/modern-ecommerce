@@ -15,7 +15,8 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 ## 📁 Estrutura do Projeto
 
 ```
-├── index.html
+├── index.html                 # Página principal (produto)
+├── catalogo.html              # Página de catálogo
 ├── package.json               # Dependências e scripts
 ├── vite.config.js             # Configuração Vite
 ├── vitest.config.js           # Configuração Vitest
@@ -31,11 +32,12 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 │   │   └── components/         # Componentes CSS modulares
 │   ├── js/
 │   │   ├── main.js             # Ponto de entrada
+│   │   ├── catalogo.js         # Dados do catálogo
 │   │   └── modules/            # Módulos JavaScript
 │   │       ├── utils.js        # Funções utilitárias
 │   │       ├── toast.js        # Sistema de notificações
 │   │       ├── menu.js         # Menu mobile
-│   │       ├── gallery.js      # Galeria (swipe, zoom, skeleton)
+│   │       ├── gallery.js      # Galeria (swipe, zoom, setas, skeleton)
 │   │       ├── quantity.js     # Controle de quantidade
 │   │       ├── cart.js         # Carrinho de compras
 │   │       ├── reviews.js      # Avaliações
@@ -43,7 +45,7 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 │   │       ├── checkout.js     # Checkout simulado
 │   │       ├── extras.js       # Wishlist, cupons, frete
 │   │       └── scroll-reveal.js
-│   └── img/                    # Imagens do projeto
+│   └── img/                    # Imagens do produto (webp)
 └── README.md
 ```
 
@@ -65,6 +67,7 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 - ✅ CSS crítico inline no `<head>`
 - ✅ Skeleton loading nas imagens
 - ✅ Preload de imagem principal (LCP)
+- ✅ Imagens em formato WebP
 
 ### SEO Técnico
 - ✅ HTML semântico
@@ -85,15 +88,12 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 - ✅ Toast notifications
 - ✅ Confirmação antes de remover itens
 - ✅ Zoom de imagem (desktop e touch)
+- ✅ Galeria com setas de navegação e scroll horizontal
 - ✅ Swipe na galeria (mobile)
 - ✅ Scroll reveal animations
 - ✅ Badge com animação bounce
 - ✅ Sticky buy button (mobile)
 - ✅ Busca expansível (mobile)
-
-### PWA (Progressive Web App)
-- ✅ Instalável como app
-
 
 ### Testes
 - ✅ Vitest configurado
@@ -109,7 +109,7 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 - ✅ Google Analytics 4
 - ✅ Eventos de conversão (add_to_cart, purchase)
 
-## ️ Melhorias de Segurança
+## 🛡️ Melhorias de Segurança
 
 - ✅ Proteção contra XSS (sanitização de inputs)
 - ✅ Validação de formulários
@@ -126,10 +126,6 @@ npm test             # Executar testes
 npm run test:coverage # Testes com cobertura
 ```
 
-## 📸 Preview
-
-<img width="500px" height="auto" alt="Preview do projeto" src="https://github.com/user-attachments/assets/54312f35-caef-49f1-9a32-b56440f01706" />
-
 ## 🔗 Deploy
 
 https://diovannymartins.github.io/modern-ecommerce/
@@ -140,11 +136,10 @@ Com este projeto pratiquei:
 - Arquitetura modular de CSS e JavaScript
 - Padrões de projeto (modules pattern)
 - Acessibilidade web (WCAG 2.1)
-- SEO técnico
+- SEO técnico (Schema.org/JSON-LD, Open Graph, Twitter Cards)
 - Segurança frontend (XSS prevention)
 - UX/UI design
-- Performance web
-- PWA (Progressive Web Apps)
+- Performance web (WebP, lazy loading, skeleton loading)
 - Testes unitários
 - CI/CD pipeline
 - Git flow profissional
