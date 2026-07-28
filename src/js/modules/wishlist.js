@@ -109,7 +109,7 @@ function atualizarBotaoFavoritar() {
     id: "headset-neonx-pro",
     nome: "Headset Wireless NeonX Pro",
     preco: 899.00,
-    imagem: "src/img/Headset-preto.avif"
+    imagem: "src/img/frontal.webp"
   };
 
   const existe = wishlist.find((p) => p.id === produtoAtual.id);
@@ -177,7 +177,7 @@ export function initWishlist() {
       id: "headset-neonx-pro",
       nome: "Headset Wireless NeonX Pro",
       preco: 899.00,
-      imagem: "src/img/Headset-preto.avif"
+      imagem: "src/img/frontal.webp"
     };
 
     toggleWishlist(produto);

@@ -1,6 +1,8 @@
 const mainImage = document.getElementById("mainImage");
 const miniaturas = document.querySelectorAll(".image-gallery img");
 const mainImageContainer = document.querySelector(".main-image");
+const btnGaleriaCima = document.getElementById("btnGaleriaCima");
+const btnGaleriaBaixo = document.getElementById("btnGaleriaBaixo");
 
 let indiceAtual = 0;
 let isZoomed = false;
@@ -24,15 +26,40 @@ export function initGallery() {
     });
   });
 
+  btnGaleriaCima.addEventListener("click", () => {
+    const novoIndice = indiceAtual > 0 ? indiceAtual - 1 : miniaturas.length - 1;
+    trocarImagem(novoIndice);
+  });
+
+  btnGaleriaBaixo.addEventListener("click", () => {
+    const novoIndice = indiceAtual < miniaturas.length - 1 ? indiceAtual + 1 : 0;
+    trocarImagem(novoIndice);
+  });
+
+  // Scroll suave da galeria ao trocar imagem
+  function scrollParaMiniatura(index) {
+    const gallery = document.querySelector(".image-gallery");
+    const miniatura = miniaturas[index];
+    if (gallery && miniatura) {
+      const galleryRect = gallery.getBoundingClientRect();
+      const miniRect = miniatura.getBoundingClientRect();
+      const scrollLeft = miniatura.offsetLeft - (galleryRect.width / 2) + (miniRect.width / 2);
+      gallery.scrollTo({ left: scrollLeft, behavior: "smooth" });
+    }
+  }
+
   // Navegação por teclado nas setas
   document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft" && indiceAtual > 0) {
-      trocarImagem(indiceAtual - 1);
-    } else if (e.key === "ArrowRight" && indiceAtual < miniaturas.length - 1) {
-      trocarImagem(indiceAtual + 1);
+    if (e.key === "ArrowLeft") {
+      const novoIndice = indiceAtual > 0 ? indiceAtual - 1 : miniaturas.length - 1;
+      trocarImagem(novoIndice);
+    } else if (e.key === "ArrowRight") {
+      const novoIndice = indiceAtual < miniaturas.length - 1 ? indiceAtual + 1 : 0;
+      trocarImagem(novoIndice);
     }
   });
 
+  atualizarSetas();
   initZoom();
   initSwipe();
   aplicarSkeleton();
@@ -58,6 +85,17 @@ function trocarImagem(index) {
     img.classList.toggle("active", i === index);
     img.setAttribute("aria-selected", i === index ? "true" : "false");
   });
+
+  scrollParaMiniatura(index);
+  atualizarSetas();
+}
+
+/**
+ * Atualiza o estado das setas de navegação
+ */
+function atualizarSetas() {
+  btnGaleriaCima.disabled = false;
+  btnGaleriaBaixo.disabled = false;
 }
 
 /**

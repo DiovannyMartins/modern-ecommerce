@@ -8,7 +8,7 @@ const PRODUTOS = [
     categoria: "headsets",
     preco: 899.00,
     precoAntigo: 1299.00,
-    imagem: "src/img/Headset-preto.avif",
+    imagem: "src/img/frontal.webp",
     descricao: "Áudio 7.1 surround, cancelamento de ruído ativo, 50h de bateria.",
     rating: 5,
     reviews: 128
@@ -19,7 +19,7 @@ const PRODUTOS = [
     categoria: "teclados",
     preco: 599.00,
     precoAntigo: 799.00,
-    imagem: "src/img/Miniatura-2.avif",
+    imagem: "src/img/almofadas.webp",
     descricao: "Switches mecânicos, RGB per-key, anti-ghosting completo.",
     rating: 4,
     reviews: 89
@@ -30,7 +30,7 @@ const PRODUTOS = [
     categoria: "mouses",
     preco: 349.00,
     precoAntigo: 449.00,
-    imagem: "src/img/Miniatura-3.avif",
+    imagem: "src/img/traseira-controles.webp",
     descricao: "Sensor 25K DPI, switches ópticos, 70g ultra leve.",
     rating: 5,
     reviews: 203
@@ -41,7 +41,7 @@ const PRODUTOS = [
     categoria: "headsets",
     preco: 499.00,
     precoAntigo: 649.00,
-    imagem: "src/img/Miniatura-4.avif",
+    imagem: "src/img/lateral-microfone.webp",
     descricao: "Design compacto, áudio 7.1, microfone removível.",
     rating: 4,
     reviews: 67

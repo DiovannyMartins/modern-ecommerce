@@ -16,10 +16,6 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 
 ```
 ├── index.html
-├── manifest.json              # PWA manifest
-├── sw.js                      # Service Worker
-├── sitemap.xml                # SEO sitemap
-├── robots.txt                 # SEO robots
 ├── package.json               # Dependências e scripts
 ├── vite.config.js             # Configuração Vite
 ├── vitest.config.js           # Configuração Vitest
@@ -69,13 +65,8 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 - ✅ CSS crítico inline no `<head>`
 - ✅ Skeleton loading nas imagens
 - ✅ Preload de imagem principal (LCP)
-- ✅ Service Worker (cache offline)
 
 ### SEO Técnico
-- ✅ Schema.org/JSON-LD (dados estruturados)
-- ✅ sitemap.xml
-- ✅ robots.txt
-- ✅ Meta tags Open Graph e Twitter Cards
 - ✅ HTML semântico
 
 ### Acessibilidade (A11y)
@@ -101,9 +92,8 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript modul
 - ✅ Busca expansível (mobile)
 
 ### PWA (Progressive Web App)
-- ✅ Manifest.json
-- ✅ Service Worker (cache offline)
 - ✅ Instalável como app
+
 
 ### Testes
 - ✅ Vitest configurado
