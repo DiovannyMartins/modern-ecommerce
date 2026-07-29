@@ -75,18 +75,22 @@ export function initGallery() {
 function trocarImagem(index) {
   if (index === indiceAtual) return;
 
-  mainImage.classList.add("carregando");
+  mainImageContainer.classList.add("skeleton");
   indiceAtual = index;
 
   mainImage.onload = () => {
-    mainImage.classList.remove("carregando");
+    mainImageContainer.classList.remove("skeleton");
+  };
+
+  mainImage.onerror = () => {
+    mainImageContainer.classList.remove("skeleton");
   };
 
   mainImage.src = miniaturas[index].src;
 
   miniaturas.forEach((img, i) => {
     img.classList.toggle("active", i === index);
-    img.setAttribute("aria-selected", i === index ? "true" : "false");
+    img.setAttribute("aria-label", `Imagem ${i + 1} de ${miniaturas.length}`);
   });
 
   scrollParaMiniatura(index);
@@ -182,13 +186,13 @@ function initSwipe() {
  * Aplica skeleton loading nas imagens
  */
 function aplicarSkeleton() {
-  mainImage.classList.add("skeleton");
+  mainImageContainer.classList.add("skeleton");
 
   if (mainImage.complete) {
-    mainImage.classList.remove("skeleton");
+    mainImageContainer.classList.remove("skeleton");
   } else {
     mainImage.addEventListener("load", () => {
-      mainImage.classList.remove("skeleton");
+      mainImageContainer.classList.remove("skeleton");
     });
   }
 }

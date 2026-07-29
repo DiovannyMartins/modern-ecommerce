@@ -26,11 +26,11 @@
   transition: right 0.3s ease;
   display: flex;
   flex-direction: column;
-  will-change: right;
 }
 
 .cart-drawer.active {
   right: 0;
+  will-change: right;
 }
 
 .cart-drawer-header {
@@ -219,14 +219,17 @@
 @media (max-width: 600px) {
   .cart-drawer {
     width: 100vw;
-    right: -100vw;
+    top: auto;
+    bottom: -100vh;
+    right: 0;
+    height: 85vh;
     border-radius: 16px 16px 0 0;
     border-left: none;
     border-top: 1px solid var(--border);
   }
 
   .cart-drawer.active {
-    right: 0;
+    bottom: 0;
   }
 
   .cart-drawer-header {

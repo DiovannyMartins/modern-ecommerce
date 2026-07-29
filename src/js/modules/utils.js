@@ -11,17 +11,6 @@ export function formatarPreco(valor) {
 }
 
 /**
- * Sanitiza uma string para prevenir XSS
- * @param {string} str - A string a ser sanitizada
- * @returns {string} A string sanitizada
- */
-export function sanitize(str) {
-  const div = document.createElement("div");
-  div.textContent = str;
-  return div.innerHTML;
-}
-
-/**
  * Gera um número de pedido aleatório
  * @returns {string} Número do pedido formatado
  */

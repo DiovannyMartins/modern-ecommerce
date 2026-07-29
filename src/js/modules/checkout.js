@@ -194,6 +194,7 @@ export function initCheckout() {
     numeroPedido.textContent = gerarNumeroPedido();
     etapaPagamento.hidden = true;
     etapaSucesso.hidden = false;
+    trapFocus(checkoutModal);
 
     if (typeof gtag !== 'undefined') {
       gtag('event', 'purchase', {

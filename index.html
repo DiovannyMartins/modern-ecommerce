@@ -13,25 +13,23 @@
   <meta property="og:title" content="Headset HyperX Cloud II Core Wireless | Loja NEON X">
   <meta property="og:description"
     content="Áudio DTS Spatial, 80h de bateria e conexão 2.4GHz. Frete grátis para todo o Brasil.">
-  <meta property="og:image" content="src/img/frontal.webp">
+  <meta property="og:image" content="https://diovannymartins.github.io/modern-ecommerce/src/img/frontal.webp">
   <meta property="og:type" content="product">
   <meta property="og:locale" content="pt_BR">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Headset HyperX Cloud II Core Wireless | Loja NEON X">
   <meta name="twitter:description" content="Áudio DTS Spatial, 80h de bateria e conexão 2.4GHz.">
-  <meta name="twitter:image" content="src/img/frontal.webp">
+  <meta name="twitter:image" content="https://diovannymartins.github.io/modern-ecommerce/src/img/frontal.webp">
 
   <link rel="icon" type="image/png" href="src/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="src/img/frontal.webp" type="image/webp">
+  <link rel="preload" as="image" href="src/img/frontal.webp" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="src/css/style.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
   <title>Headset HyperX Cloud II Core Wireless | Loja NEON X</title>
-
-
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
@@ -40,47 +38,6 @@
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
   </script>
-
-
-  <style>
-    body {
-      background-color: #0f172a;
-      color: #f8fafc;
-      font-family: "Segoe UI", system-ui, sans-serif;
-      margin: 0
-    }
-
-    .header {
-      background-color: rgba(15, 23, 42, .9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #334155;
-      position: sticky;
-      top: 0;
-      z-index: 100
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px
-    }
-
-    .logo a {
-      color: #fff;
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-decoration: none
-    }
-
-    .highlight {
-      color: #8b5cf6
-    }
-  </style>
 </head>
 
 <body>
@@ -90,7 +47,7 @@
   <header class="header">
     <div class="container header-content">
       <div class="logo">
-        <a href="#" aria-label="NEON X - Página inicial">
+        <a href="index.html" aria-label="NEON X - Página inicial">
           NEON
           <span class="highlight"> X </span>
         </a>
@@ -135,25 +92,25 @@
 
       <div class="product-visuals">
         <div class="main-image">
-          <img src="src/img/frontal.webp" alt="Headset HyperX Cloud II Core Wireless - vista frontal" id="mainImage" width="600" height="600" />
+          <img src="src/img/frontal.webp" alt="Headset HyperX Cloud II Core Wireless - vista frontal" id="mainImage" width="600" height="600" decoding="async" />
         </div>
         <div class="gallery-wrapper">
           <button type="button" class="gallery-arrow gallery-arrow-left" id="btnGaleriaCima" aria-label="Imagem anterior">
             <span class="material-symbols-outlined" aria-hidden="true">keyboard_arrow_left</span>
           </button>
-          <div class="image-gallery" role="listbox" aria-label="Galeria de imagens do produto">
-            <img src="src/img/frontal.webp" alt="Headset HyperX Cloud II Core - vista frontal" class="active" role="option"
-              aria-selected="true" tabindex="0" width="150" height="150" loading="lazy" />
-            <img src="src/img/almofadas.webp" alt="Headset HyperX Cloud II Core - vista inferior das almofadas" role="option"
-              aria-selected="false" tabindex="0" width="150" height="150" loading="lazy" />
-            <img src="src/img/traseira-controles.webp" alt="Headset HyperX Cloud II Core - vista traseira com controles" role="option"
-              aria-selected="false" tabindex="0" width="150" height="150" loading="lazy" />
-            <img src="src/img/lateral-microfone.webp" alt="Headset HyperX Cloud II Core - vista lateral com microfone" role="option"
-              aria-selected="false" tabindex="0" width="150" height="150" loading="lazy" />
-            <img src="src/img/acessorios.webp" alt="Headset HyperX Cloud II Core - acessórios inclusos" role="option"
-              aria-selected="false" tabindex="0" width="150" height="150" loading="lazy" />
-            <img src="src/img/dongle-usb.webp" alt="Headset HyperX Cloud II Core - dongle USB wireless" role="option"
-              aria-selected="false" tabindex="0" width="150" height="150" loading="lazy" />
+          <div class="image-gallery" role="region" aria-label="Galeria de imagens do produto" aria-roledescription="carousel">
+            <img src="src/img/frontal.webp" alt="Headset HyperX Cloud II Core - vista frontal" class="active" role="img"
+              aria-roledescription="slide" aria-label="Imagem 1 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
+            <img src="src/img/almofadas.webp" alt="Headset HyperX Cloud II Core - vista inferior das almofadas" role="img"
+              aria-roledescription="slide" aria-label="Imagem 2 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
+            <img src="src/img/traseira-controles.webp" alt="Headset HyperX Cloud II Core - vista traseira com controles" role="img"
+              aria-roledescription="slide" aria-label="Imagem 3 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
+            <img src="src/img/lateral-microfone.webp" alt="Headset HyperX Cloud II Core - vista lateral com microfone" role="img"
+              aria-roledescription="slide" aria-label="Imagem 4 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
+            <img src="src/img/acessorios.webp" alt="Headset HyperX Cloud II Core - acessórios inclusos" role="img"
+              aria-roledescription="slide" aria-label="Imagem 5 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
+            <img src="src/img/dongle-usb.webp" alt="Headset HyperX Cloud II Core - dongle USB wireless" role="img"
+              aria-roledescription="slide" aria-label="Imagem 6 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
           </div>
           <button type="button" class="gallery-arrow gallery-arrow-right" id="btnGaleriaBaixo" aria-label="Próxima imagem">
             <span class="material-symbols-outlined" aria-hidden="true">keyboard_arrow_right</span>
@@ -291,7 +248,7 @@
     <div class="container footer-grid">
       <div class="footer-col">
         <div class="logo">
-          <a href="#" aria-label="NEON X - Página inicial">
+          <a href="index.html" aria-label="NEON X - Página inicial">
             NEON
             <span class="highlight"> X </span>
           </a>
@@ -448,7 +405,7 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Headset HyperX Cloud II Core Wireless",
-    "image": "src/img/frontal.webp",
+    "image": "https://diovannymartins.github.io/modern-ecommerce/src/img/frontal.webp",
     "description": "Áudio imersivo com DTS Headphone:X Spatial Audio, drivers de 53mm e bateria para até 80 horas.",
     "brand": {
       "@type": "Brand",
@@ -459,7 +416,7 @@
       "price": "899.00",
       "priceCurrency": "BRL",
       "availability": "https://schema.org/InStock",
-      "priceValidUntil": "2026-12-31"
+      "priceValidUntil": ""
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -467,6 +424,14 @@
       "reviewCount": "128"
     }
   }
+  </script>
+
+  <script>
+    const jsonLd = document.querySelector('script[type="application/ld+json"]');
+    const data = JSON.parse(jsonLd.textContent);
+    const proximoAno = new Date().getFullYear() + 1;
+    data.offers.priceValidUntil = `${proximoAno}-12-31`;
+    jsonLd.textContent = JSON.stringify(data, null, 2);
   </script>
 
   <script type="module" src="src/js/main.js"></script>

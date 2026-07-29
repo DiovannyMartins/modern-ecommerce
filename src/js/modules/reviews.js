@@ -40,10 +40,10 @@ function renderizarEstrelas(nota) {
   return "★".repeat(nota) + "☆".repeat(5 - nota);
 }
 
-function renderizarAvaliacoes() {
+function renderizarAvaliacoes(lista = avaliacoes) {
   reviewsGrid.innerHTML = "";
 
-  avaliacoes.forEach((avaliacao) => {
+  lista.forEach((avaliacao) => {
     const card = document.createElement("div");
     card.classList.add("review-card");
 
@@ -86,16 +86,17 @@ function renderizarAvaliacoes() {
 export function initReviews() {
   ordenarAvaliacoes.addEventListener("change", () => {
     const criterio = ordenarAvaliacoes.value;
+    const copia = [...avaliacoes];
 
     if (criterio === "maior-nota") {
-      avaliacoes.sort((a, b) => b.nota - a.nota);
+      copia.sort((a, b) => b.nota - a.nota);
     } else if (criterio === "menor-nota") {
-      avaliacoes.sort((a, b) => a.nota - b.nota);
+      copia.sort((a, b) => a.nota - b.nota);
     } else if (criterio === "recentes") {
-      avaliacoes.sort((a, b) => b.id - a.id);
+      copia.sort((a, b) => b.id - a.id);
     }
 
-    renderizarAvaliacoes();
+    renderizarAvaliacoes(copia);
   });
 
   starOptions.forEach((estrela) => {
