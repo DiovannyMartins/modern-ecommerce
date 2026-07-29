@@ -213,7 +213,7 @@
 }
 
 .frete-resultado.erro {
-  color: #ef4444;
+  color: var(--error);
 }
 
 @media (max-width: 600px) {

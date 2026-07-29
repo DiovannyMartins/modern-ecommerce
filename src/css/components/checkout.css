@@ -157,7 +157,7 @@
 }
 
 .cupom-mensagem.erro {
-  color: #ef4444;
+  color: var(--error);
 }
 
 .checkout-metodos {

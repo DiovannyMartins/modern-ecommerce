@@ -167,6 +167,10 @@
   box-shadow: var(--shadow-primary);
 }
 
+.btn-busca-mobile {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .header-content {
     height: 60px;
@@ -193,7 +197,7 @@
 
   /* Busca vira ícone expansível no mobile */
   .btn-busca-mobile {
-    display: flex !important;
+    display: flex;
   }
 
   .search-bar {

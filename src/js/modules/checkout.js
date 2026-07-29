@@ -1,4 +1,4 @@
-import { gerarNumeroPedido, validarLuhn } from "./utils.js";
+import { formatarPreco, gerarNumeroPedido, validarLuhn, trapFocus } from "./utils.js";
 import { mostrarToast } from "./toast.js";
 import { getCarrinho, limparCarrinho, getTotalCarrinho, fecharCarrinho } from "./cart.js";
 
@@ -38,7 +38,7 @@ function abrirCheckout() {
   document.body.style.overflow = "hidden";
   trapFocus(checkoutModal);
 
-  valorOriginal = parseFloat(getTotalCarrinho().replace(/[^\d,]/g, '').replace(',', '.'));
+  valorOriginal = getTotalCarrinho();
   aplicarDesconto();
 }
 
@@ -46,10 +46,10 @@ function aplicarDesconto() {
   const valorDesconto = valorOriginal * (descontoAplicado / 100);
   const valorFinal = valorOriginal - valorDesconto;
 
-  checkoutTotal.textContent = `R$ ${valorFinal.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+  checkoutTotal.textContent = formatarPreco(valorFinal);
 
   if (descontoAplicado > 0) {
-    checkoutDesconto.querySelector("span").textContent = `-R$ ${valorDesconto.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+    checkoutDesconto.querySelector("span").textContent = `-${formatarPreco(valorDesconto)}`;
     checkoutDesconto.hidden = false;
   } else {
     checkoutDesconto.hidden = true;
@@ -73,7 +73,7 @@ export function initCheckout() {
       return;
     }
 
-    checkoutTotal.textContent = getTotalCarrinho();
+    checkoutTotal.textContent = formatarPreco(getTotalCarrinho());
     abrirCheckout();
   });
 
@@ -198,7 +198,7 @@ export function initCheckout() {
     if (typeof gtag !== 'undefined') {
       gtag('event', 'purchase', {
         transaction_id: numeroPedido.textContent,
-        value: parseFloat(getTotalCarrinho().replace(/[^\d,]/g, '').replace(',', '.')),
+        value: getTotalCarrinho(),
         currency: 'BRL'
       });
     }
@@ -221,35 +221,5 @@ export function initCheckout() {
     cupomMensagem.textContent = "";
 
     mostrarToast("Pedido confirmado com sucesso!");
-  });
-}
-
-/**
- * Mantém o foco do teclado dentro de um elemento (focus trap)
- * @param {HTMLElement} container
- */
-function trapFocus(container) {
-  const focusableElements = container.querySelectorAll(
-    'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-  );
-  const firstFocusable = focusableElements[0];
-  const lastFocusable = focusableElements[focusableElements.length - 1];
-
-  if (firstFocusable) firstFocusable.focus();
-
-  container.addEventListener("keydown", (e) => {
-    if (e.key !== "Tab") return;
-
-    if (e.shiftKey) {
-      if (document.activeElement === firstFocusable) {
-        e.preventDefault();
-        lastFocusable.focus();
-      }
-    } else {
-      if (document.activeElement === lastFocusable) {
-        e.preventDefault();
-        firstFocusable.focus();
-      }
-    }
   });
 }

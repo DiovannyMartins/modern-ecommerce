@@ -1,4 +1,4 @@
-import { sanitize, salvarStorage, carregarStorage } from "./utils.js";
+import { salvarStorage, carregarStorage } from "./utils.js";
 import { mostrarToast } from "./toast.js";
 
 const reviewsGrid = document.getElementById("reviewsGrid");

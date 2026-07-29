@@ -1,4 +1,4 @@
-import { formatarPreco, sanitize, salvarStorage, carregarStorage } from "./utils.js";
+import { formatarPreco, salvarStorage, carregarStorage, trapFocus } from "./utils.js";
 import { mostrarToast } from "./toast.js";
 import { getQuantidade, getPreco } from "./quantity.js";
 
@@ -14,8 +14,11 @@ const inputCEP = document.getElementById("inputCEP");
 const btnCalcularFrete = document.getElementById("btnCalcularFrete");
 const freteResultado = document.getElementById("freteResultado");
 
-const nomeProdutoAtual = "Headset Wireless NeonX Pro";
-const imagemProdutoAtual = "src/img/frontal.webp";
+const produtoAtual = {
+  id: "headset-neonx-pro",
+  nome: "Headset Wireless NeonX Pro",
+  imagem: "src/img/frontal.webp",
+};
 
 let carrinho = carregarStorage("carrinho", []);
 
@@ -80,13 +83,10 @@ function renderizarCarrinho() {
     botao.addEventListener("click", () => {
       const index = parseInt(botao.dataset.index);
       const item = carrinho[index];
-
-      if (confirm(`Remover "${item.nome}" do carrinho?`)) {
-        carrinho.splice(index, 1);
-        salvarCarrinho();
-        renderizarCarrinho();
-        mostrarToast("Item removido do carrinho");
-      }
+      carrinho.splice(index, 1);
+      salvarCarrinho();
+      renderizarCarrinho();
+      mostrarToast(`"${item.nome}" removido do carrinho`);
     });
   });
 }
@@ -122,7 +122,7 @@ export function limparCarrinho() {
 }
 
 export function getTotalCarrinho() {
-  return cartTotalValor.textContent;
+  return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
 }
 
 /**
@@ -132,16 +132,17 @@ export function initCart() {
   const adicionarAoCarrinho = () => {
     const quantidade = getQuantidade();
     const preco = getPreco();
-    const itemExistente = carrinho.find((item) => item.nome === nomeProdutoAtual);
+    const itemExistente = carrinho.find((item) => item.id === produtoAtual.id);
 
     if (itemExistente) {
       itemExistente.quantidade += quantidade;
     } else {
       carrinho.push({
-        nome: nomeProdutoAtual,
+        id: produtoAtual.id,
+        nome: produtoAtual.nome,
         preco: preco,
         quantidade: quantidade,
-        imagem: imagemProdutoAtual,
+        imagem: produtoAtual.imagem,
       });
     }
 
@@ -151,7 +152,7 @@ export function initCart() {
 
     if (typeof gtag !== 'undefined') {
       gtag('event', 'add_to_cart', {
-        item_name: nomeProdutoAtual,
+        item_name: produtoAtual.nome,
         price: preco,
         quantity: quantidade
       });
@@ -206,14 +207,6 @@ export function initCart() {
       return;
     }
 
-    // Valida se o CEP começa com dígito válido (0-9)
-    const primeiroDigito = parseInt(cepLimpo.charAt(0));
-    if (primeiroDigito < 0 || primeiroDigito > 9) {
-      freteResultado.textContent = "CEP inválido.";
-      freteResultado.className = "frete-resultado erro";
-      return;
-    }
-
     const regiao = parseInt(cepLimpo.substring(0, 2));
     let textoFrete = "";
 
@@ -247,35 +240,11 @@ export function initCart() {
     }
   });
 
-  renderizarCarrinho();
-}
-
-/**
- * Mantém o foco do teclado dentro de um elemento (focus trap)
- * @param {HTMLElement} container
- */
-function trapFocus(container) {
-  const focusableElements = container.querySelectorAll(
-    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-  );
-  const firstFocusable = focusableElements[0];
-  const lastFocusable = focusableElements[focusableElements.length - 1];
-
-  if (firstFocusable) firstFocusable.focus();
-
-  container.addEventListener("keydown", (e) => {
-    if (e.key !== "Tab") return;
-
-    if (e.shiftKey) {
-      if (document.activeElement === firstFocusable) {
-        e.preventDefault();
-        lastFocusable.focus();
-      }
-    } else {
-      if (document.activeElement === lastFocusable) {
-        e.preventDefault();
-        firstFocusable.focus();
-      }
-    }
+  document.addEventListener("cart-updated", () => {
+    carrinho = carregarStorage("carrinho", []);
+    renderizarCarrinho();
+    animarBadge();
   });
+
+  renderizarCarrinho();
 }

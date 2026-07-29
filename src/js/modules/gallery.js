@@ -50,6 +50,9 @@ export function initGallery() {
 
   // Navegação por teclado nas setas
   document.addEventListener("keydown", (e) => {
+    const tag = document.activeElement.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+
     if (e.key === "ArrowLeft") {
       const novoIndice = indiceAtual > 0 ? indiceAtual - 1 : miniaturas.length - 1;
       trocarImagem(novoIndice);
@@ -94,8 +97,8 @@ function trocarImagem(index) {
  * Atualiza o estado das setas de navegação
  */
 function atualizarSetas() {
-  btnGaleriaCima.disabled = false;
-  btnGaleriaBaixo.disabled = false;
+  btnGaleriaCima.disabled = indiceAtual === 0;
+  btnGaleriaBaixo.disabled = indiceAtual === miniaturas.length - 1;
 }
 
 /**
@@ -142,13 +145,29 @@ function initSwipe() {
     }
   }, { passive: false });
 
+  // Swipe e double-tap unificados
+  let lastTap = 0;
   mainImageContainer.addEventListener("touchend", (e) => {
     const touchEndX = e.changedTouches[0].clientX;
     const touchEndY = e.changedTouches[0].clientY;
     const diffX = touchStartX - touchEndX;
     const diffY = Math.abs(touchStartY - touchEndY);
 
-    // Só processa swipe se movimento horizontal for dominante
+    // Double-tap para zoom
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+
+    if (tapLength < 300 && tapLength > 0 && Math.abs(diffX) < 10 && diffY < 10) {
+      isZoomed = !isZoomed;
+      mainImage.style.transform = isZoomed ? "scale(2)" : "scale(1)";
+      e.preventDefault();
+      lastTap = 0;
+      return;
+    }
+
+    lastTap = currentTime;
+
+    // Swipe horizontal
     if (Math.abs(diffX) > threshold && diffY < 50) {
       if (diffX > 0 && indiceAtual < miniaturas.length - 1) {
         trocarImagem(indiceAtual + 1);
@@ -156,21 +175,6 @@ function initSwipe() {
         trocarImagem(indiceAtual - 1);
       }
     }
-  });
-
-  // Zoom com double-tap no mobile
-  let lastTap = 0;
-  mainImageContainer.addEventListener("touchend", (e) => {
-    const currentTime = new Date().getTime();
-    const tapLength = currentTime - lastTap;
-
-    if (tapLength < 300 && tapLength > 0) {
-      isZoomed = !isZoomed;
-      mainImage.style.transform = isZoomed ? "scale(2)" : "scale(1)";
-      e.preventDefault();
-    }
-
-    lastTap = currentTime;
   });
 }
 

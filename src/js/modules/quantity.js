@@ -1,3 +1,5 @@
+import { formatarPreco } from "./utils.js";
+
 const btnDiminuir = document.getElementById("btnDiminuir");
 const btnAumentar = document.getElementById("btnAumentar");
 const quantidadeValor = document.getElementById("quantidadeValor");
@@ -5,9 +7,7 @@ const subtotalValor = document.getElementById("subtotalValor");
 const precoUnitario = document.getElementById("precoUnitario");
 
 let quantidade = 1;
-const preco = parseFloat(precoUnitario.dataset.price);
-
-import { formatarPreco } from "./utils.js";
+const preco = parseFloat(precoUnitario.dataset.price) || 0;
 
 /**
  * Atualiza o subtotal exibido na tela

@@ -19,7 +19,7 @@ export function initSearch() {
     if (nomeProduto.includes(termo)) {
       document.querySelector(".product-hero").scrollIntoView({ behavior: "smooth" });
     } else {
-      mostrarToast("Nenhum produto encontrado para: " + inputBusca.value);
+      mostrarToast("Nenhum produto encontrado para: " + termo);
     }
 
     inputBusca.value = "";

@@ -36,7 +36,11 @@ export function gerarNumeroPedido() {
  * @param {any} dados - Os dados a serem salvos
  */
 export function salvarStorage(chave, dados) {
-  localStorage.setItem(chave, JSON.stringify(dados));
+  try {
+    localStorage.setItem(chave, JSON.stringify(dados));
+  } catch (e) {
+    console.warn("localStorage cheio ou indisponível:", e);
+  }
 }
 
 /**
@@ -46,8 +50,13 @@ export function salvarStorage(chave, dados) {
  * @returns {any} Os dados carregados ou o valor padrão
  */
 export function carregarStorage(chave, padrao = null) {
-  const dados = localStorage.getItem(chave);
-  return dados ? JSON.parse(dados) : padrao;
+  try {
+    const dados = localStorage.getItem(chave);
+    return dados ? JSON.parse(dados) : padrao;
+  } catch (e) {
+    console.warn("Erro ao ler localStorage:", e);
+    return padrao;
+  }
 }
 
 /**
@@ -75,4 +84,34 @@ export function validarLuhn(numero) {
   }
 
   return soma % 10 === 0;
+}
+
+/**
+ * Mantém o foco do teclado dentro de um elemento (focus trap)
+ * @param {HTMLElement} container
+ */
+export function trapFocus(container) {
+  const focusableElements = container.querySelectorAll(
+    'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  );
+  const firstFocusable = focusableElements[0];
+  const lastFocusable = focusableElements[focusableElements.length - 1];
+
+  if (firstFocusable) firstFocusable.focus();
+
+  container.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstFocusable) {
+        e.preventDefault();
+        lastFocusable.focus();
+      }
+    } else {
+      if (document.activeElement === lastFocusable) {
+        e.preventDefault();
+        firstFocusable.focus();
+      }
+    }
+  });
 }

@@ -1,5 +1,6 @@
 import { formatarPreco, salvarStorage, carregarStorage } from "./modules/utils.js";
 import { mostrarToast } from "./modules/toast.js";
+import { initMenu } from "./modules/menu.js";
 
 const PRODUTOS = [
   {
@@ -58,8 +59,6 @@ const cartOverlay = document.getElementById("cartOverlay");
 const cartItensContainer = document.getElementById("cartItens");
 const cartTotalValor = document.getElementById("cartTotalValor");
 const cartBadge = document.getElementById("cartBadge");
-const menuToggle = document.getElementById("menuToggle");
-const menu = document.querySelector(".menu");
 
 let carrinho = carregarStorage("carrinho", []);
 let categoriaAtual = "todos";
@@ -108,6 +107,7 @@ function renderizarCarrinho() {
     btnRemover.classList.add("cart-item-remover");
     btnRemover.dataset.index = index;
     btnRemover.textContent = "Remover";
+    btnRemover.setAttribute("aria-label", `Remover ${item.nome} do carrinho`);
 
     info.appendChild(h4);
     info.appendChild(p);
@@ -230,7 +230,7 @@ function renderizarProdutos(produtos) {
 }
 
 function filtrarProdutos() {
-  let produtosFiltrados = PRODUTOS;
+  let produtosFiltrados = [...PRODUTOS];
 
   if (categoriaAtual !== "todos") {
     produtosFiltrados = produtosFiltrados.filter((p) => p.categoria === categoriaAtual);
@@ -288,29 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Menu hamburger
-  if (menuToggle && menu) {
-    menuToggle.addEventListener("click", () => {
-      menu.classList.toggle("active");
-      const isOpen = menu.classList.contains("active");
-      menuToggle.setAttribute("aria-expanded", isOpen);
-    });
-
-    const menuLinks = document.querySelectorAll(".menu a");
-    menuLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        menu.classList.remove("active");
-        menuToggle.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && menu.classList.contains("active")) {
-        menu.classList.remove("active");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.focus();
-      }
-    });
-  }
+  initMenu();
 
   const anoAtual = document.getElementById("anoAtual");
   if (anoAtual) {

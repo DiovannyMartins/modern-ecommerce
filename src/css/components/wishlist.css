@@ -133,8 +133,8 @@
 }
 
 .wishlist-item-actions .btn-remove:hover {
-  color: #ef4444;
-  border-color: #ef4444;
+  color: var(--error);
+  border-color: var(--error);
 }
 
 .wishlist-vazio {
@@ -151,7 +151,7 @@
   position: absolute;
   top: -5px;
   right: -10px;
-  background-color: #ef4444;
+  background-color: var(--error);
   color: white;
   font-size: var(--font-size-xs);
   font-weight: bold;
@@ -183,8 +183,8 @@
 
 .btn-favorite:hover,
 .btn-favorite:focus-visible {
-  color: #ef4444;
-  border-color: #ef4444;
+  color: var(--error);
+  border-color: var(--error);
   outline: none;
 }
 
@@ -193,8 +193,8 @@
 }
 
 .btn-favorite.ativo {
-  color: #ef4444;
-  border-color: #ef4444;
+  color: var(--error);
+  border-color: var(--error);
 }
 
 .btn-favorite.ativo .material-symbols-outlined {

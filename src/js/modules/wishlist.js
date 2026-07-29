@@ -1,5 +1,12 @@
-import { formatarPreco, salvarStorage, carregarStorage } from "./utils.js";
+import { formatarPreco, salvarStorage, carregarStorage, trapFocus } from "./utils.js";
 import { mostrarToast } from "./toast.js";
+
+const PRODUTO_PRINCIPAL = {
+  id: "headset-neonx-pro",
+  nome: "Headset Wireless NeonX Pro",
+  preco: 899.00,
+  imagem: "src/img/frontal.webp"
+};
 
 const btnAbrirWishlist = document.getElementById("btnAbrirWishlist");
 const btnFecharWishlist = document.getElementById("btnFecharWishlist");
@@ -60,7 +67,6 @@ function renderizarWishlist() {
     btnAddCart.classList.add("btn-add-cart");
     btnAddCart.textContent = "Adicionar ao Carrinho";
     btnAddCart.addEventListener("click", () => {
-      // Adiciona diretamente ao localStorage do carrinho
       const carrinho = carregarStorage("carrinho", []);
       const itemExistente = carrinho.find((i) => i.id === item.id);
 
@@ -77,6 +83,7 @@ function renderizarWishlist() {
       }
 
       salvarStorage("carrinho", carrinho);
+      document.dispatchEvent(new CustomEvent("cart-updated"));
       mostrarToast("Adicionado ao carrinho!");
     });
 
@@ -105,14 +112,7 @@ function renderizarWishlist() {
 }
 
 function atualizarBotaoFavoritar() {
-  const produtoAtual = {
-    id: "headset-neonx-pro",
-    nome: "Headset Wireless NeonX Pro",
-    preco: 899.00,
-    imagem: "src/img/frontal.webp"
-  };
-
-  const existe = wishlist.find((p) => p.id === produtoAtual.id);
+  const existe = wishlist.find((p) => p.id === PRODUTO_PRINCIPAL.id);
 
   if (existe) {
     btnFavoritar.classList.add("ativo");
@@ -173,39 +173,6 @@ export function initWishlist() {
   });
 
   btnFavoritar.addEventListener("click", () => {
-    const produto = {
-      id: "headset-neonx-pro",
-      nome: "Headset Wireless NeonX Pro",
-      preco: 899.00,
-      imagem: "src/img/frontal.webp"
-    };
-
-    toggleWishlist(produto);
-  });
-}
-
-function trapFocus(container) {
-  const focusableElements = container.querySelectorAll(
-    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-  );
-  const firstFocusable = focusableElements[0];
-  const lastFocusable = focusableElements[focusableElements.length - 1];
-
-  if (firstFocusable) firstFocusable.focus();
-
-  container.addEventListener("keydown", (e) => {
-    if (e.key !== "Tab") return;
-
-    if (e.shiftKey) {
-      if (document.activeElement === firstFocusable) {
-        e.preventDefault();
-        lastFocusable.focus();
-      }
-    } else {
-      if (document.activeElement === lastFocusable) {
-        e.preventDefault();
-        firstFocusable.focus();
-      }
-    }
+    toggleWishlist(PRODUTO_PRINCIPAL);
   });
 }
