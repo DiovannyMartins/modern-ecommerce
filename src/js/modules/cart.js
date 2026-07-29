@@ -15,7 +15,7 @@ const btnCalcularFrete = document.getElementById("btnCalcularFrete");
 const freteResultado = document.getElementById("freteResultado");
 
 const nomeProdutoAtual = "Headset Wireless NeonX Pro";
-const imagemProdutoAtual = "img/frontal.webp";
+const imagemProdutoAtual = "src/img/frontal.webp";
 
 let carrinho = carregarStorage("carrinho", []);
 
