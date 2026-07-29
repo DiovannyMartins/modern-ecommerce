@@ -101,8 +101,8 @@ function trocarImagem(index) {
  * Atualiza o estado das setas de navegação
  */
 function atualizarSetas() {
-  btnGaleriaCima.disabled = indiceAtual === 0;
-  btnGaleriaBaixo.disabled = indiceAtual === miniaturas.length - 1;
+  btnGaleriaCima.disabled = false;
+  btnGaleriaBaixo.disabled = false;
 }
 
 /**

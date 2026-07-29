@@ -226,10 +226,12 @@
     border-radius: 16px 16px 0 0;
     border-left: none;
     border-top: 1px solid var(--border);
+    transition: bottom 0.3s ease;
   }
 
   .cart-drawer.active {
     bottom: 0;
+    will-change: bottom;
   }
 
   .cart-drawer-header {
