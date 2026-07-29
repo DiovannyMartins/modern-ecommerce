@@ -1,8 +1,0 @@
-{
-  "name": "modern-ecommerce",
-  "version": "1.0.0",
-  "description": "E-commerce profissional com HTML, CSS e JavaScript",
-  "scripts": {
-    "lint": "echo 'Lint passed'"
-  }
-}
