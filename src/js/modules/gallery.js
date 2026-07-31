@@ -9,18 +9,6 @@ let isZoomed = false;
 let touchStartX = 0;
 let touchStartY = 0;
 
-function scrollParaMiniatura(index) {
-  const gallery = document.querySelector(".image-gallery");
-  const miniatura = miniaturas[index];
-
-  if (gallery && miniatura) {
-    const galleryRect = gallery.getBoundingClientRect();
-    const miniRect = miniatura.getBoundingClientRect();
-    const scrollLeft = miniatura.offsetLeft - (galleryRect.width / 2) + (miniRect.width / 2);
-    gallery.scrollTo({ left: scrollLeft, behavior: "smooth" });
-  }
-}
-
 /**
  * Inicializa a galeria de imagens e o zoom
  */
