@@ -114,4 +114,10 @@ export function trapFocus(container) {
 
   _trapFocusHandlers.set(container, handler);
   container.addEventListener("keydown", handler);
+  return () => {
+    container.removeEventListener("keydown", handler);
+    if (_trapFocusHandlers.get(container) === handler) {
+      _trapFocusHandlers.delete(container);
+    }
+  };
 }

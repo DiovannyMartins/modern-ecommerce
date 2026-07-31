@@ -25,6 +25,7 @@ const btnFinalizar = document.getElementById("btnFinalizar");
 let metodoSelecionado = "pix";
 let descontoAplicado = 0;
 let valorOriginal = 0;
+let liberarFocusCheckout = null;
 
 const CUPONS_VALIDOS = {
   "NEON10": 10,
@@ -36,7 +37,8 @@ function abrirCheckout() {
   checkoutOverlay.classList.add("active");
   checkoutModal.classList.add("active");
   document.body.style.overflow = "hidden";
-  trapFocus(checkoutModal);
+  liberarFocusCheckout?.();
+  liberarFocusCheckout = trapFocus(checkoutModal);
 
   valorOriginal = getTotalCarrinho();
   aplicarDesconto();
@@ -60,6 +62,8 @@ function fecharCheckout() {
   checkoutOverlay.classList.remove("active");
   checkoutModal.classList.remove("active");
   document.body.style.overflow = "";
+  liberarFocusCheckout?.();
+  liberarFocusCheckout = null;
   btnFinalizar.focus();
 }
 
@@ -116,10 +120,13 @@ export function initCheckout() {
     }
   });
 
+  formCartao.addEventListener("submit", (e) => e.preventDefault());
+
   metodosPagamento.forEach((botao) => {
     botao.addEventListener("click", () => {
       metodosPagamento.forEach((b) => b.classList.remove("active"));
       botao.classList.add("active");
+      metodosPagamento.forEach((b) => b.setAttribute("aria-pressed", String(b === botao)));
       metodoSelecionado = botao.dataset.metodo;
       formCartao.classList.toggle("visivel", metodoSelecionado === "cartao");
     });
@@ -180,7 +187,7 @@ export function initCheckout() {
         return;
       }
 
-      if (validade.length !== 5) {
+      if (!validarValidade(validade)) {
         mostrarToast("Validade inválida. Use o formato MM/AA.");
         return;
       }
@@ -194,7 +201,8 @@ export function initCheckout() {
     numeroPedido.textContent = gerarNumeroPedido();
     etapaPagamento.hidden = true;
     etapaSucesso.hidden = false;
-    trapFocus(checkoutModal);
+    liberarFocusCheckout?.();
+    liberarFocusCheckout = trapFocus(checkoutModal);
 
     if (typeof gtag !== 'undefined') {
       gtag('event', 'purchase', {
@@ -214,7 +222,10 @@ export function initCheckout() {
     etapaSucesso.hidden = true;
     formCartao.reset();
     metodosPagamento.forEach((b) => b.classList.remove("active"));
-    document.querySelector('[data-metodo="pix"]').classList.add("active");
+    metodosPagamento.forEach((b) => b.setAttribute("aria-pressed", "false"));
+    const metodoPix = document.querySelector('[data-metodo="pix"]');
+    metodoPix.classList.add("active");
+    metodoPix.setAttribute("aria-pressed", "true");
     formCartao.classList.remove("visivel");
     metodoSelecionado = "pix";
     descontoAplicado = 0;
@@ -223,4 +234,15 @@ export function initCheckout() {
 
     mostrarToast("Pedido confirmado com sucesso!");
   });
+}
+
+function validarValidade(validade) {
+  if (!/^\d{2}\/\d{2}$/.test(validade)) return false;
+
+  const [mes, ano] = validade.split("/").map(Number);
+  if (mes < 1 || mes > 12) return false;
+
+  const hoje = new Date();
+  const anoAtual = hoje.getFullYear() % 100;
+  return ano > anoAtual || (ano === anoAtual && mes >= hoje.getMonth() + 1);
 }

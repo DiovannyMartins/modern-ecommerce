@@ -13,7 +13,6 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript puro,
 
 ```
 ── index.html                 # Página principal (produto)
-├── catalogo.html              # Página de catálogo
 ── src/
 │   ├── css/
 │   │   ├── variables.css       # Variáveis CSS globais
@@ -22,7 +21,6 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript puro,
 │   │   └── components/         # Componentes CSS modulares
 │   ├── js/
 │   │   ├── main.js             # Ponto de entrada
-│   │   ├── catalogo.js         # Dados do catálogo
 │   │   ── modules/            # Módulos JavaScript
 │   │       ├── utils.js        # Funções utilitárias
 │   │       ├── toast.js        # Sistema de notificações
@@ -54,7 +52,6 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript puro,
 ### Performance
 - Lazy loading em imagens
 - Preconnect para Google Fonts
-- CSS crítico inline no `<head>`
 - Skeleton loading nas imagens
 - Preload de imagem principal (LCP)
 - Imagens em formato WebP
@@ -73,7 +70,6 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript puro,
 - Design responsivo (mobile-first)
 - Animações suaves
 - Toast notifications
-- Confirmação antes de remover itens
 - Zoom de imagem (desktop e touch)
 - Galeria com setas de navegação e scroll horizontal
 - Swipe na galeria (mobile)

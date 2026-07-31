@@ -1,5 +1,5 @@
 const mainImage = document.getElementById("mainImage");
-const miniaturas = document.querySelectorAll(".image-gallery img");
+const miniaturas = document.querySelectorAll(".gallery-thumb");
 const mainImageContainer = document.querySelector(".main-image");
 const btnGaleriaCima = document.getElementById("btnGaleriaCima");
 const btnGaleriaBaixo = document.getElementById("btnGaleriaBaixo");
@@ -8,6 +8,18 @@ let indiceAtual = 0;
 let isZoomed = false;
 let touchStartX = 0;
 let touchStartY = 0;
+
+function scrollParaMiniatura(index) {
+  const gallery = document.querySelector(".image-gallery");
+  const miniatura = miniaturas[index];
+
+  if (gallery && miniatura) {
+    const galleryRect = gallery.getBoundingClientRect();
+    const miniRect = miniatura.getBoundingClientRect();
+    const scrollLeft = miniatura.offsetLeft - (galleryRect.width / 2) + (miniRect.width / 2);
+    gallery.scrollTo({ left: scrollLeft, behavior: "smooth" });
+  }
+}
 
 /**
  * Inicializa a galeria de imagens e o zoom
@@ -90,11 +102,12 @@ function trocarImagem(index) {
     mainImageContainer.classList.remove("skeleton");
   };
 
-  mainImage.src = miniaturas[index].src;
+  mainImage.src = miniaturas[index].querySelector("img").src;
 
-  miniaturas.forEach((img, i) => {
-    img.classList.toggle("active", i === index);
-    img.setAttribute("aria-label", `Imagem ${i + 1} de ${miniaturas.length}`);
+  miniaturas.forEach((miniatura, i) => {
+    const ativa = i === index;
+    miniatura.classList.toggle("active", ativa);
+    miniatura.setAttribute("aria-current", ativa ? "true" : "false");
   });
 
   scrollParaMiniatura(index);

@@ -16,7 +16,17 @@ const wishlistItensContainer = document.getElementById("wishlistItens");
 const wishlistBadge = document.getElementById("wishlistBadge");
 const btnFavoritar = document.getElementById("btnFavoritar");
 
-let wishlist = carregarStorage("wishlist", []);
+let wishlist = normalizarWishlist(carregarStorage("wishlist", []));
+let liberarFocusWishlist = null;
+
+function normalizarWishlist(itens) {
+  if (!Array.isArray(itens)) return [];
+
+  return itens.map((item) => item.id === PRODUTO_PRINCIPAL.id
+    ? { ...item, nome: PRODUTO_PRINCIPAL.nome, preco: PRODUTO_PRINCIPAL.preco, imagem: PRODUTO_PRINCIPAL.imagem }
+    : item
+  );
+}
 
 function salvarWishlist() {
   salvarStorage("wishlist", wishlist);
@@ -125,13 +135,16 @@ export function abrirWishlist() {
   wishlistDrawer.classList.add("active");
   wishlistOverlay.classList.add("active");
   document.body.style.overflow = "hidden";
-  trapFocus(wishlistDrawer);
+  liberarFocusWishlist?.();
+  liberarFocusWishlist = trapFocus(wishlistDrawer);
 }
 
 export function fecharWishlist() {
   wishlistDrawer.classList.remove("active");
   wishlistOverlay.classList.remove("active");
   document.body.style.overflow = "";
+  liberarFocusWishlist?.();
+  liberarFocusWishlist = null;
   btnAbrirWishlist.focus();
 }
 

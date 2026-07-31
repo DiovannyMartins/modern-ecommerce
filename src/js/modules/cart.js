@@ -20,7 +20,17 @@ const produtoAtual = {
   imagem: "src/img/frontal.webp",
 };
 
-let carrinho = carregarStorage("carrinho", []);
+let carrinho = normalizarCarrinho(carregarStorage("carrinho", []));
+let liberarFocusCarrinho = null;
+
+function normalizarCarrinho(itens) {
+  if (!Array.isArray(itens)) return [];
+
+  return itens.map((item) => item.id === produtoAtual.id
+    ? { ...item, nome: produtoAtual.nome, imagem: produtoAtual.imagem }
+    : item
+  );
+}
 
 function salvarCarrinho() {
   salvarStorage("carrinho", carrinho);
@@ -101,13 +111,16 @@ export function abrirCarrinho() {
   cartDrawer.classList.add("active");
   cartOverlay.classList.add("active");
   document.body.style.overflow = "hidden";
-  trapFocus(cartDrawer);
+  liberarFocusCarrinho?.();
+  liberarFocusCarrinho = trapFocus(cartDrawer);
 }
 
 export function fecharCarrinho() {
   cartDrawer.classList.remove("active");
   cartOverlay.classList.remove("active");
   document.body.style.overflow = "";
+  liberarFocusCarrinho?.();
+  liberarFocusCarrinho = null;
   btnAbrirCarrinho.focus();
 }
 
@@ -207,21 +220,8 @@ export function initCart() {
       return;
     }
 
-    const regiao = parseInt(cepLimpo.substring(0, 2));
-    let textoFrete = "";
-
-    if (regiao >= 1 && regiao <= 2) {
-      textoFrete = "Frete grátis - 3 dias úteis";
-      freteResultado.className = "frete-resultado sucesso";
-    } else if (regiao >= 3 && regiao <= 5) {
-      textoFrete = "R$ 29,90 - 5 dias úteis";
-      freteResultado.className = "frete-resultado";
-    } else {
-      textoFrete = "R$ 49,90 - 7 dias úteis";
-      freteResultado.className = "frete-resultado";
-    }
-
-    freteResultado.textContent = textoFrete;
+    freteResultado.textContent = "Frete grátis - entrega em até 7 dias úteis";
+    freteResultado.className = "frete-resultado sucesso";
     mostrarToast("Frete calculado com sucesso!");
   });
 
@@ -241,7 +241,7 @@ export function initCart() {
   });
 
   document.addEventListener("cart-updated", () => {
-    carrinho = carregarStorage("carrinho", []);
+    carrinho = normalizarCarrinho(carregarStorage("carrinho", []));
     renderizarCarrinho();
     animarBadge();
   });

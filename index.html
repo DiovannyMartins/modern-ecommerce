@@ -53,8 +53,8 @@
 
       <nav class="menu" id="menu-principal">
         <a href="#produtos">Produtos</a>
-        <a href="#lancamentos">Lançamentos</a>
-        <a href="#suporte">Suporte</a>
+        <a href="#lancamentos">Especificações</a>
+        <a href="#suporte">Avaliações</a>
       </nav>
 
       <div class="header-actions">
@@ -91,19 +91,13 @@
           <button type="button" class="gallery-arrow gallery-arrow-left" id="btnGaleriaCima" aria-label="Imagem anterior">
             <span class="material-symbols-outlined" aria-hidden="true">keyboard_arrow_left</span>
           </button>
-          <div class="image-gallery" role="region" aria-label="Galeria de imagens do produto" aria-roledescription="carousel">
-            <img src="src/img/frontal.webp" alt="Headset HyperX Cloud II Core - vista frontal" class="active" role="img"
-              aria-roledescription="slide" aria-label="Imagem 1 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
-            <img src="src/img/almofadas.webp" alt="Headset HyperX Cloud II Core - vista inferior das almofadas" role="img"
-              aria-roledescription="slide" aria-label="Imagem 2 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
-            <img src="src/img/traseira-controles.webp" alt="Headset HyperX Cloud II Core - vista traseira com controles" role="img"
-              aria-roledescription="slide" aria-label="Imagem 3 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
-            <img src="src/img/lateral-microfone.webp" alt="Headset HyperX Cloud II Core - vista lateral com microfone" role="img"
-              aria-roledescription="slide" aria-label="Imagem 4 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
-            <img src="src/img/acessorios.webp" alt="Headset HyperX Cloud II Core - acessórios inclusos" role="img"
-              aria-roledescription="slide" aria-label="Imagem 5 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
-            <img src="src/img/dongle-usb.webp" alt="Headset HyperX Cloud II Core - dongle USB wireless" role="img"
-              aria-roledescription="slide" aria-label="Imagem 6 de 6" tabindex="0" width="80" height="80" loading="lazy" decoding="async" />
+          <div class="image-gallery" role="region" aria-label="Galeria de imagens do produto">
+            <button type="button" class="gallery-thumb active" aria-label="Exibir imagem 1 de 6" aria-current="true"><img src="src/img/frontal.webp" alt="" width="80" height="80" loading="lazy" decoding="async" /></button>
+            <button type="button" class="gallery-thumb" aria-label="Exibir imagem 2 de 6" aria-current="false"><img src="src/img/almofadas.webp" alt="" width="80" height="80" loading="lazy" decoding="async" /></button>
+            <button type="button" class="gallery-thumb" aria-label="Exibir imagem 3 de 6" aria-current="false"><img src="src/img/traseira-controles.webp" alt="" width="80" height="80" loading="lazy" decoding="async" /></button>
+            <button type="button" class="gallery-thumb" aria-label="Exibir imagem 4 de 6" aria-current="false"><img src="src/img/lateral-microfone.webp" alt="" width="80" height="80" loading="lazy" decoding="async" /></button>
+            <button type="button" class="gallery-thumb" aria-label="Exibir imagem 5 de 6" aria-current="false"><img src="src/img/acessorios.webp" alt="" width="80" height="80" loading="lazy" decoding="async" /></button>
+            <button type="button" class="gallery-thumb" aria-label="Exibir imagem 6 de 6" aria-current="false"><img src="src/img/dongle-usb.webp" alt="" width="80" height="80" loading="lazy" decoding="async" /></button>
           </div>
           <button type="button" class="gallery-arrow gallery-arrow-right" id="btnGaleriaBaixo" aria-label="Próxima imagem">
             <span class="material-symbols-outlined" aria-hidden="true">keyboard_arrow_right</span>
@@ -272,9 +266,9 @@
 
   <div class="cart-overlay" id="cartOverlay"></div>
 
-  <aside class="cart-drawer" id="cartDrawer" aria-label="Carrinho de compras">
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
     <div class="cart-drawer-header">
-      <h3>Meu Carrinho</h3>
+      <h3 id="cart-title">Meu Carrinho</h3>
         <button type="button" id="btnFecharCarrinho" aria-label="Fechar carrinho">
           <span class="material-symbols-outlined" aria-hidden="true">close</span>
         </button>
@@ -299,9 +293,9 @@
 
   <div class="wishlist-overlay" id="wishlistOverlay"></div>
 
-  <aside class="wishlist-drawer" id="wishlistDrawer" aria-label="Lista de desejos">
+  <aside class="wishlist-drawer" id="wishlistDrawer" role="dialog" aria-modal="true" aria-labelledby="wishlist-title">
     <div class="wishlist-drawer-header">
-      <h3>Minha Wishlist</h3>
+      <h3 id="wishlist-title">Minha Wishlist</h3>
         <button type="button" id="btnFecharWishlist" aria-label="Fechar wishlist">
           <span class="material-symbols-outlined" aria-hidden="true">close</span>
         </button>
@@ -340,15 +334,15 @@
       <p class="cupom-mensagem" id="cupomMensagem"></p>
 
       <div class="checkout-metodos" role="group" aria-label="Métodos de pagamento">
-        <button type="button" class="metodo-pagamento active" data-metodo="pix">
+        <button type="button" class="metodo-pagamento active" data-metodo="pix" aria-pressed="true">
           <span class="material-symbols-outlined" aria-hidden="true">qr_code_2</span>
           Pix
         </button>
-        <button type="button" class="metodo-pagamento" data-metodo="cartao">
+        <button type="button" class="metodo-pagamento" data-metodo="cartao" aria-pressed="false">
           <span class="material-symbols-outlined" aria-hidden="true">credit_card</span>
           Cartão
         </button>
-        <button type="button" class="metodo-pagamento" data-metodo="boleto">
+        <button type="button" class="metodo-pagamento" data-metodo="boleto" aria-pressed="false">
           <span class="material-symbols-outlined" aria-hidden="true">receipt_long</span>
           Boleto
         </button>
@@ -409,7 +403,7 @@
       "price": "899.00",
       "priceCurrency": "BRL",
       "availability": "https://schema.org/InStock",
-      "priceValidUntil": ""
+      "priceValidUntil": "2027-12-31"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -417,14 +411,6 @@
       "reviewCount": "128"
     }
   }
-  </script>
-
-  <script>
-    const jsonLd = document.querySelector('script[type="application/ld+json"]');
-    const data = JSON.parse(jsonLd.textContent);
-    const proximoAno = new Date().getFullYear() + 1;
-    data.offers.priceValidUntil = `${proximoAno}-12-31`;
-    jsonLd.textContent = JSON.stringify(data, null, 2);
   </script>
 
   <script>

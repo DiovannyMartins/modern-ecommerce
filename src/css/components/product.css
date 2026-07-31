@@ -56,27 +56,34 @@
   display: none;
 }
 
-.image-gallery img {
+.gallery-thumb {
   width: 80px;
   height: 80px;
   flex-shrink: 0;
-  object-fit: cover;
+  background-color: var(--bg-card);
   border-radius: var(--radius);
   cursor: pointer;
   border: 2px solid transparent;
   opacity: 0.6;
   transition: var(--transition);
-  background-color: var(--bg-card);
   padding: 0;
 }
 
-.image-gallery img:hover,
-.image-gallery img.active {
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.gallery-thumb:hover,
+.gallery-thumb.active {
   opacity: 1;
   border-color: var(--primary);
 }
 
-.image-gallery img:focus-visible {
+.gallery-thumb:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
@@ -396,7 +403,7 @@
     gap: 8px;
   }
 
-  .image-gallery img {
+  .gallery-thumb {
     width: 64px;
     height: 64px;
     border-radius: 8px;
