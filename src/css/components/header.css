@@ -171,6 +171,24 @@
   display: none;
 }
 
+@media (max-width: 1024px) {
+  .header-content {
+    height: 68px;
+  }
+
+  .menu {
+    gap: 20px;
+  }
+
+  .search-bar {
+    width: 180px;
+  }
+
+  .header-actions {
+    gap: 10px;
+  }
+}
+
 @media (max-width: 600px) {
   .header-content {
     height: 60px;

@@ -154,6 +154,13 @@
   font-size: var(--font-size-sm);
 }
 
+@media (max-width: 1024px) {
+  .reviews-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+}
+
 @media (max-width: 600px) {
   .reviews-section {
     margin-bottom: var(--spacing-xl);
