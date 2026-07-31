@@ -1,17 +1,23 @@
-self.addEventListener("install", function() {
+const CACHE_NAME = 'modern-ecommerce-v1';
+
+self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-self.addEventListener("activate", function(event) {
+self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then(function(keys) {
-      return Promise.all(keys.map(function(key) { return caches.delete(key); }));
-    }).then(function() {
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          return caches.delete(cacheName);
+        })
+      );
+    }).then(() => {
       return self.clients.claim();
     })
   );
 });
 
-self.addEventListener("fetch", function(event) {
+self.addEventListener('fetch', (event) => {
   event.respondWith(fetch(event.request));
 });
