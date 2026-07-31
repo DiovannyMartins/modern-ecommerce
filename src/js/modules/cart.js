@@ -16,7 +16,7 @@ const freteResultado = document.getElementById("freteResultado");
 
 const produtoAtual = {
   id: "headset-neonx-pro",
-  nome: "Headset Wireless NeonX Pro",
+  nome: "Headset HyperX Cloud II Core Wireless",
   imagem: "src/img/frontal.webp",
 };
 

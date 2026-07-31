@@ -12,7 +12,7 @@ export function initSearch() {
     event.preventDefault();
 
     const termo = inputBusca.value.trim().toLowerCase();
-    const nomeProduto = "headset wireless neonx pro";
+    const nomeProduto = "headset hyperx cloud ii core wireless";
 
     if (termo === "") return;
 

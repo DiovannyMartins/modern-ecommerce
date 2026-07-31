@@ -36,21 +36,10 @@ export function initGallery() {
     trocarImagem(novoIndice);
   });
 
-  // Scroll suave da galeria ao trocar imagem
-  function scrollParaMiniatura(index) {
-    const gallery = document.querySelector(".image-gallery");
-    const miniatura = miniaturas[index];
-    if (gallery && miniatura) {
-      const galleryRect = gallery.getBoundingClientRect();
-      const miniRect = miniatura.getBoundingClientRect();
-      const scrollLeft = miniatura.offsetLeft - (galleryRect.width / 2) + (miniRect.width / 2);
-      gallery.scrollTo({ left: scrollLeft, behavior: "smooth" });
-    }
-  }
-
   // Navegação por teclado nas setas
   document.addEventListener("keydown", (e) => {
-    const tag = document.activeElement.tagName;
+    const activeEl = document.activeElement;
+    const tag = activeEl ? activeEl.tagName : "";
     if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
 
     if (e.key === "ArrowLeft") {
@@ -66,6 +55,21 @@ export function initGallery() {
   initZoom();
   initSwipe();
   aplicarSkeleton();
+}
+
+/**
+ * Scroll suave da galeria para centralizar a miniatura ativa
+ * @param {number} index
+ */
+function scrollParaMiniatura(index) {
+  const gallery = document.querySelector(".image-gallery");
+  const miniatura = miniaturas[index];
+  if (gallery && miniatura) {
+    const galleryRect = gallery.getBoundingClientRect();
+    const miniRect = miniatura.getBoundingClientRect();
+    const scrollLeft = miniatura.offsetLeft - (galleryRect.width / 2) + (miniRect.width / 2);
+    gallery.scrollTo({ left: scrollLeft, behavior: "smooth" });
+  }
 }
 
 /**

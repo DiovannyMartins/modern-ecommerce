@@ -3,7 +3,7 @@ import { mostrarToast } from "./toast.js";
 
 const PRODUTO_PRINCIPAL = {
   id: "headset-neonx-pro",
-  nome: "Headset Wireless NeonX Pro",
+  nome: "Headset HyperX Cloud II Core Wireless",
   preco: 899.00,
   imagem: "src/img/frontal.webp"
 };

@@ -27,8 +27,7 @@
   padding: 4px 0;
 }
 
-.footer-col,
-.logo a {
+.footer-col .logo a {
   color: white;
 }
 

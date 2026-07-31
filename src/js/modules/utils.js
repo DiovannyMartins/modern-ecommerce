@@ -75,8 +75,11 @@ export function validarLuhn(numero) {
   return soma % 10 === 0;
 }
 
+const _trapFocusHandlers = new WeakMap();
+
 /**
  * Mantém o foco do teclado dentro de um elemento (focus trap)
+ * Remove listener anterior para evitar acúmulo
  * @param {HTMLElement} container
  */
 export function trapFocus(container) {
@@ -88,7 +91,12 @@ export function trapFocus(container) {
 
   if (firstFocusable) firstFocusable.focus();
 
-  container.addEventListener("keydown", (e) => {
+  const handlerAntigo = _trapFocusHandlers.get(container);
+  if (handlerAntigo) {
+    container.removeEventListener("keydown", handlerAntigo);
+  }
+
+  const handler = (e) => {
     if (e.key !== "Tab") return;
 
     if (e.shiftKey) {
@@ -102,5 +110,8 @@ export function trapFocus(container) {
         firstFocusable.focus();
       }
     }
-  });
+  };
+
+  _trapFocusHandlers.set(container, handler);
+  container.addEventListener("keydown", handler);
 }
