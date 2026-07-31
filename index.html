@@ -430,7 +430,12 @@
   <script>
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.getRegistrations().then(function (registrations) {
-        registrations.forEach(function (reg) { reg.unregister(); });
+        var atualizados = registrations.map(function (reg) {
+          return reg.unregister();
+        });
+        return Promise.all(atualizados);
+      }).then(function () {
+        navigator.serviceWorker.register("./sw.js");
       });
     }
   </script>
