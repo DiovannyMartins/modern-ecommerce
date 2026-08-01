@@ -400,12 +400,17 @@
   }
 
   .image-gallery {
+    flex: 1;
+    min-width: 0;
     gap: 8px;
+    overflow-x: hidden;
   }
 
   .gallery-thumb {
-    width: 64px;
-    height: 64px;
+    width: calc((100% - 24px) / 4);
+    height: auto;
+    aspect-ratio: 1;
+    flex-basis: calc((100% - 24px) / 4);
     border-radius: 8px;
     border-width: 2px;
     padding: 4px;
