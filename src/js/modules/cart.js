@@ -220,8 +220,21 @@ export function initCart() {
       return;
     }
 
-    freteResultado.textContent = "Entrega em até 7 dias úteis";
-    freteResultado.className = "frete-resultado sucesso";
+    const regiao = parseInt(cepLimpo.substring(0, 2));
+    let textoFrete = "";
+
+    if (regiao >= 1 && regiao <= 2) {
+      textoFrete = "R$ 19,90 - até 5 dias úteis";
+      freteResultado.className = "frete-resultado sucesso";
+    } else if (regiao >= 3 && regiao <= 5) {
+      textoFrete = "R$ 29,90 - até 8 dias úteis";
+      freteResultado.className = "frete-resultado";
+    } else {
+      textoFrete = "R$ 39,90 - até 12 dias úteis";
+      freteResultado.className = "frete-resultado";
+    }
+
+    freteResultado.textContent = textoFrete;
     mostrarToast("Frete calculado com sucesso!");
   });
 
