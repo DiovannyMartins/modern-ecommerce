@@ -220,7 +220,7 @@ export function initCart() {
       return;
     }
 
-    freteResultado.textContent = "Frete grátis - entrega em até 7 dias úteis";
+    freteResultado.textContent = "Entrega em até 7 dias úteis";
     freteResultado.className = "frete-resultado sucesso";
     mostrarToast("Frete calculado com sucesso!");
   });
