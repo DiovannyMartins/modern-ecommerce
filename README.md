@@ -79,20 +79,26 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript puro,
 - Busca expansível (mobile)
 
 ### Segurança
-- Proteção contra XSS (sanitização de inputs)
-- Validação de formulários
+- Validação de formulários (Luhn para cartão, CEP, campos obrigatórios)
 - autocomplete attributes para campos sensíveis
 - inputmode para teclados mobile
 
-##  Como Usar
+## 🛠 Como Usar
 
-Basta abrir o `index.html` no navegador. Não requer instalação de dependências, build ou servidor de desenvolvimento.
+O projeto usa ES Modules, então é necessário um servidor HTTP local:
 
 ```bash
-# Opcional: servidor local para evitar restrições de CORS
+# Python
 python -m http.server 8000
-# Acesse http://localhost:8000
+
+# Node.js (npx)
+npx serve .
+
+# VS Code (Live Server)
+# Clique com botão direito no index.html → "Open with Live Server"
 ```
+
+Acesse `http://localhost:8000` no navegador.
 
 ## 🔗 Deploy
 
