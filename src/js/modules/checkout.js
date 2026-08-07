@@ -58,7 +58,27 @@ function aplicarDesconto() {
   }
 }
 
-function fecharCheckout() {
+function fecharCheckout(force = false) {
+  if (!force && metodoSelecionado === "cartao") {
+    const numero = numeroCartao.value.replace(/\s/g, "");
+    const nome = document.getElementById("nomeCartao").value.trim();
+    const validade = validadeCartao.value;
+    const cvv = cvvCartao.value;
+
+    if (numero.length > 0 || nome.length > 0 || validade.length > 0 || cvv.length > 0) {
+      mostrarToast("Fechar sem salvar? Os dados do cartão serão perdidos.", 5000, {
+        label: "Fechar",
+        callback: () => fecharCheckout(true)
+      });
+      return;
+    }
+  }
+
+  const btnSticky = document.getElementById("btnComprarSticky");
+  if (btnSticky) {
+    btnSticky.textContent = `Adicionar ao Carrinho - ${formatarPreco(getTotalCarrinho())}`;
+  }
+
   checkoutOverlay.classList.remove("active");
   checkoutModal.classList.remove("active");
   document.body.style.overflow = "";
@@ -99,18 +119,27 @@ export function initCheckout() {
       return;
     }
 
-    if (CUPONS_VALIDOS[codigo]) {
-      descontoAplicado = CUPONS_VALIDOS[codigo];
-      cupomMensagem.textContent = `Cupom aplicado! ${descontoAplicado}% de desconto`;
-      cupomMensagem.className = "cupom-mensagem sucesso";
-      aplicarDesconto();
-      mostrarToast(`Cupom ${codigo} aplicado com sucesso!`);
-    } else {
-      descontoAplicado = 0;
-      cupomMensagem.textContent = "Cupom inválido";
-      cupomMensagem.className = "cupom-mensagem erro";
-      aplicarDesconto();
-    }
+    const textoOriginal = btnAplicarCupom.textContent;
+    btnAplicarCupom.textContent = "...";
+    btnAplicarCupom.disabled = true;
+
+    setTimeout(() => {
+      btnAplicarCupom.textContent = textoOriginal;
+      btnAplicarCupom.disabled = false;
+
+      if (CUPONS_VALIDOS[codigo]) {
+        descontoAplicado = CUPONS_VALIDOS[codigo];
+        cupomMensagem.textContent = `Cupom aplicado! ${descontoAplicado}% de desconto`;
+        cupomMensagem.className = "cupom-mensagem sucesso";
+        aplicarDesconto();
+        mostrarToast(`Cupom ${codigo} aplicado com sucesso!`);
+      } else {
+        descontoAplicado = 0;
+        cupomMensagem.textContent = "Cupom inválido";
+        cupomMensagem.className = "cupom-mensagem erro";
+        aplicarDesconto();
+      }
+    }, 500);
   });
 
   inputCupom.addEventListener("keypress", (e) => {
@@ -137,6 +166,11 @@ export function initCheckout() {
     valor = valor.slice(0, 16);
     valor = valor.replace(/(\d{4})(?=\d)/g, "$1 ");
     numeroCartao.value = valor;
+
+    numeroCartao.classList.remove("input-erro", "input-ok");
+    if (valor.replace(/\s/g, "").length === 16) {
+      numeroCartao.classList.add(validarLuhn(valor.replace(/\s/g, "")) ? "input-ok" : "input-erro");
+    }
   });
 
   validadeCartao.addEventListener("input", () => {
@@ -163,6 +197,11 @@ export function initCheckout() {
   cvvCartao.addEventListener("input", () => {
     let valor = cvvCartao.value.replace(/\D/g, "");
     cvvCartao.value = valor.slice(0, 4);
+
+    cvvCartao.classList.remove("input-erro", "input-ok");
+    if (valor.length >= 3) {
+      cvvCartao.classList.add("input-ok");
+    }
   });
 
   btnConfirmarPedido.addEventListener("click", () => {

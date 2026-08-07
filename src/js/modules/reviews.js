@@ -159,4 +159,5 @@ export function initReviews() {
   });
 
   renderizarAvaliacoes();
+  reviewsGrid.querySelectorAll(".review-skeleton").forEach(el => el.remove());
 }

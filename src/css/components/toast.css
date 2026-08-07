@@ -16,12 +16,37 @@
   max-width: 90vw;
   text-align: center;
   box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .toast.show {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
+}
+
+.toast-action {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: var(--radius);
+  padding: 4px 12px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.toast-action:hover,
+.toast-action:focus-visible {
+  background: var(--primary);
+  color: white;
+  outline: none;
 }
 
 @media (max-width: 600px) {

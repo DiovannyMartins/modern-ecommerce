@@ -18,10 +18,8 @@
   color: white;
   font-size: var(--font-size-xl);
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-decoration: none;
-  display: flex;
-  gap: 6px;
 }
 
 .highlight {
@@ -137,7 +135,7 @@
 }
 
 .cart-badge.bounce {
-  animation: badge-bounce 0.4s ease;
+  animation: badge-bounce 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes badge-bounce {

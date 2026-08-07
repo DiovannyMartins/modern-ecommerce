@@ -96,7 +96,15 @@ function renderizarCarrinho() {
       carrinho.splice(index, 1);
       salvarCarrinho();
       renderizarCarrinho();
-      mostrarToast(`"${item.nome}" removido do carrinho`);
+      mostrarToast(`"${item.nome}" removido`, 5000, {
+        label: "Desfazer",
+        callback: () => {
+          carrinho.splice(index, 0, item);
+          salvarCarrinho();
+          renderizarCarrinho();
+          mostrarToast("Item restaurado ao carrinho");
+        }
+      });
     });
   });
 }
@@ -215,27 +223,22 @@ export function initCart() {
     const cepLimpo = cep.replace(/\D/g, "");
 
     if (cepLimpo.length !== 8) {
-      freteResultado.textContent = "CEP inválido. Digite 8 dígitos.";
+      freteResultado.textContent = "⚠️ CEP inválido. Digite 8 dígitos.";
       freteResultado.className = "frete-resultado erro";
       return;
     }
 
-    const regiao = parseInt(cepLimpo.substring(0, 2));
-    let textoFrete = "";
+    const textoOriginal = btnCalcularFrete.textContent;
+    btnCalcularFrete.textContent = "...";
+    btnCalcularFrete.disabled = true;
 
-    if (regiao >= 1 && regiao <= 2) {
-      textoFrete = "R$ 19,90 - até 5 dias úteis";
+    setTimeout(() => {
+      freteResultado.textContent = "Frete grátis - entrega em até 7 dias úteis";
       freteResultado.className = "frete-resultado sucesso";
-    } else if (regiao >= 3 && regiao <= 5) {
-      textoFrete = "R$ 29,90 - até 8 dias úteis";
-      freteResultado.className = "frete-resultado";
-    } else {
-      textoFrete = "R$ 39,90 - até 12 dias úteis";
-      freteResultado.className = "frete-resultado";
-    }
-
-    freteResultado.textContent = textoFrete;
-    mostrarToast("Frete calculado com sucesso!");
+      btnCalcularFrete.textContent = textoOriginal;
+      btnCalcularFrete.disabled = false;
+      mostrarToast("Frete calculado com sucesso!");
+    }, 600);
   });
 
   inputCEP.addEventListener("input", (e) => {

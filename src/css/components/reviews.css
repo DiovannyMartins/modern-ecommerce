@@ -2,6 +2,19 @@
   margin-bottom: var(--spacing-3xl);
 }
 
+.section-alt {
+  background: rgba(139, 92, 246, 0.025);
+  border-top: 1px solid rgba(139, 92, 246, 0.08);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.08);
+  padding-top: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.section-alt .reviews-section {
+  margin-bottom: 0;
+}
+
 .reviews-controls {
   display: flex;
   justify-content: flex-end;
@@ -152,6 +165,50 @@
   color: var(--text-muted);
   font-style: italic;
   font-size: var(--font-size-sm);
+}
+
+.review-skeleton {
+  pointer-events: none;
+  cursor: default;
+}
+
+.skeleton-line {
+  height: 14px;
+  background: linear-gradient(90deg, var(--bg-card) 25%, #2d3748 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+}
+
+.skeleton-name {
+  width: 140px;
+  height: 16px;
+}
+
+.skeleton-date {
+  width: 90px;
+  height: 12px;
+  margin-bottom: 16px;
+}
+
+.skeleton-stars {
+  width: 110px;
+  height: 14px;
+  margin-bottom: 14px;
+}
+
+.skeleton-text {
+  width: 100%;
+}
+
+.skeleton-text-short {
+  width: 70%;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 @media (max-width: 1024px) {

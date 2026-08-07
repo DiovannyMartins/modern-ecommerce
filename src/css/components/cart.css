@@ -195,6 +195,11 @@
   white-space: nowrap;
 }
 
+.cart-frete-input button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .cart-frete-input button:hover,
 .cart-frete-input button:focus-visible {
   background-color: var(--primary-hover);
