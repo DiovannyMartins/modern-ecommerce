@@ -1,5 +1,7 @@
 .features {
   margin-bottom: var(--spacing-3xl);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
 }
 
 .section-divider {
@@ -30,6 +32,7 @@
   border: 1px solid var(--border);
   text-align: center;
   transition: var(--transition);
+  contain: layout style;
 }
 
 .feature-card:hover {

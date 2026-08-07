@@ -1,5 +1,7 @@
 .reviews-section {
   margin-bottom: var(--spacing-3xl);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 .section-alt {
