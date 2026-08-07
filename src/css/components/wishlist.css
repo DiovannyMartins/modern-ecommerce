@@ -143,6 +143,12 @@
   margin-top: var(--spacing-xl);
 }
 
+.wishlist-vazio small {
+  display: block;
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+}
+
 .btn-wishlist {
   position: relative;
 }

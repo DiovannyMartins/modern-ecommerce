@@ -40,7 +40,7 @@ function renderizarCarrinho() {
   cartItensContainer.innerHTML = "";
 
   if (carrinho.length === 0) {
-    cartItensContainer.innerHTML = '<p class="cart-vazio">Seu carrinho está vazio.</p>';
+    cartItensContainer.innerHTML = '<p class="cart-vazio">Seu carrinho está vazio.<br><small>Volte ao produto para adicionar itens.</small></p>';
     cartBadge.textContent = "0";
     cartTotalValor.textContent = formatarPreco(0);
     return;

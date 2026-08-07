@@ -135,7 +135,7 @@ export function initCheckout() {
         mostrarToast(`Cupom ${codigo} aplicado com sucesso!`);
       } else {
         descontoAplicado = 0;
-        cupomMensagem.textContent = "Cupom inválido";
+        cupomMensagem.textContent = "Cupom não encontrado. Tente NEON10, GAMER20 ou PRIMEIRO.";
         cupomMensagem.className = "cupom-mensagem erro";
         aplicarDesconto();
       }

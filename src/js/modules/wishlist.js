@@ -46,7 +46,7 @@ function renderizarWishlist() {
   wishlistItensContainer.innerHTML = "";
 
   if (wishlist.length === 0) {
-    wishlistItensContainer.innerHTML = '<p class="wishlist-vazio">Sua wishlist está vazia.</p>';
+    wishlistItensContainer.innerHTML = '<p class="wishlist-vazio">Sua wishlist está vazia.<br><small>Adicione produtos clicando no ícone de coração.</small></p>';
     return;
   }
 

@@ -33,6 +33,7 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-main);
   line-height: 1.6;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Acessibilidade: respeita preferência de movimento reduzido */

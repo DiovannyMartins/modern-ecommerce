@@ -49,9 +49,9 @@
   outline: none;
 }
 
-@media (max-width: 600px) {
+  @media (max-width: 600px) {
   .toast {
-    bottom: 20px;
+    bottom: max(20px, env(safe-area-inset-bottom));
     left: 16px;
     right: 16px;
     transform: translateX(0) translateY(20px);

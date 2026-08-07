@@ -324,6 +324,7 @@
   background-color: var(--bg-dark);
   border-top: 1px solid var(--border);
   padding: 12px 16px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
   z-index: 99;
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
 }

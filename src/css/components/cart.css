@@ -145,6 +145,12 @@
   margin-top: var(--spacing-xl);
 }
 
+.cart-vazio small {
+  display: block;
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+}
+
 .cart-frete {
   margin-bottom: 16px;
   padding-bottom: 16px;

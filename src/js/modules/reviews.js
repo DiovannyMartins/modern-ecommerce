@@ -130,8 +130,16 @@ export function initReviews() {
     const nome = document.getElementById("nomeAvaliador").value.trim();
     const comentario = document.getElementById("comentarioAvaliador").value.trim();
 
-    if (nome === "" || comentario === "" || notaSelecionada === 0) {
-      mostrarToast("Preencha seu nome, comentário e selecione uma nota.");
+    if (!nome) {
+      mostrarToast("Digite seu nome para enviar a avaliação.");
+      return;
+    }
+    if (!comentario) {
+      mostrarToast("Escreva um comentário sobre o produto.");
+      return;
+    }
+    if (notaSelecionada === 0) {
+      mostrarToast("Selecione uma nota de 1 a 5 estrelas.");
       return;
     }
 

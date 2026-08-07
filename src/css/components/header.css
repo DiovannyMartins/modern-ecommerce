@@ -165,6 +165,15 @@
   box-shadow: var(--shadow-primary);
 }
 
+@media (pointer: coarse) {
+  .icon-btn {
+    padding: 12px;
+  }
+  .menu a {
+    padding: 18px 20px;
+  }
+}
+
 .btn-busca-mobile {
   display: none;
 }
