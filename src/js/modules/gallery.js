@@ -55,6 +55,33 @@ export function initGallery() {
   initZoom();
   initSwipe();
   aplicarSkeleton();
+  initParallax();
+}
+
+function initParallax() {
+  const hero = document.querySelector('.product-hero');
+  const visuals = document.querySelector('.product-visuals');
+  if (!hero || !visuals) return;
+
+  let ticking = false;
+
+  function update() {
+    const rect = hero.getBoundingClientRect();
+    const progress = 1 - (rect.bottom / (window.innerHeight + rect.height));
+    const clamped = Math.max(0, Math.min(1, progress));
+
+    visuals.style.setProperty('--parallax-y', `${clamped * 30}px`);
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  update();
 }
 
 /**

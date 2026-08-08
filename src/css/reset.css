@@ -32,7 +32,8 @@ html {
 body {
   background-color: var(--bg-dark);
   color: var(--text-main);
-  line-height: 1.6;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
   padding-bottom: env(safe-area-inset-bottom);
 }
 

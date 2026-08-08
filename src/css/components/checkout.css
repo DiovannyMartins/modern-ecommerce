@@ -263,6 +263,30 @@
   font-size: 60px;
   color: var(--success);
   margin-bottom: 15px;
+  position: relative;
+}
+
+.icone-sucesso::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 2px solid var(--success);
+  animation: success-ring 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.3s;
+}
+
+@keyframes success-ring {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+    border-width: 4px;
+  }
+  to {
+    transform: scale(1.4);
+    opacity: 0;
+    border-width: 1px;
+  }
 }
 
 .checkout-sucesso h3 {
