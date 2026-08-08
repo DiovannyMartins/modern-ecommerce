@@ -10,6 +10,8 @@
   border-bottom: 1px solid rgba(139, 92, 246, 0.08);
   padding-top: var(--spacing-2xl);
   padding-bottom: var(--spacing-2xl);
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
   margin-bottom: var(--spacing-3xl);
 }
 
