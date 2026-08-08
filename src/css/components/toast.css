@@ -1,24 +1,41 @@
+/* ============================================
+   TOAST — Bilhete de papel
+   ============================================ */
+
 .toast {
   position: fixed;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
-  background-color: var(--bg-card);
-  border: 1px solid var(--border);
-  color: var(--text-main);
+  background-color: var(--paper);
+  color: var(--ink);
   padding: 14px 24px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-fold);
   font-size: var(--font-size-sm);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: all var(--transition);
   z-index: var(--z-toast);
   max-width: 90vw;
   text-align: center;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--paper-shadow-lg);
   display: flex;
   align-items: center;
   gap: 16px;
+  border: var(--paper-weight) solid var(--paper-dim);
+}
+
+/* Cantinho dobrado */
+.toast::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 12px 12px;
+  border-color: transparent transparent var(--paper-dim) transparent;
 }
 
 .toast.show {
@@ -29,23 +46,24 @@
 
 .toast-action {
   background: transparent;
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  border-radius: var(--radius);
+  border: var(--paper-weight) solid var(--ink);
+  color: var(--ink);
+  border-radius: var(--radius-fold);
   padding: 4px 12px;
-  font-family: var(--font-family);
+  font-family: var(--font-body);
   font-size: var(--font-size-xs);
   font-weight: 600;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition: var(--transition);
+  transition: var(--transition-fast);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .toast-action:hover,
 .toast-action:focus-visible {
-  background: var(--primary);
-  color: white;
+  background: var(--ink);
+  color: var(--paper);
   outline: none;
 }
 
@@ -56,11 +74,10 @@
     right: 16px;
     transform: translateX(0) translateY(20px);
     max-width: none;
-    border-radius: 12px;
+    border-radius: var(--radius-fold);
     font-size: var(--font-size-sm);
     padding: 12px 20px;
   }
-
   .toast.show {
     transform: translateX(0) translateY(0);
   }

@@ -30,6 +30,11 @@ const btnFecharSucesso = document.getElementById("btnFecharSucesso");
 const numeroCartao = document.getElementById("numeroCartao");
 const validadeCartao = document.getElementById("validadeCartao");
 const cvvCartao = document.getElementById("cvvCartao");
+const nomeCartao = document.getElementById("nomeCartao");
+const msgNumeroCartao = document.getElementById("msgNumeroCartao");
+const msgNomeCartao = document.getElementById("msgNomeCartao");
+const msgValidadeCartao = document.getElementById("msgValidadeCartao");
+const msgCvvCartao = document.getElementById("msgCvvCartao");
 const btnFinalizar = document.getElementById("btnFinalizar");
 
 let metodoSelecionado = "pix";
@@ -72,7 +77,7 @@ function aplicarDesconto() {
 function fecharCheckout(force = false) {
   if (!force && metodoSelecionado === "cartao") {
     const numero = numeroCartao.value.replace(/\s/g, "");
-    const nome = document.getElementById("nomeCartao").value.trim();
+    const nome = nomeCartao.value.trim();
     const validade = validadeCartao.value;
     const cvv = cvvCartao.value;
 
@@ -190,11 +195,24 @@ export function initCheckout() {
     valor = valor.replace(/(\d{4})(?=\d)/g, "$1 ");
     numeroCartao.value = valor;
 
+    const digitos = valor.replace(/\s/g, "");
     numeroCartao.classList.remove("input-erro", "input-ok");
-    if (valor.replace(/\s/g, "").length === 16) {
-      numeroCartao.classList.add(
-        validarLuhn(valor.replace(/\s/g, "")) ? "input-ok" : "input-erro",
-      );
+    msgNumeroCartao.textContent = "";
+    msgNumeroCartao.className = "campo-mensagem";
+
+    if (digitos.length === 0) return;
+
+    if (digitos.length < 16) {
+      msgNumeroCartao.textContent = `Faltam ${16 - digitos.length} dígitos`;
+      msgNumeroCartao.className = "campo-mensagem erro";
+    } else if (!validarLuhn(digitos)) {
+      numeroCartao.classList.add("input-erro");
+      msgNumeroCartao.textContent = "Número de cartão inválido";
+      msgNumeroCartao.className = "campo-mensagem erro";
+    } else {
+      numeroCartao.classList.add("input-ok");
+      msgNumeroCartao.textContent = "Cartão válido";
+      msgNumeroCartao.className = "campo-mensagem ok";
     }
   });
 
@@ -204,19 +222,32 @@ export function initCheckout() {
 
     if (valor.length >= 2) {
       let mes = parseInt(valor.slice(0, 2));
-
       if (mes === 0) {
         valor = "01" + valor.slice(2);
       } else if (mes > 12) {
         valor = "12" + valor.slice(2);
       }
     }
-
     if (valor.length >= 3) {
       valor = valor.slice(0, 2) + "/" + valor.slice(2);
     }
 
     validadeCartao.value = valor;
+    validadeCartao.classList.remove("input-erro", "input-ok");
+    msgValidadeCartao.textContent = "";
+    msgValidadeCartao.className = "campo-mensagem";
+
+    if (valor.length === 5) {
+      if (validarValidade(valor)) {
+        validadeCartao.classList.add("input-ok");
+        msgValidadeCartao.textContent = "Válida";
+        msgValidadeCartao.className = "campo-mensagem ok";
+      } else {
+        validadeCartao.classList.add("input-erro");
+        msgValidadeCartao.textContent = "Cartão vencido";
+        msgValidadeCartao.className = "campo-mensagem erro";
+      }
+    }
   });
 
   cvvCartao.addEventListener("input", () => {
@@ -224,40 +255,76 @@ export function initCheckout() {
     cvvCartao.value = valor.slice(0, 4);
 
     cvvCartao.classList.remove("input-erro", "input-ok");
+    msgCvvCartao.textContent = "";
+    msgCvvCartao.className = "campo-mensagem";
+
     if (valor.length >= 3) {
       cvvCartao.classList.add("input-ok");
+      msgCvvCartao.textContent = "OK";
+      msgCvvCartao.className = "campo-mensagem ok";
+    } else if (valor.length > 0) {
+      msgCvvCartao.textContent = `Faltam ${3 - valor.length} dígitos`;
+      msgCvvCartao.className = "campo-mensagem erro";
+    }
+  });
+
+  nomeCartao.addEventListener("input", () => {
+    nomeCartao.classList.remove("input-erro", "input-ok");
+    msgNomeCartao.textContent = "";
+    msgNomeCartao.className = "campo-mensagem";
+
+    const valor = nomeCartao.value.trim();
+    if (valor.length === 0) return;
+
+    if (valor.length < 3) {
+      nomeCartao.classList.add("input-erro");
+      msgNomeCartao.textContent = "Nome muito curto";
+      msgNomeCartao.className = "campo-mensagem erro";
+    } else {
+      nomeCartao.classList.add("input-ok");
     }
   });
 
   btnConfirmarPedido.addEventListener("click", () => {
     if (metodoSelecionado === "cartao") {
       const numero = numeroCartao.value.replace(/\s/g, "");
-      const nome = document.getElementById("nomeCartao").value.trim();
+      const nome = nomeCartao.value.trim();
       const validade = validadeCartao.value;
       const cvv = cvvCartao.value;
+      let erros = false;
 
-      if (numero.length !== 16) {
-        mostrarToast("Número do cartão inválido. Digite 16 dígitos.");
-        return;
-      }
-
-      if (!validarLuhn(numero)) {
-        mostrarToast("Número do cartão inválido. Verifique os dígitos.");
-        return;
+      if (numero.length !== 16 || !validarLuhn(numero)) {
+        numeroCartao.classList.add("input-erro");
+        msgNumeroCartao.textContent = "Número do cartão inválido";
+        msgNumeroCartao.className = "campo-mensagem erro";
+        erros = true;
       }
 
       if (nome === "") {
-        mostrarToast("Preencha o nome impresso no cartão.");
-        return;
+        nomeCartao.classList.add("input-erro");
+        msgNomeCartao.textContent = "Preencha o nome impresso no cartão";
+        msgNomeCartao.className = "campo-mensagem erro";
+        erros = true;
       }
 
       if (!validarValidade(validade)) {
-        mostrarToast("Validade inválida. Use o formato MM/AA.");
-        return;
+        validadeCartao.classList.add("input-erro");
+        msgValidadeCartao.textContent = "Validade inválida";
+        msgValidadeCartao.className = "campo-mensagem erro";
+        erros = true;
       }
 
       if (cvv.length < 3) {
-        mostrarToast("CVV inválido. Digite 3 ou 4 dígitos.");
+        cvvCartao.classList.add("input-erro");
+        msgCvvCartao.textContent = "CVV inválido";
+        msgCvvCartao.className = "campo-mensagem erro";
+        erros = true;
+      }
+
+      if (erros) {
+        const primeiroErro = [numeroCartao, nomeCartao, validadeCartao, cvvCartao]
+          .find(el => el.classList.contains("input-erro"));
+        if (primeiroErro) primeiroErro.focus();
         return;
       }
     }
@@ -285,6 +352,13 @@ export function initCheckout() {
     etapaPagamento.hidden = false;
     etapaSucesso.hidden = true;
     formCartao.reset();
+    [msgNumeroCartao, msgNomeCartao, msgValidadeCartao, msgCvvCartao].forEach(msg => {
+      msg.textContent = "";
+      msg.className = "campo-mensagem";
+    });
+    [numeroCartao, nomeCartao, validadeCartao, cvvCartao].forEach(el => {
+      el.classList.remove("input-erro", "input-ok");
+    });
     metodosPagamento.forEach((b) => b.classList.remove("active"));
     metodosPagamento.forEach((b) => b.setAttribute("aria-pressed", "false"));
     const metodoPix = document.querySelector('[data-metodo="pix"]');

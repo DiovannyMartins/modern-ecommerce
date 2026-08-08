@@ -8,7 +8,7 @@
     content="Compre o Headset HyperX Cloud II Core Wireless: áudio DTS Spatial, 80h de bateria e conexão 2.4GHz. Frete grátis para todo o Brasil.">
   <meta name="keywords" content="headset, gamer, wireless, hyperx, cloud ii, áudio spatial, microfone destacável">
   <meta name="author" content="Diovanny Martins">
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#2a221e">
 
   <meta property="og:title" content="Headset HyperX Cloud II Core Wireless | Loja NEON X">
   <meta property="og:description"
@@ -27,6 +27,8 @@
   <link rel="icon" type="image/png" href="src/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
   <link rel="preload" as="image" href="src/img/frontal.webp" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="src/css/variables.css?v=20260802" />
   <link rel="stylesheet" href="src/css/reset.css?v=20260802" />
@@ -36,7 +38,6 @@
   <link rel="stylesheet" href="src/css/components/reviews.css?v=20260802" />
   <link rel="stylesheet" href="src/css/components/footer.css?v=20260802" />
   <link rel="stylesheet" href="src/css/components/cart.css?v=20260802" />
-  <link rel="stylesheet" href="src/css/components/wishlist.css?v=20260802" />
   <link rel="stylesheet" href="src/css/components/checkout.css?v=20260802" />
   <link rel="stylesheet" href="src/css/components/toast.css?v=20260802" />
   <link rel="stylesheet" href="src/css/style.css?v=20260802" />
@@ -55,8 +56,8 @@
     <div class="container header-content">
       <div class="logo">
         <a href="index.html" aria-label="NEON X - Página inicial">
-          NEON
-          <span class="highlight"> X </span>
+          <span class="logo-text">Neon</span>
+          <span class="logo-x">X</span>
         </a>
       </div>
 
@@ -133,6 +134,7 @@
 
       <div class="product-info">
         <h1 class="product-title">Headset HyperX Cloud II Core Wireless</h1>
+        <p class="product-subtitle">Áudio Espacial DTS &middot; 80h de Bateria &middot; Wireless 2.4GHz</p>
 
         <div class="rating">
           <span class="stars" aria-label="Avaliação 5 de 5 estrelas">★★★★★</span>
@@ -203,7 +205,7 @@
           <p>Áudio posicional para localização precisa de inimigos.</p>
         </div>
         <div class="feature-card">
-          <span class="material-symbols-outlined icon" aria-hidden="true">bluetooth</span>
+          <span class="material-symbols-outlined icon" aria-hidden="true">usb</span>
           <h3>Wireless 2.4GHz</h3>
           <p>Conexão estável com alcance de até 20 metros.</p>
         </div>
@@ -298,8 +300,8 @@
       <div class="footer-col">
         <div class="logo">
           <a href="index.html" aria-label="NEON X - Página inicial">
-            NEON
-            <span class="highlight"> X </span>
+            <span class="logo-text">Neon</span>
+            <span class="logo-x">X</span>
           </a>
         </div>
         <p>Equipamentos de alta performance para quem leva o jogo a sério.</p>
@@ -415,20 +417,24 @@
           <label for="numeroCartao">Número do cartão</label>
           <input type="text" id="numeroCartao" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric"
             autocomplete="cc-number">
+          <span class="campo-mensagem" id="msgNumeroCartao"></span>
         </div>
         <div class="campo-avaliacao">
           <label for="nomeCartao">Nome impresso no cartão</label>
           <input type="text" id="nomeCartao" placeholder="NOME COMO NO CARTÃO" autocomplete="cc-name">
+          <span class="campo-mensagem" id="msgNomeCartao"></span>
         </div>
         <div class="linha-dupla">
           <div class="campo-avaliacao">
             <label for="validadeCartao">Validade</label>
             <input type="text" id="validadeCartao" placeholder="MM/AA" maxlength="5" inputmode="numeric"
               autocomplete="cc-exp">
+            <span class="campo-mensagem" id="msgValidadeCartao"></span>
           </div>
           <div class="campo-avaliacao">
             <label for="cvvCartao">CVV</label>
             <input type="text" id="cvvCartao" placeholder="CVV" maxlength="4" inputmode="numeric" autocomplete="cc-csc">
+            <span class="campo-mensagem" id="msgCvvCartao"></span>
           </div>
         </div>
       </form>

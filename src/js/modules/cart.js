@@ -85,9 +85,17 @@ function renderizarCarrinho() {
     btnRemover.textContent = "Remover";
     btnRemover.setAttribute("aria-label", `Remover ${item.nome} do carrinho`);
 
+    const btnDesfazer = document.createElement("button");
+    btnDesfazer.type = "button";
+    btnDesfazer.classList.add("cart-item-desfazer");
+    btnDesfazer.textContent = "Desfazer";
+    btnDesfazer.style.display = "none";
+    btnDesfazer.setAttribute("aria-label", `Desfazer remoção de ${item.nome}`);
+
     info.appendChild(h4);
     info.appendChild(p);
     info.appendChild(btnRemover);
+    info.appendChild(btnDesfazer);
     itemHTML.appendChild(img);
     itemHTML.appendChild(info);
     cartItensContainer.appendChild(itemHTML);
@@ -102,8 +110,21 @@ function renderizarCarrinho() {
       const item = carrinho[index];
       carrinho.splice(index, 1);
       salvarCarrinho();
+
+      const btnDesfazer = botao.parentElement.querySelector(".cart-item-desfazer");
+      if (btnDesfazer) {
+        botao.style.display = "none";
+        btnDesfazer.style.display = "inline-block";
+        btnDesfazer.onclick = () => {
+          carrinho.splice(index, 0, item);
+          salvarCarrinho();
+          renderizarCarrinho();
+          mostrarToast("Item restaurado ao carrinho");
+        };
+      }
+
       renderizarCarrinho();
-      mostrarToast(`"${item.nome}" removido`, 5000, {
+      mostrarToast(`"${item.nome}" removido`, 8000, {
         label: "Desfazer",
         callback: () => {
           carrinho.splice(index, 0, item);

@@ -1,112 +1,132 @@
+/* ============================================
+   ESPECIFICAÇÕES — Diagrama Explodido
+   ============================================ */
+
 .features {
   margin-bottom: var(--spacing-3xl);
-  content-visibility: auto;
-  contain-intrinsic-size: auto 400px;
-}
-
-.section-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--primary), transparent);
-  opacity: 0.25;
-  margin-bottom: var(--spacing-2xl);
-  animation: divider-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: 0.6s;
-}
-
-@keyframes divider-in {
-  from {
-    opacity: 0;
-    clip-path: inset(0 50% 0 50%);
-  }
-  to {
-    opacity: 0.25;
-    clip-path: inset(0 0 0 0);
-  }
 }
 
 .features h2,
 .reviews-section h2 {
-  font-size: var(--font-size-2xl);
-  margin-bottom: var(--spacing-xl);
+  font-family: var(--font-display);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--paper);
   text-align: center;
+  margin-bottom: var(--spacing-xl);
+  letter-spacing: -0.01em;
+  position: relative;
+}
+
+.features h2::after,
+.reviews-section h2::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--ink);
+  margin: 16px auto 0;
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-lg);
 }
 
 .feature-card {
-  background-color: var(--bg-card);
-  padding: 30px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
+  background-color: var(--paper);
+  padding: 32px;
+  border-radius: var(--radius-fold);
   text-align: center;
   transition: var(--transition);
-  contain: layout style;
+  box-shadow: var(--paper-shadow-md);
+  position: relative;
+  cursor: default;
+}
+
+/* Camada de papel embaixo com offset */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: -3px 3px -5px -3px;
+  background-color: var(--paper-dim);
+  border-radius: var(--radius-fold);
+  z-index: -1;
+  transition: var(--transition);
+  transform: rotate(0.3deg);
 }
 
 .feature-card:hover {
-  border-color: var(--primary);
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-6px) rotate(-0.5deg);
+  box-shadow: var(--paper-shadow-lg);
+}
+
+.feature-card:hover::before {
+  transform: translateY(4px) rotate(0.8deg);
 }
 
 .feature-card .icon {
-  font-size: 40px;
-  color: var(--primary);
-  margin-bottom: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 16px;
+  color: var(--ink-muted);
+  font-size: 32px;
+  background: var(--paper-dim);
+  border-radius: 50%;
+  position: relative;
 }
 
 .feature-card h3 {
-  margin-bottom: 10px;
+  font-family: var(--font-display);
   font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
 }
 
 .feature-card p {
-  color: var(--text-muted);
+  color: var(--ink-muted);
   font-size: var(--font-size-sm);
+  line-height: 1.6;
 }
 
 @media (max-width: 1024px) {
   .features-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    gap: var(--spacing-md);
   }
 }
 
 @media (max-width: 600px) {
   .features {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
   }
-
   .features h2 {
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: var(--spacing-lg);
   }
-
   .features-grid {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
-
   .feature-card {
-    padding: 20px 16px;
-    border-radius: 12px;
+    padding: 20px 14px;
+    border-radius: var(--radius-fold);
   }
-
   .feature-card .icon {
-    font-size: 32px;
-    margin-bottom: 10px;
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+    margin-bottom: 12px;
   }
-
   .feature-card h3 {
     font-size: var(--font-size-sm);
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
-
   .feature-card p {
     font-size: var(--font-size-xs);
     line-height: 1.4;
