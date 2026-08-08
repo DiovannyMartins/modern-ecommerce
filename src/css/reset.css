@@ -37,7 +37,6 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-
 /* Skip link */
 .skip-link {
   position: absolute;

@@ -1,4 +1,9 @@
-import { formatarPreco, salvarStorage, carregarStorage, trapFocus } from "./utils.js";
+import {
+  formatarPreco,
+  salvarStorage,
+  carregarStorage,
+  trapFocus,
+} from "./utils.js";
 import { mostrarToast } from "./toast.js";
 import { getQuantidade, getPreco } from "./quantity.js";
 
@@ -26,9 +31,10 @@ let liberarFocusCarrinho = null;
 function normalizarCarrinho(itens) {
   if (!Array.isArray(itens)) return [];
 
-  return itens.map((item) => item.id === produtoAtual.id
-    ? { ...item, nome: produtoAtual.nome, imagem: produtoAtual.imagem }
-    : item
+  return itens.map((item) =>
+    item.id === produtoAtual.id
+      ? { ...item, nome: produtoAtual.nome, imagem: produtoAtual.imagem }
+      : item,
   );
 }
 
@@ -40,7 +46,8 @@ function renderizarCarrinho() {
   cartItensContainer.innerHTML = "";
 
   if (carrinho.length === 0) {
-    cartItensContainer.innerHTML = '<p class="cart-vazio">Seu carrinho está vazio.<br><small>Volte ao produto para adicionar itens.</small></p>';
+    cartItensContainer.innerHTML =
+      '<p class="cart-vazio">Seu carrinho está vazio.<br><small>Volte ao produto para adicionar itens.</small></p>';
     cartBadge.textContent = "0";
     cartTotalValor.textContent = formatarPreco(0);
     return;
@@ -103,7 +110,7 @@ function renderizarCarrinho() {
           salvarCarrinho();
           renderizarCarrinho();
           mostrarToast("Item restaurado ao carrinho");
-        }
+        },
       });
     });
   });
@@ -143,7 +150,10 @@ export function limparCarrinho() {
 }
 
 export function getTotalCarrinho() {
-  return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
+  return carrinho.reduce(
+    (total, item) => total + item.preco * item.quantidade,
+    0,
+  );
 }
 
 /**
@@ -171,11 +181,11 @@ export function initCart() {
     renderizarCarrinho();
     animarBadge();
 
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'add_to_cart', {
+    if (typeof gtag !== "undefined") {
+      gtag("event", "add_to_cart", {
         item_name: produtoAtual.nome,
         price: preco,
-        quantity: quantidade
+        quantity: quantidade,
       });
     }
 

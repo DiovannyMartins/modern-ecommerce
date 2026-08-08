@@ -267,7 +267,7 @@
 }
 
 .icone-sucesso::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: -12px;
   border-radius: 50%;

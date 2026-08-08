@@ -1,6 +1,16 @@
-import { formatarPreco, gerarNumeroPedido, validarLuhn, trapFocus } from "./utils.js";
+import {
+  formatarPreco,
+  gerarNumeroPedido,
+  validarLuhn,
+  trapFocus,
+} from "./utils.js";
 import { mostrarToast } from "./toast.js";
-import { getCarrinho, limparCarrinho, getTotalCarrinho, fecharCarrinho } from "./cart.js";
+import {
+  getCarrinho,
+  limparCarrinho,
+  getTotalCarrinho,
+  fecharCarrinho,
+} from "./cart.js";
 
 const checkoutOverlay = document.getElementById("checkoutOverlay");
 const checkoutModal = document.getElementById("checkoutModal");
@@ -28,9 +38,9 @@ let valorOriginal = 0;
 let liberarFocusCheckout = null;
 
 const CUPONS_VALIDOS = {
-  "NEON10": 10,
-  "GAMER20": 20,
-  "PRIMEIRO": 15
+  NEON10: 10,
+  GAMER20: 20,
+  PRIMEIRO: 15,
 };
 
 function abrirCheckout() {
@@ -51,7 +61,8 @@ function aplicarDesconto() {
   checkoutTotal.textContent = formatarPreco(valorFinal);
 
   if (descontoAplicado > 0) {
-    checkoutDesconto.querySelector("span").textContent = `-${formatarPreco(valorDesconto)}`;
+    checkoutDesconto.querySelector("span").textContent =
+      `-${formatarPreco(valorDesconto)}`;
     checkoutDesconto.hidden = false;
   } else {
     checkoutDesconto.hidden = true;
@@ -65,11 +76,20 @@ function fecharCheckout(force = false) {
     const validade = validadeCartao.value;
     const cvv = cvvCartao.value;
 
-    if (numero.length > 0 || nome.length > 0 || validade.length > 0 || cvv.length > 0) {
-      mostrarToast("Fechar sem salvar? Os dados do cartão serão perdidos.", 5000, {
-        label: "Fechar",
-        callback: () => fecharCheckout(true)
-      });
+    if (
+      numero.length > 0 ||
+      nome.length > 0 ||
+      validade.length > 0 ||
+      cvv.length > 0
+    ) {
+      mostrarToast(
+        "Fechar sem salvar? Os dados do cartão serão perdidos.",
+        5000,
+        {
+          label: "Fechar",
+          callback: () => fecharCheckout(true),
+        },
+      );
       return;
     }
   }
@@ -135,7 +155,8 @@ export function initCheckout() {
         mostrarToast(`Cupom ${codigo} aplicado com sucesso!`);
       } else {
         descontoAplicado = 0;
-        cupomMensagem.textContent = "Cupom não encontrado. Tente NEON10, GAMER20 ou PRIMEIRO.";
+        cupomMensagem.textContent =
+          "Cupom não encontrado. Tente NEON10, GAMER20 ou PRIMEIRO.";
         cupomMensagem.className = "cupom-mensagem erro";
         aplicarDesconto();
       }
@@ -155,7 +176,9 @@ export function initCheckout() {
     botao.addEventListener("click", () => {
       metodosPagamento.forEach((b) => b.classList.remove("active"));
       botao.classList.add("active");
-      metodosPagamento.forEach((b) => b.setAttribute("aria-pressed", String(b === botao)));
+      metodosPagamento.forEach((b) =>
+        b.setAttribute("aria-pressed", String(b === botao)),
+      );
       metodoSelecionado = botao.dataset.metodo;
       formCartao.classList.toggle("visivel", metodoSelecionado === "cartao");
     });
@@ -169,7 +192,9 @@ export function initCheckout() {
 
     numeroCartao.classList.remove("input-erro", "input-ok");
     if (valor.replace(/\s/g, "").length === 16) {
-      numeroCartao.classList.add(validarLuhn(valor.replace(/\s/g, "")) ? "input-ok" : "input-erro");
+      numeroCartao.classList.add(
+        validarLuhn(valor.replace(/\s/g, "")) ? "input-ok" : "input-erro",
+      );
     }
   });
 
@@ -243,11 +268,11 @@ export function initCheckout() {
     liberarFocusCheckout?.();
     liberarFocusCheckout = trapFocus(checkoutModal);
 
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'purchase', {
+    if (typeof gtag !== "undefined") {
+      gtag("event", "purchase", {
         transaction_id: numeroPedido.textContent,
         value: getTotalCarrinho(),
-        currency: 'BRL'
+        currency: "BRL",
       });
     }
   });

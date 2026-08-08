@@ -15,8 +15,14 @@
 }
 
 @keyframes divider-in {
-  from { opacity: 0; clip-path: inset(0 50% 0 50%); }
-  to { opacity: 0.25; clip-path: inset(0 0 0 0); }
+  from {
+    opacity: 0;
+    clip-path: inset(0 50% 0 50%);
+  }
+  to {
+    opacity: 0.25;
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 .features h2,

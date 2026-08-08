@@ -204,7 +204,7 @@
 }
 
 .btn-favorite.ativo .material-symbols-outlined {
-  font-variation-settings: 'FILL' 1;
+  font-variation-settings: "FILL" 1;
 }
 
 @media (max-width: 600px) {

@@ -17,7 +17,9 @@ export function initSearch() {
     if (termo === "") return;
 
     if (nomeProduto.includes(termo)) {
-      document.querySelector(".product-hero").scrollIntoView({ behavior: "smooth" });
+      document
+        .querySelector(".product-hero")
+        .scrollIntoView({ behavior: "smooth" });
     } else {
       mostrarToast("Nenhum produto encontrado para: " + termo);
     }

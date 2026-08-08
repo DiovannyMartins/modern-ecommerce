@@ -21,5 +21,4 @@ document.addEventListener("DOMContentLoaded", () => {
   if (anoAtual) {
     anoAtual.textContent = new Date().getFullYear();
   }
-
 });

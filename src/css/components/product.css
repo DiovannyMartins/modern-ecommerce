@@ -17,8 +17,12 @@
 }
 
 @keyframes hero-visuals-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .product-info > * {
@@ -26,17 +30,37 @@
   animation: hero-text-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.product-info > :nth-child(1) { animation-delay: 0.10s; }
-.product-info > :nth-child(2) { animation-delay: 0.17s; }
-.product-info > :nth-child(3) { animation-delay: 0.25s; }
-.product-info > :nth-child(4) { animation-delay: 0.33s; }
-.product-info > :nth-child(5) { animation-delay: 0.41s; }
-.product-info > :nth-child(6) { animation-delay: 0.49s; }
-.product-info > :nth-child(7) { animation-delay: 0.57s; }
+.product-info > :nth-child(1) {
+  animation-delay: 0.1s;
+}
+.product-info > :nth-child(2) {
+  animation-delay: 0.17s;
+}
+.product-info > :nth-child(3) {
+  animation-delay: 0.25s;
+}
+.product-info > :nth-child(4) {
+  animation-delay: 0.33s;
+}
+.product-info > :nth-child(5) {
+  animation-delay: 0.41s;
+}
+.product-info > :nth-child(6) {
+  animation-delay: 0.49s;
+}
+.product-info > :nth-child(7) {
+  animation-delay: 0.57s;
+}
 
 @keyframes hero-text-in {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .main-image {
@@ -60,7 +84,9 @@
   height: auto;
   object-fit: contain;
   display: block;
-  transition: transform 0.5s ease, opacity 0.3s ease;
+  transition:
+    transform 0.5s ease,
+    opacity 0.3s ease;
 }
 
 .main-image.skeleton img {
@@ -304,9 +330,15 @@
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 70%, transparent); }
-  70% { box-shadow: 0 0 0 15px color-mix(in srgb, var(--primary) 0%, transparent); }
-  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 0%, transparent); }
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 70%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 15px color-mix(in srgb, var(--primary) 0%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 0%, transparent);
+  }
 }
 
 .shipping-info {
@@ -320,7 +352,12 @@
 
 /* Skeleton loading */
 .main-image.skeleton {
-  background: linear-gradient(90deg, var(--bg-card) 25%, color-mix(in srgb, var(--bg-card) 60%, white) 50%, var(--bg-card) 75%);
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 25%,
+    color-mix(in srgb, var(--bg-card) 60%, white) 50%,
+    var(--bg-card) 75%
+  );
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
 }
@@ -365,7 +402,6 @@
     max-width: 420px;
     align-self: center;
   }
-
 }
 
 @media (max-width: 768px) {
