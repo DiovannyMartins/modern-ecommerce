@@ -176,7 +176,7 @@
 
 .skeleton-line {
   height: 14px;
-  background: linear-gradient(90deg, var(--bg-card) 25%, #2d3748 50%, var(--bg-card) 75%);
+  background: linear-gradient(90deg, var(--bg-card) 25%, color-mix(in srgb, var(--bg-card) 60%, white) 50%, var(--bg-card) 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
   border-radius: var(--radius);
