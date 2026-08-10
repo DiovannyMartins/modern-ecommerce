@@ -232,7 +232,7 @@
   font-size: var(--font-size-sm);
 }
 
-.rating .stars::after {
+.rating .stars[role="img"]::after {
   content: "★★★★★";
 }
 
