@@ -16,7 +16,7 @@ export function initSearch() {
 
     if (termo === "") return;
 
-    if (nomeProduto.includes(termo)) {
+    if (PRODUTO_TERMOS_BUSCA.includes(termo)) {
       document
         .querySelector(".product-hero")
         .scrollIntoView({ behavior: "smooth" });
