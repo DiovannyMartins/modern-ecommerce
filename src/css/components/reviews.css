@@ -2,6 +2,12 @@
   margin-bottom: var(--spacing-3xl);
 }
 
+.reviews-section h2 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
 .reviews-controls {
   display: flex;
   justify-content: flex-end;

@@ -32,8 +32,9 @@ Projeto de e-commerce profissional desenvolvido com HTML, CSS e JavaScript puro,
 │   │       ├── search.js       # Busca
 │   │       ├── checkout.js     # Checkout simulado
 │   │       ├── wishlist.js     # Lista de desejos
-│   │       └── scroll-reveal.js
-│   ── img/                    # Imagens do produto (webp)
+│   │       ├── product-config.js # Configuração do produto
+│   │       └── scroll-reveal.js # Animação de scroll
+│   └── img/                    # Imagens do produto (webp)
 └── README.md
 ```
 

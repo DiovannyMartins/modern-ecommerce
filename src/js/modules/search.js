@@ -1,4 +1,5 @@
 import { mostrarToast } from "./toast.js";
+import { PRODUTO_TERMOS_BUSCA } from "./product-config.js";
 
 const formBusca = document.getElementById("formBusca");
 const inputBusca = document.getElementById("inputBusca");
@@ -12,11 +13,10 @@ export function initSearch() {
     event.preventDefault();
 
     const termo = inputBusca.value.trim().toLowerCase();
-    const nomeProduto = "headset hyperx cloud ii core wireless";
 
     if (termo === "") return;
 
-    if (nomeProduto.includes(termo)) {
+    if (PRODUTO_TERMOS_BUSCA.includes(termo)) {
       document.querySelector(".product-hero").scrollIntoView({ behavior: "smooth" });
     } else {
       mostrarToast("Nenhum produto encontrado para: " + termo);

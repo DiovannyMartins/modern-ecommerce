@@ -7,7 +7,7 @@ const subtotalValor = document.getElementById("subtotalValor");
 const precoUnitario = document.getElementById("precoUnitario");
 
 let quantidade = 1;
-const preco = parseFloat(precoUnitario.dataset.price) || 0;
+const preco = precoUnitario ? (parseFloat(precoUnitario.dataset.price) || 899.00) : 899.00;
 
 /**
  * Atualiza o subtotal exibido na tela

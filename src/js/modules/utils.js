@@ -28,7 +28,7 @@ export function salvarStorage(chave, dados) {
   try {
     localStorage.setItem(chave, JSON.stringify(dados));
   } catch (e) {
-    console.warn("localStorage cheio ou indisponível:", e);
+    // localStorage indisponível
   }
 }
 
@@ -43,7 +43,6 @@ export function carregarStorage(chave, padrao = null) {
     const dados = localStorage.getItem(chave);
     return dados ? JSON.parse(dados) : padrao;
   } catch (e) {
-    console.warn("Erro ao ler localStorage:", e);
     return padrao;
   }
 }

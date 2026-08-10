@@ -1,6 +1,7 @@
 import { formatarPreco, salvarStorage, carregarStorage, trapFocus } from "./utils.js";
 import { mostrarToast } from "./toast.js";
 import { getQuantidade, getPreco } from "./quantity.js";
+import { PRODUTO } from "./product-config.js";
 
 const btnAbrirCarrinho = document.getElementById("btnAbrirCarrinho");
 const btnFecharCarrinho = document.getElementById("btnFecharCarrinho");
@@ -14,11 +15,6 @@ const inputCEP = document.getElementById("inputCEP");
 const btnCalcularFrete = document.getElementById("btnCalcularFrete");
 const freteResultado = document.getElementById("freteResultado");
 
-const produtoAtual = {
-  id: "headset-neonx-pro",
-  nome: "Headset HyperX Cloud II Core Wireless",
-  imagem: "src/img/frontal.webp",
-};
 
 let carrinho = normalizarCarrinho(carregarStorage("carrinho", []));
 let liberarFocusCarrinho = null;
@@ -27,7 +23,7 @@ function normalizarCarrinho(itens) {
   if (!Array.isArray(itens)) return [];
 
   return itens.map((item) => item.id === produtoAtual.id
-    ? { ...item, nome: produtoAtual.nome, imagem: produtoAtual.imagem }
+    ? { ...item, nome: PRODUTO.nome, imagem: PRODUTO.imagem }
     : item
   );
 }
@@ -77,6 +73,12 @@ function renderizarCarrinho() {
     btnRemover.dataset.index = index;
     btnRemover.textContent = "Remover";
     btnRemover.setAttribute("aria-label", `Remover ${item.nome} do carrinho`);
+    btnRemover.addEventListener("click", () => {
+      carrinho.splice(index, 1);
+      salvarCarrinho();
+      renderizarCarrinho();
+      mostrarToast(`"${item.nome}" removido do carrinho`);
+    });
 
     info.appendChild(h4);
     info.appendChild(p);
@@ -88,17 +90,6 @@ function renderizarCarrinho() {
 
   cartTotalValor.textContent = formatarPreco(total);
   cartBadge.textContent = totalItens;
-
-  document.querySelectorAll(".cart-item-remover").forEach((botao) => {
-    botao.addEventListener("click", () => {
-      const index = parseInt(botao.dataset.index);
-      const item = carrinho[index];
-      carrinho.splice(index, 1);
-      salvarCarrinho();
-      renderizarCarrinho();
-      mostrarToast(`"${item.nome}" removido do carrinho`);
-    });
-  });
 }
 
 function animarBadge() {
@@ -145,31 +136,23 @@ export function initCart() {
   const adicionarAoCarrinho = () => {
     const quantidade = getQuantidade();
     const preco = getPreco();
-    const itemExistente = carrinho.find((item) => item.id === produtoAtual.id);
+    const itemExistente = carrinho.find((item) => item.id === PRODUTO.id);
 
     if (itemExistente) {
       itemExistente.quantidade += quantidade;
     } else {
       carrinho.push({
-        id: produtoAtual.id,
-        nome: produtoAtual.nome,
+        id: PRODUTO.id,
+        nome: PRODUTO.nome,
         preco: preco,
         quantidade: quantidade,
-        imagem: produtoAtual.imagem,
+        imagem: PRODUTO.imagem,
       });
     }
 
     salvarCarrinho();
     renderizarCarrinho();
     animarBadge();
-
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'add_to_cart', {
-        item_name: produtoAtual.nome,
-        price: preco,
-        quantity: quantidade
-      });
-    }
 
     const textoOriginal = btnComprar.textContent;
     btnComprar.textContent = "Adicionado! ✓";
@@ -188,7 +171,7 @@ export function initCart() {
         btnSticky.textContent = `Adicionar ao Carrinho - ${formatarPreco(preco)}`;
         btnSticky.disabled = false;
       }
-    }, 1500);
+    }, 600);
 
     abrirCarrinho();
   };
@@ -206,6 +189,8 @@ export function initCart() {
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && cartDrawer.classList.contains("active")) {
+      const checkoutModal = document.getElementById("checkoutModal");
+      if (checkoutModal && checkoutModal.classList.contains("active")) return;
       fecharCarrinho();
     }
   });

@@ -51,7 +51,10 @@ function aplicarDesconto() {
   checkoutTotal.textContent = formatarPreco(valorFinal);
 
   if (descontoAplicado > 0) {
-    checkoutDesconto.querySelector("span").textContent = `-${formatarPreco(valorDesconto)}`;
+    const spanDesconto = checkoutDesconto.querySelector("span");
+    if (spanDesconto) {
+      spanDesconto.textContent = `-${formatarPreco(valorDesconto)}`;
+    }
     checkoutDesconto.hidden = false;
   } else {
     checkoutDesconto.hidden = true;
@@ -86,6 +89,7 @@ export function initCheckout() {
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && checkoutModal.classList.contains("active")) {
+      e.stopPropagation();
       fecharCheckout();
     }
   });
@@ -203,14 +207,6 @@ export function initCheckout() {
     etapaSucesso.hidden = false;
     liberarFocusCheckout?.();
     liberarFocusCheckout = trapFocus(checkoutModal);
-
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'purchase', {
-        transaction_id: numeroPedido.textContent,
-        value: getTotalCarrinho(),
-        currency: 'BRL'
-      });
-    }
   });
 
   btnFecharSucesso.addEventListener("click", () => {

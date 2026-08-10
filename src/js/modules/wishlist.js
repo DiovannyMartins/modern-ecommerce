@@ -1,12 +1,6 @@
 import { formatarPreco, salvarStorage, carregarStorage, trapFocus } from "./utils.js";
 import { mostrarToast } from "./toast.js";
-
-const PRODUTO_PRINCIPAL = {
-  id: "headset-neonx-pro",
-  nome: "Headset HyperX Cloud II Core Wireless",
-  preco: 899.00,
-  imagem: "src/img/frontal.webp"
-};
+import { PRODUTO } from "./product-config.js";
 
 const btnAbrirWishlist = document.getElementById("btnAbrirWishlist");
 const btnFecharWishlist = document.getElementById("btnFecharWishlist");
@@ -22,8 +16,8 @@ let liberarFocusWishlist = null;
 function normalizarWishlist(itens) {
   if (!Array.isArray(itens)) return [];
 
-  return itens.map((item) => item.id === PRODUTO_PRINCIPAL.id
-    ? { ...item, nome: PRODUTO_PRINCIPAL.nome, preco: PRODUTO_PRINCIPAL.preco, imagem: PRODUTO_PRINCIPAL.imagem }
+  return itens.map((item) => item.id === PRODUTO.id
+    ? { ...item, nome: PRODUTO.nome, preco: PRODUTO.preco, imagem: PRODUTO.imagem }
     : item
   );
 }
@@ -47,6 +41,7 @@ function renderizarWishlist() {
 
   if (wishlist.length === 0) {
     wishlistItensContainer.innerHTML = '<p class="wishlist-vazio">Sua wishlist está vazia.</p>';
+    atualizarBadgeWishlist();
     return;
   }
 
@@ -122,7 +117,7 @@ function renderizarWishlist() {
 }
 
 function atualizarBotaoFavoritar() {
-  const existe = wishlist.find((p) => p.id === PRODUTO_PRINCIPAL.id);
+  const existe = wishlist.find((p) => p.id === PRODUTO.id);
 
   if (existe) {
     btnFavoritar.classList.add("ativo");
@@ -181,6 +176,10 @@ export function initWishlist() {
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && wishlistDrawer.classList.contains("active")) {
+      const checkoutModal = document.getElementById("checkoutModal");
+      if (checkoutModal && checkoutModal.classList.contains("active")) return;
+      const cartDrawer = document.getElementById("cartDrawer");
+      if (cartDrawer && cartDrawer.classList.contains("active")) return;
       fecharWishlist();
     }
   });

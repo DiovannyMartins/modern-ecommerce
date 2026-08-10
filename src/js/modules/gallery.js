@@ -42,6 +42,9 @@ export function initGallery() {
     const tag = activeEl ? activeEl.tagName : "";
     if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
 
+    const checkoutOverlay = document.getElementById("checkoutOverlay");
+    if (checkoutOverlay && checkoutOverlay.classList.contains("active")) return;
+
     if (e.key === "ArrowLeft") {
       const novoIndice = indiceAtual > 0 ? indiceAtual - 1 : miniaturas.length - 1;
       trocarImagem(novoIndice);
@@ -81,6 +84,8 @@ function trocarImagem(index) {
 
   mainImageContainer.classList.add("skeleton");
   indiceAtual = index;
+  isZoomed = false;
+  mainImage.style.transform = "scale(1)";
 
   mainImage.onload = () => {
     mainImageContainer.classList.remove("skeleton");
@@ -106,27 +111,36 @@ function trocarImagem(index) {
  * Atualiza o estado das setas de navegação
  */
 function atualizarSetas() {
-  btnGaleriaCima.disabled = false;
-  btnGaleriaBaixo.disabled = false;
+  btnGaleriaCima.disabled = indiceAtual === 0;
+  btnGaleriaBaixo.disabled = indiceAtual === miniaturas.length - 1;
 }
 
 /**
  * Inicializa o zoom da imagem principal (desktop e mobile)
  */
 function initZoom() {
-  mainImageContainer.addEventListener("mousemove", (event) => {
-    if (isZoomed) return;
-    const { left, top, width, height } = mainImageContainer.getBoundingClientRect();
-    const x = ((event.clientX - left) / width) * 100;
-    const y = ((event.clientY - top) / height) * 100;
+  let ticking = false;
 
-    mainImage.style.transformOrigin = `${x}% ${y}%`;
-    mainImage.style.transform = "scale(2)";
+  mainImageContainer.addEventListener("mousemove", (event) => {
+    if (isZoomed || ticking) return;
+    ticking = true;
+
+    requestAnimationFrame(() => {
+      const { left, top, width, height } = mainImageContainer.getBoundingClientRect();
+      const x = ((event.clientX - left) / width) * 100;
+      const y = ((event.clientY - top) / height) * 100;
+
+      mainImage.classList.add("zooming");
+      mainImage.style.transformOrigin = `${x}% ${y}%`;
+      mainImage.style.transform = "scale(2)";
+      ticking = false;
+    });
   });
 
   mainImageContainer.addEventListener("mouseleave", () => {
     if (!isZoomed) {
       mainImage.style.transform = "scale(1)";
+      mainImage.classList.remove("zooming");
     }
   });
 }
@@ -198,6 +212,6 @@ function aplicarSkeleton() {
   } else {
     mainImage.addEventListener("load", () => {
       mainImageContainer.classList.remove("skeleton");
-    });
+    }, { once: true });
   }
 }

@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Compre o Headset HyperX Cloud II Core Wireless: áudio DTS Spatial, 80h de bateria e conexão 2.4GHz.">
-  <meta name="keywords" content="headset, gamer, wireless, hyperx, cloud ii, áudio spatial, microfone destacável">
-  <meta name="author" content="Diovanny Martins">
+<meta name="author" content="Diovanny Martins">
   <meta name="theme-color" content="#0f172a">
+  <meta name="robots" content="index, follow">
 
   <meta property="og:title" content="Headset HyperX Cloud II Core Wireless | Loja NEON X">
   <meta property="og:description"
@@ -22,6 +22,7 @@
   <meta name="twitter:description" content="Áudio DTS Spatial, 80h de bateria e conexão 2.4GHz.">
   <meta name="twitter:image" content="https://diovannymartins.github.io/modern-ecommerce/src/img/frontal.webp">
 
+  <link rel="canonical" href="https://diovannymartins.github.io/modern-ecommerce/">
   <link rel="icon" type="image/png" href="src/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,8 +54,8 @@
 
       <nav class="menu" id="menu-principal">
         <a href="#produtos">Produtos</a>
-        <a href="#lancamentos">Especificações</a>
-        <a href="#suporte">Avaliações</a>
+        <a href="#especificacoes">Especificações</a>
+        <a href="#avaliacoes">Avaliações</a>
       </nav>
 
       <div class="header-actions">
@@ -63,7 +64,8 @@
         </button>
         <form class="search-bar" id="formBusca" role="search">
           <span class="material-symbols-outlined search-icon" aria-hidden="true">search</span>
-          <input type="text" placeholder="Buscar produtos..." id="inputBusca" aria-label="Buscar produtos">
+          <label for="inputBusca" class="sr-only">Buscar produtos</label>
+          <input type="text" placeholder="Buscar produtos..." id="inputBusca">
         </form>
 
         <button class="icon-btn" id="btnAbrirCarrinho" aria-label="Abrir carrinho">
@@ -85,7 +87,7 @@
 
       <div class="product-visuals">
         <div class="main-image">
-          <img src="src/img/frontal.webp" alt="Headset HyperX Cloud II Core Wireless - vista frontal" id="mainImage" width="600" height="600" decoding="async" />
+          <img src="src/img/frontal.webp" alt="Headset HyperX Cloud II Core Wireless - vista frontal" id="mainImage" width="600" height="600" decoding="sync" />
         </div>
         <div class="gallery-wrapper">
           <button type="button" class="gallery-arrow gallery-arrow-left" id="btnGaleriaCima" aria-label="Imagem anterior">
@@ -110,7 +112,7 @@
         <h1 class="product-title">Headset HyperX Cloud II Core Wireless</h1>
 
         <div class="rating">
-          <span class="stars" aria-label="Avaliação 5 de 5 estrelas">★★★★★</span>
+          <span class="stars" role="img" aria-label="Avaliação 5 de 5 estrelas"></span>
           <span class="reviews-count">(128 avaliações)</span>
         </div>
 
@@ -154,7 +156,7 @@
       <button type="button" class="btn-buy" id="btnComprarSticky">Adicionar ao Carrinho - R$ 899,00</button>
     </div>
 
-    <section class="features reveal" id="lancamentos">
+    <section class="features reveal" id="especificacoes">
       <h2>Especificações Técnicas</h2>
       <div class="features-grid">
         <div class="feature-card">
@@ -180,7 +182,7 @@
       </div>
     </section>
 
-    <section class="reviews-section reveal" id="suporte">
+    <section class="reviews-section reveal" id="avaliacoes">
       <h2>Avaliações de Clientes</h2>
 
       <div class="reviews-controls">
@@ -203,9 +205,9 @@
             <input type="text" id="nomeAvaliador" placeholder="Seu nome" required autocomplete="name">
           </div>
 
-          <div class="campo-avaliacao">
-            <span id="star-label">Sua nota</span>
-            <div class="star-picker" id="starPicker" role="radiogroup" aria-labelledby="star-label">
+          <fieldset class="campo-avaliacao">
+            <legend>Sua nota (1 a 5 estrelas)</legend>
+            <div class="star-picker" id="starPicker" role="radiogroup" aria-label="Sua nota">
               <button type="button" class="star-option" data-valor="1" role="radio" aria-checked="false"
                 aria-label="1 estrela">★</button>
               <button type="button" class="star-option" data-valor="2" role="radio" aria-checked="false"
@@ -217,7 +219,7 @@
               <button type="button" class="star-option" data-valor="5" role="radio" aria-checked="false"
                 aria-label="5 estrelas">★</button>
             </div>
-          </div>
+          </fieldset>
 
           <div class="campo-avaliacao">
             <label for="comentarioAvaliador">Comentário</label>
@@ -244,15 +246,15 @@
       </div>
       <div class="footer-col">
         <h4>Produtos</h4>
-        <a href="#produtos">Headsets</a>
-        <a href="#produtos">Teclados</a>
-        <a href="#produtos">Mouses</a>
+        <a href="#especificacoes">Headsets</a>
+        <a href="#especificacoes">Teclados</a>
+        <a href="#especificacoes">Mouses</a>
       </div>
       <div class="footer-col">
         <h4>Suporte</h4>
-        <a href="#suporte">Rastrear Pedido</a>
-        <a href="#suporte">Garantia</a>
-        <a href="#suporte">Contato</a>
+        <a href="#avaliacoes">Rastrear Pedido</a>
+        <a href="#avaliacoes">Garantia</a>
+        <a href="#avaliacoes">Contato</a>
       </div>
       <div class="footer-col">
         <h4>Pagamento Seguro</h4>
@@ -328,6 +330,7 @@
       </div>
 
       <div class="checkout-cupom">
+        <label for="inputCupom" class="sr-only">Código de cupom</label>
         <input type="text" id="inputCupom" placeholder="Código de cupom" autocomplete="off">
         <button type="button" id="btnAplicarCupom">Aplicar</button>
       </div>
@@ -371,7 +374,7 @@
         </div>
       </form>
 
-      <p class="checkout-nota">🔒 Simulação: nenhum dado é enviado ou armazenado de verdade.</p>
+      <p class="checkout-nota"><span class="material-symbols-outlined" aria-hidden="true">lock</span> Simulação: nenhum dado é enviado ou armazenado de verdade.</p>
 
       <button type="button" class="btn-buy" id="btnConfirmarPedido">Confirmar Pedido</button>
     </div>
@@ -394,6 +397,9 @@
     "name": "Headset HyperX Cloud II Core Wireless",
     "image": "https://diovannymartins.github.io/modern-ecommerce/src/img/frontal.webp",
     "description": "Áudio imersivo com DTS Headphone:X Spatial Audio, drivers de 53mm e bateria para até 80 horas.",
+    "sku": "HX-C2CW-0001",
+    "url": "https://diovannymartins.github.io/modern-ecommerce/",
+    "itemCondition": "https://schema.org/NewCondition",
     "brand": {
       "@type": "Brand",
       "name": "HyperX"
@@ -408,21 +414,12 @@
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5",
-      "reviewCount": "128"
+      "reviewCount": 128
     }
   }
   </script>
 
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function (registrations) {
-        registrations.forEach(function (reg) {
-          reg.unregister();
-        });
-      });
-    }
-  </script>
-  <script type="module" src="src/js/main.js?v=2"></script>
+  <script type="module" src="src/js/main.js?v=20260802"></script>
 </body>
 
 </html>
