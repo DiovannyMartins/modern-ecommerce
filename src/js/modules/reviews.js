@@ -32,7 +32,7 @@ const avaliacoesPadrao = [
     data: "Há 2 semanas",
     nota: 5,
     texto:
-      "A bateria realmente dura 50 horas. Estou usando para trabalhar e jogar e carrego uma vez por semana. Excelente investimento.",
+      "A bateria realmente dura 80 horas. Estou usando para trabalhar e jogar e carrego uma vez por semana. Excelente investimento.",
   },
 ];
 

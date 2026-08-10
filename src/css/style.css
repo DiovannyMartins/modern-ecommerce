@@ -87,3 +87,21 @@
     animation-delay: 0s;
   }
 }
+
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--transition-slow),
+              transform var(--transition-slow);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skeletons visíveis apenas com JS */
+.review-skeleton {
+  display: none;
+}

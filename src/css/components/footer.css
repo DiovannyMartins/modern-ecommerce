@@ -92,7 +92,7 @@
   border-top: var(--paper-weight) solid var(--ink-faint);
   padding: 20px 0;
   text-align: center;
-  color: var(--ink-faint);
+  color: var(--ink-muted);
   font-size: var(--font-size-xs);
   letter-spacing: 0.04em;
 }

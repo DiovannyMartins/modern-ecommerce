@@ -323,9 +323,9 @@ export function initCheckout() {
       }
 
       if (erros) {
-        const primeiroErro = [numeroCartao, nomeCartao, validadeCartao, cvvCartao]
-          .find(el => el.classList.contains("input-erro"));
-        if (primeiroErro) primeiroErro.focus();
+        const primeiroErro =         [numeroCartao, nomeCartao, validadeCartao, cvvCartao]
+          .find(el => el.classList.contains("input-erro"))
+          ?.focus();
         return;
       }
     }

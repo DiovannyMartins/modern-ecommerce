@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description"
     content="Compre o Headset HyperX Cloud II Core Wireless: áudio DTS Spatial, 80h de bateria e conexão 2.4GHz. Frete grátis para todo o Brasil.">
-  <meta name="keywords" content="headset, gamer, wireless, hyperx, cloud ii, áudio spatial, microfone destacável">
+  
   <meta name="author" content="Diovanny Martins">
   <meta name="theme-color" content="#2a221e">
 
@@ -25,7 +25,7 @@
   <meta name="twitter:image" content="https://diovannymartins.github.io/modern-ecommerce/src/img/frontal.webp">
 
   <link rel="canonical" href="https://diovannymartins.github.io/modern-ecommerce/">
-  <link rel="icon" type="image/png" href="src/img/favicon.png">
+  <link rel="icon" type="image/png" href="src/img/favicon.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
@@ -79,8 +79,7 @@
         </button>
         <form class="search-bar" id="formBusca" role="search">
           <span class="material-symbols-outlined search-icon" aria-hidden="true">search</span>
-          <label for="inputBusca" class="sr-only">Buscar produtos</label>
-          <input type="text" placeholder="Buscar produtos..." id="inputBusca">
+          <input type="text" placeholder="Buscar produtos..." id="inputBusca" aria-label="Buscar produtos">
         </form>
 
         <button class="icon-btn" id="btnAbrirCarrinho" aria-label="Abrir carrinho">
@@ -139,7 +138,7 @@
         <p class="product-subtitle">Áudio Espacial DTS &middot; 80h de Bateria &middot; Wireless 2.4GHz</p>
 
         <div class="rating">
-          <span class="stars" role="img" aria-label="Avaliação 5 de 5 estrelas"></span>
+          <span class="stars" aria-label="Avaliação 5 de 5 estrelas">★★★★★</span>
           <span class="reviews-count">(128 avaliações)</span>
         </div>
 
@@ -345,10 +344,10 @@
 
     <div class="cart-drawer-footer">
       <div class="cart-frete">
-        <label for="inputCEP">Calcular frete:</label>
+        <label for="inputCEP">Consultar prazo de entrega:</label>
         <div class="cart-frete-input">
           <input type="text" id="inputCEP" placeholder="00000-000" maxlength="9" inputmode="numeric">
-          <button type="button" id="btnCalcularFrete">Calcular</button>
+          <button type="button" id="btnCalcularFrete">Consultar</button>
         </div>
         <p class="frete-resultado" id="freteResultado"></p>
       </div>
@@ -464,9 +463,6 @@
     "name": "Headset HyperX Cloud II Core Wireless",
     "image": "https://diovannymartins.github.io/modern-ecommerce/src/img/frontal.webp",
     "description": "Áudio imersivo com DTS Headphone:X Spatial Audio, drivers de 53mm e bateria para até 80 horas.",
-    "sku": "HX-C2CW-0001",
-    "url": "https://diovannymartins.github.io/modern-ecommerce/",
-    "itemCondition": "https://schema.org/NewCondition",
     "brand": {
       "@type": "Brand",
       "name": "HyperX"
@@ -481,7 +477,7 @@
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5",
-      "reviewCount": 128
+      "reviewCount": "128"
     }
   }
   </script>

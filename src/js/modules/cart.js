@@ -272,7 +272,7 @@ export function initCart() {
       freteResultado.className = "frete-resultado sucesso";
       btnCalcularFrete.textContent = textoOriginal;
       btnCalcularFrete.disabled = false;
-      mostrarToast("Frete calculado com sucesso!");
+      mostrarToast("Prazo de entrega calculado!");
     }, 600);
   });
 
