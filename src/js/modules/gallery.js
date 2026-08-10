@@ -155,12 +155,7 @@ function atualizarSetas() {
  * Inicializa o zoom da imagem principal (desktop e mobile)
  */
 function initZoom() {
-  mainImageContainer.addEventListener("mousemove", (event) => {
-    if (isZoomed) return;
-    const { left, top, width, height } =
-      mainImageContainer.getBoundingClientRect();
-    const x = ((event.clientX - left) / width) * 100;
-    const y = ((event.clientY - top) / height) * 100;
+  let ticking = false;
 
   mainImageContainer.addEventListener("mousemove", (event) => {
     if (isZoomed || ticking) return;
