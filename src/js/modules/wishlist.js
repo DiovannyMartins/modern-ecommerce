@@ -1,17 +1,6 @@
-import {
-  formatarPreco,
-  salvarStorage,
-  carregarStorage,
-  trapFocus,
-} from "./utils.js";
+import { formatarPreco, salvarStorage, carregarStorage, trapFocus } from "./utils.js";
 import { mostrarToast } from "./toast.js";
-
-const PRODUTO_PRINCIPAL = {
-  id: "headset-neonx-pro",
-  nome: "Headset HyperX Cloud II Core Wireless",
-  preco: 899.0,
-  imagem: "src/img/frontal.webp",
-};
+import { PRODUTO } from "./product-config.js";
 
 const btnAbrirWishlist = document.getElementById("btnAbrirWishlist");
 const btnFecharWishlist = document.getElementById("btnFecharWishlist");
@@ -28,12 +17,12 @@ function normalizarWishlist(itens) {
   if (!Array.isArray(itens)) return [];
 
   return itens.map((item) =>
-    item.id === PRODUTO_PRINCIPAL.id
+    item.id === PRODUTO.id
       ? {
           ...item,
-          nome: PRODUTO_PRINCIPAL.nome,
-          preco: PRODUTO_PRINCIPAL.preco,
-          imagem: PRODUTO_PRINCIPAL.imagem,
+          nome: PRODUTO.nome,
+          preco: PRODUTO.preco,
+          imagem: PRODUTO.imagem,
         }
       : item,
   );
@@ -202,6 +191,6 @@ export function initWishlist() {
   });
 
   btnFavoritar.addEventListener("click", () => {
-    toggleWishlist(PRODUTO_PRINCIPAL);
+    toggleWishlist(PRODUTO);
   });
 }

@@ -28,8 +28,8 @@ function normalizarCarrinho(itens) {
   if (!Array.isArray(itens)) return [];
 
   return itens.map((item) =>
-    item.id === produtoAtual.id
-      ? { ...item, nome: produtoAtual.nome, imagem: produtoAtual.imagem }
+    item.id === PRODUTO.id
+      ? { ...item, nome: PRODUTO.nome, imagem: PRODUTO.imagem }
       : item,
   );
 }
@@ -203,14 +203,6 @@ export function initCart() {
     salvarCarrinho();
     renderizarCarrinho();
     animarBadge();
-
-    if (typeof gtag !== "undefined") {
-      gtag("event", "add_to_cart", {
-        item_name: produtoAtual.nome,
-        price: preco,
-        quantity: quantidade,
-      });
-    }
 
     const textoOriginal = btnComprar.textContent;
     btnComprar.textContent = "Adicionado! ✓";
