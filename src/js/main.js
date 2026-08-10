@@ -6,7 +6,6 @@ import { initWishlist } from "./modules/wishlist.js";
 import { initReviews } from "./modules/reviews.js";
 import { initSearch } from "./modules/search.js";
 import { initCheckout } from "./modules/checkout.js";
-import { initScrollReveal } from "./modules/scroll-reveal.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initMenu();
@@ -17,11 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initReviews();
   initSearch();
   initCheckout();
-  initScrollReveal();
 
   const anoAtual = document.getElementById("anoAtual");
   if (anoAtual) {
     anoAtual.textContent = new Date().getFullYear();
   }
-
 });

@@ -1,6 +1,17 @@
-import { formatarPreco, salvarStorage, carregarStorage, trapFocus } from "./utils.js";
+import {
+  formatarPreco,
+  salvarStorage,
+  carregarStorage,
+  trapFocus,
+} from "./utils.js";
 import { mostrarToast } from "./toast.js";
-import { PRODUTO } from "./product-config.js";
+
+const PRODUTO_PRINCIPAL = {
+  id: "headset-neonx-pro",
+  nome: "Headset HyperX Cloud II Core Wireless",
+  preco: 899.0,
+  imagem: "src/img/frontal.webp",
+};
 
 const btnAbrirWishlist = document.getElementById("btnAbrirWishlist");
 const btnFecharWishlist = document.getElementById("btnFecharWishlist");
@@ -16,9 +27,15 @@ let liberarFocusWishlist = null;
 function normalizarWishlist(itens) {
   if (!Array.isArray(itens)) return [];
 
-  return itens.map((item) => item.id === PRODUTO.id
-    ? { ...item, nome: PRODUTO.nome, preco: PRODUTO.preco, imagem: PRODUTO.imagem }
-    : item
+  return itens.map((item) =>
+    item.id === PRODUTO_PRINCIPAL.id
+      ? {
+          ...item,
+          nome: PRODUTO_PRINCIPAL.nome,
+          preco: PRODUTO_PRINCIPAL.preco,
+          imagem: PRODUTO_PRINCIPAL.imagem,
+        }
+      : item,
   );
 }
 
@@ -40,8 +57,8 @@ function renderizarWishlist() {
   wishlistItensContainer.innerHTML = "";
 
   if (wishlist.length === 0) {
-    wishlistItensContainer.innerHTML = '<p class="wishlist-vazio">Sua wishlist está vazia.</p>';
-    atualizarBadgeWishlist();
+    wishlistItensContainer.innerHTML =
+      '<p class="wishlist-vazio">Sua wishlist está vazia.<br><small>Adicione produtos clicando no ícone de coração.</small></p>';
     return;
   }
 
@@ -83,7 +100,7 @@ function renderizarWishlist() {
           nome: item.nome,
           preco: item.preco,
           quantidade: 1,
-          imagem: item.imagem
+          imagem: item.imagem,
         });
       }
 

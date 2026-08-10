@@ -13,7 +13,7 @@ export function initScrollReveal() {
         }
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0.15 },
   );
 
   revealElements.forEach((el) => revealObserver.observe(el));

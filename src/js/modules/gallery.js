@@ -27,12 +27,14 @@ export function initGallery() {
   });
 
   btnGaleriaCima.addEventListener("click", () => {
-    const novoIndice = indiceAtual > 0 ? indiceAtual - 1 : miniaturas.length - 1;
+    const novoIndice =
+      indiceAtual > 0 ? indiceAtual - 1 : miniaturas.length - 1;
     trocarImagem(novoIndice);
   });
 
   btnGaleriaBaixo.addEventListener("click", () => {
-    const novoIndice = indiceAtual < miniaturas.length - 1 ? indiceAtual + 1 : 0;
+    const novoIndice =
+      indiceAtual < miniaturas.length - 1 ? indiceAtual + 1 : 0;
     trocarImagem(novoIndice);
   });
 
@@ -46,10 +48,12 @@ export function initGallery() {
     if (checkoutOverlay && checkoutOverlay.classList.contains("active")) return;
 
     if (e.key === "ArrowLeft") {
-      const novoIndice = indiceAtual > 0 ? indiceAtual - 1 : miniaturas.length - 1;
+      const novoIndice =
+        indiceAtual > 0 ? indiceAtual - 1 : miniaturas.length - 1;
       trocarImagem(novoIndice);
     } else if (e.key === "ArrowRight") {
-      const novoIndice = indiceAtual < miniaturas.length - 1 ? indiceAtual + 1 : 0;
+      const novoIndice =
+        indiceAtual < miniaturas.length - 1 ? indiceAtual + 1 : 0;
       trocarImagem(novoIndice);
     }
   });
@@ -58,6 +62,37 @@ export function initGallery() {
   initZoom();
   initSwipe();
   aplicarSkeleton();
+  initParallax();
+}
+
+function initParallax() {
+  const hero = document.querySelector(".product-hero");
+  const visuals = document.querySelector(".product-visuals");
+  if (!hero || !visuals) return;
+
+  let ticking = false;
+
+  function update() {
+    const rect = hero.getBoundingClientRect();
+    const progress = 1 - rect.bottom / (window.innerHeight + rect.height);
+    const clamped = Math.max(0, Math.min(1, progress));
+
+    visuals.style.setProperty("--parallax-y", `${clamped * 30}px`);
+    ticking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
+
+  update();
 }
 
 /**
@@ -70,7 +105,8 @@ function scrollParaMiniatura(index) {
   if (gallery && miniatura) {
     const galleryRect = gallery.getBoundingClientRect();
     const miniRect = miniatura.getBoundingClientRect();
-    const scrollLeft = miniatura.offsetLeft - (galleryRect.width / 2) + (miniRect.width / 2);
+    const scrollLeft =
+      miniatura.offsetLeft - galleryRect.width / 2 + miniRect.width / 2;
     gallery.scrollTo({ left: scrollLeft, behavior: "smooth" });
   }
 }
@@ -119,7 +155,12 @@ function atualizarSetas() {
  * Inicializa o zoom da imagem principal (desktop e mobile)
  */
 function initZoom() {
-  let ticking = false;
+  mainImageContainer.addEventListener("mousemove", (event) => {
+    if (isZoomed) return;
+    const { left, top, width, height } =
+      mainImageContainer.getBoundingClientRect();
+    const x = ((event.clientX - left) / width) * 100;
+    const y = ((event.clientY - top) / height) * 100;
 
   mainImageContainer.addEventListener("mousemove", (event) => {
     if (isZoomed || ticking) return;
@@ -151,22 +192,30 @@ function initZoom() {
 function initSwipe() {
   const threshold = 50;
 
-  mainImageContainer.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
+  mainImageContainer.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    },
+    { passive: true },
+  );
 
-  mainImageContainer.addEventListener("touchmove", (e) => {
-    const touchX = e.touches[0].clientX;
-    const touchY = e.touches[0].clientY;
-    const diffX = Math.abs(touchX - touchStartX);
-    const diffY = Math.abs(touchY - touchStartY);
+  mainImageContainer.addEventListener(
+    "touchmove",
+    (e) => {
+      const touchX = e.touches[0].clientX;
+      const touchY = e.touches[0].clientY;
+      const diffX = Math.abs(touchX - touchStartX);
+      const diffY = Math.abs(touchY - touchStartY);
 
-    // Só ativa swipe se movimento horizontal for maior que vertical
-    if (diffX > diffY && diffX > threshold) {
-      e.preventDefault();
-    }
-  }, { passive: false });
+      // Só ativa swipe se movimento horizontal for maior que vertical
+      if (diffX > diffY && diffX > threshold) {
+        e.preventDefault();
+      }
+    },
+    { passive: false },
+  );
 
   // Swipe e double-tap unificados
   let lastTap = 0;
@@ -180,7 +229,12 @@ function initSwipe() {
     const currentTime = new Date().getTime();
     const tapLength = currentTime - lastTap;
 
-    if (tapLength < 300 && tapLength > 0 && Math.abs(diffX) < 10 && diffY < 10) {
+    if (
+      tapLength < 300 &&
+      tapLength > 0 &&
+      Math.abs(diffX) < 10 &&
+      diffY < 10
+    ) {
       isZoomed = !isZoomed;
       mainImage.style.transform = isZoomed ? "scale(2)" : "scale(1)";
       e.preventDefault();

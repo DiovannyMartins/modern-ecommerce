@@ -15,21 +15,24 @@ const avaliacoesPadrao = [
     nome: "Carlos Silva",
     data: "Há 2 dias",
     nota: 5,
-    texto: "Simplesmente incrível! O cancelamento de ruído é surreal e o fone é muito leve. Recomendo demais para quem joga FPS.",
+    texto:
+      "Simplesmente incrível! O cancelamento de ruído é surreal e o fone é muito leve. Recomendo demais para quem joga FPS.",
   },
   {
     id: 2,
     nome: "Mariana Costa",
     data: "Há 1 semana",
     nota: 4,
-    texto: "Qualidade de som impecável. O único ponto é que poderia vir com uma case de transporte, mas o produto em si é nota 10.",
+    texto:
+      "Qualidade de som impecável. O único ponto é que poderia vir com uma case de transporte, mas o produto em si é nota 10.",
   },
   {
     id: 1,
     nome: "Felipe Oliveira",
     data: "Há 2 semanas",
     nota: 5,
-    texto: "A bateria realmente dura 80 horas. Estou usando para trabalhar e jogar e carrego uma vez por semana. Excelente investimento.",
+    texto:
+      "A bateria realmente dura 50 horas. Estou usando para trabalhar e jogar e carrego uma vez por semana. Excelente investimento.",
   },
 ];
 
@@ -106,14 +109,19 @@ export function initReviews() {
       starOptions.forEach((s) => {
         const valor = parseInt(s.dataset.valor);
         s.classList.toggle("selecionada", valor <= notaSelecionada);
-        s.setAttribute("aria-checked", valor === notaSelecionada ? "true" : "false");
+        s.setAttribute(
+          "aria-checked",
+          valor === notaSelecionada ? "true" : "false",
+        );
       });
     });
   });
 
   starPicker.addEventListener("keydown", (event) => {
     const estrelasArray = Array.from(starOptions);
-    const indexAtual = estrelasArray.findIndex((s) => s === document.activeElement);
+    const indexAtual = estrelasArray.findIndex(
+      (s) => s === document.activeElement,
+    );
 
     if (event.key === "ArrowRight" && indexAtual < estrelasArray.length - 1) {
       estrelasArray[indexAtual + 1].focus();
@@ -128,10 +136,20 @@ export function initReviews() {
     event.preventDefault();
 
     const nome = document.getElementById("nomeAvaliador").value.trim();
-    const comentario = document.getElementById("comentarioAvaliador").value.trim();
+    const comentario = document
+      .getElementById("comentarioAvaliador")
+      .value.trim();
 
-    if (nome === "" || comentario === "" || notaSelecionada === 0) {
-      mostrarToast("Preencha seu nome, comentário e selecione uma nota.");
+    if (!nome) {
+      mostrarToast("Digite seu nome para enviar a avaliação.");
+      return;
+    }
+    if (!comentario) {
+      mostrarToast("Escreva um comentário sobre o produto.");
+      return;
+    }
+    if (notaSelecionada === 0) {
+      mostrarToast("Selecione uma nota de 1 a 5 estrelas.");
       return;
     }
 
@@ -159,4 +177,5 @@ export function initReviews() {
   });
 
   renderizarAvaliacoes();
+  reviewsGrid.querySelectorAll(".review-skeleton").forEach((el) => el.remove());
 }

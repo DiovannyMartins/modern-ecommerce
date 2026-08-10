@@ -1,4 +1,9 @@
-import { formatarPreco, salvarStorage, carregarStorage, trapFocus } from "./utils.js";
+import {
+  formatarPreco,
+  salvarStorage,
+  carregarStorage,
+  trapFocus,
+} from "./utils.js";
 import { mostrarToast } from "./toast.js";
 import { getQuantidade, getPreco } from "./quantity.js";
 import { PRODUTO } from "./product-config.js";
@@ -22,9 +27,10 @@ let liberarFocusCarrinho = null;
 function normalizarCarrinho(itens) {
   if (!Array.isArray(itens)) return [];
 
-  return itens.map((item) => item.id === produtoAtual.id
-    ? { ...item, nome: PRODUTO.nome, imagem: PRODUTO.imagem }
-    : item
+  return itens.map((item) =>
+    item.id === produtoAtual.id
+      ? { ...item, nome: produtoAtual.nome, imagem: produtoAtual.imagem }
+      : item,
   );
 }
 
@@ -36,7 +42,8 @@ function renderizarCarrinho() {
   cartItensContainer.innerHTML = "";
 
   if (carrinho.length === 0) {
-    cartItensContainer.innerHTML = '<p class="cart-vazio">Seu carrinho está vazio.</p>';
+    cartItensContainer.innerHTML =
+      '<p class="cart-vazio">Seu carrinho está vazio.<br><small>Volte ao produto para adicionar itens.</small></p>';
     cartBadge.textContent = "0";
     cartTotalValor.textContent = formatarPreco(0);
     return;
@@ -80,9 +87,17 @@ function renderizarCarrinho() {
       mostrarToast(`"${item.nome}" removido do carrinho`);
     });
 
+    const btnDesfazer = document.createElement("button");
+    btnDesfazer.type = "button";
+    btnDesfazer.classList.add("cart-item-desfazer");
+    btnDesfazer.textContent = "Desfazer";
+    btnDesfazer.style.display = "none";
+    btnDesfazer.setAttribute("aria-label", `Desfazer remoção de ${item.nome}`);
+
     info.appendChild(h4);
     info.appendChild(p);
     info.appendChild(btnRemover);
+    info.appendChild(btnDesfazer);
     itemHTML.appendChild(img);
     itemHTML.appendChild(info);
     cartItensContainer.appendChild(itemHTML);
@@ -90,6 +105,38 @@ function renderizarCarrinho() {
 
   cartTotalValor.textContent = formatarPreco(total);
   cartBadge.textContent = totalItens;
+
+  document.querySelectorAll(".cart-item-remover").forEach((botao) => {
+    botao.addEventListener("click", () => {
+      const index = parseInt(botao.dataset.index);
+      const item = carrinho[index];
+      carrinho.splice(index, 1);
+      salvarCarrinho();
+
+      const btnDesfazer = botao.parentElement.querySelector(".cart-item-desfazer");
+      if (btnDesfazer) {
+        botao.style.display = "none";
+        btnDesfazer.style.display = "inline-block";
+        btnDesfazer.onclick = () => {
+          carrinho.splice(index, 0, item);
+          salvarCarrinho();
+          renderizarCarrinho();
+          mostrarToast("Item restaurado ao carrinho");
+        };
+      }
+
+      renderizarCarrinho();
+      mostrarToast(`"${item.nome}" removido`, 8000, {
+        label: "Desfazer",
+        callback: () => {
+          carrinho.splice(index, 0, item);
+          salvarCarrinho();
+          renderizarCarrinho();
+          mostrarToast("Item restaurado ao carrinho");
+        },
+      });
+    });
+  });
 }
 
 function animarBadge() {
@@ -126,7 +173,10 @@ export function limparCarrinho() {
 }
 
 export function getTotalCarrinho() {
-  return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
+  return carrinho.reduce(
+    (total, item) => total + item.preco * item.quantidade,
+    0,
+  );
 }
 
 /**
@@ -153,6 +203,14 @@ export function initCart() {
     salvarCarrinho();
     renderizarCarrinho();
     animarBadge();
+
+    if (typeof gtag !== "undefined") {
+      gtag("event", "add_to_cart", {
+        item_name: produtoAtual.nome,
+        price: preco,
+        quantity: quantidade,
+      });
+    }
 
     const textoOriginal = btnComprar.textContent;
     btnComprar.textContent = "Adicionado! ✓";
@@ -200,27 +258,22 @@ export function initCart() {
     const cepLimpo = cep.replace(/\D/g, "");
 
     if (cepLimpo.length !== 8) {
-      freteResultado.textContent = "CEP inválido. Digite 8 dígitos.";
+      freteResultado.textContent = "⚠️ CEP inválido. Digite 8 dígitos.";
       freteResultado.className = "frete-resultado erro";
       return;
     }
 
-    const regiao = parseInt(cepLimpo.substring(0, 2));
-    let textoFrete = "";
+    const textoOriginal = btnCalcularFrete.textContent;
+    btnCalcularFrete.textContent = "...";
+    btnCalcularFrete.disabled = true;
 
-    if (regiao >= 1 && regiao <= 2) {
-      textoFrete = "R$ 19,90 - até 5 dias úteis";
+    setTimeout(() => {
+      freteResultado.textContent = "Frete grátis - entrega em até 7 dias úteis";
       freteResultado.className = "frete-resultado sucesso";
-    } else if (regiao >= 3 && regiao <= 5) {
-      textoFrete = "R$ 29,90 - até 8 dias úteis";
-      freteResultado.className = "frete-resultado";
-    } else {
-      textoFrete = "R$ 39,90 - até 12 dias úteis";
-      freteResultado.className = "frete-resultado";
-    }
-
-    freteResultado.textContent = textoFrete;
-    mostrarToast("Frete calculado com sucesso!");
+      btnCalcularFrete.textContent = textoOriginal;
+      btnCalcularFrete.disabled = false;
+      mostrarToast("Frete calculado com sucesso!");
+    }, 600);
   });
 
   inputCEP.addEventListener("input", (e) => {

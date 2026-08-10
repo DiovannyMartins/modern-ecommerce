@@ -1,7 +1,30 @@
+/* ============================================
+   FOOTER — Papel dobrado
+   ============================================ */
+
 .footer {
-  background-color: rgba(15, 23, 42, 0.5);
-  border-top: 1px solid var(--border);
-  padding-top: 60px;
+  background-color: var(--paper-dim);
+  border-top: var(--paper-weight) solid var(--ink-faint);
+  padding-top: var(--spacing-2xl);
+  position: relative;
+}
+
+/* Linha de dobra no topo */
+.footer::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink-faint) 0px,
+    var(--ink-faint) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  opacity: 0.3;
 }
 
 .footer-grid {
@@ -12,46 +35,66 @@
 }
 
 .footer-col h4 {
-  margin-bottom: 20px;
-  font-size: var(--font-size-base);
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
 }
 
 .footer-col a {
   display: block;
-  color: var(--text-muted);
+  color: var(--ink-muted);
   text-decoration: none;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-size: var(--font-size-sm);
-  transition: var(--transition);
-  border-radius: var(--radius);
-  padding: 4px 0;
-}
-
-.footer-col .logo a {
-  color: white;
+  transition: var(--transition-fast);
+  border-radius: var(--radius-fold);
+  padding: 2px 0;
 }
 
 .footer-col a:hover,
 .footer-col a:focus-visible {
-  color: var(--primary);
+  color: var(--crimson);
   outline: none;
 }
 
-.footer-col a:focus-visible {
-  box-shadow: var(--shadow-primary);
+.footer-col .logo a {
+  color: var(--ink);
+  display: inline-flex;
+  gap: 2px;
+}
+
+.footer-col .logo-text {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.footer-col .logo-x {
+  color: var(--crimson);
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
 }
 
 .footer-col p {
-  color: var(--text-muted);
+  color: var(--ink-muted);
   font-size: var(--font-size-sm);
+  line-height: 1.6;
 }
 
 .footer-bottom {
-  border-top: 1px solid var(--border);
+  border-top: var(--paper-weight) solid var(--ink-faint);
   padding: 20px 0;
   text-align: center;
-  color: var(--text-muted);
-  font-size: var(--font-size-sm);
+  color: var(--ink-faint);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
 }
 
 @media (max-width: 900px) {
@@ -64,18 +107,15 @@
   .footer {
     padding-top: var(--spacing-xl);
   }
-
   .footer-grid {
     grid-template-columns: 1fr;
     text-align: center;
     gap: var(--spacing-lg);
   }
-
   .footer-col h4 {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
-
   .footer-col a {
-    padding: 6px 0;
+    padding: 4px 0;
   }
 }

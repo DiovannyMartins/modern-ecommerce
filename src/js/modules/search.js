@@ -16,8 +16,10 @@ export function initSearch() {
 
     if (termo === "") return;
 
-    if (PRODUTO_TERMOS_BUSCA.includes(termo)) {
-      document.querySelector(".product-hero").scrollIntoView({ behavior: "smooth" });
+    if (nomeProduto.includes(termo)) {
+      document
+        .querySelector(".product-hero")
+        .scrollIntoView({ behavior: "smooth" });
     } else {
       mostrarToast("Nenhum produto encontrado para: " + termo);
     }

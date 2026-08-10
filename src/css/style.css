@@ -26,3 +26,64 @@
     padding: 0 16px;
   }
 }
+
+/* Animação base de revelação — papel que desdobra */
+@keyframes paper-unfold {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes paper-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes paper-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes paper-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.paper-unfold {
+  animation: paper-unfold var(--transition-unfold) both;
+}
+
+.paper-unfold-delay-1 { animation-delay: 0.15s; }
+.paper-unfold-delay-2 { animation-delay: 0.3s; }
+.paper-unfold-delay-3 { animation-delay: 0.45s; }
+.paper-unfold-delay-4 { animation-delay: 0.6s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .paper-unfold,
+  .paper-unfold-delay-1,
+  .paper-unfold-delay-2,
+  .paper-unfold-delay-3,
+  .paper-unfold-delay-4 {
+    animation: paper-appear 0.1s both;
+    animation-delay: 0s;
+  }
+}
